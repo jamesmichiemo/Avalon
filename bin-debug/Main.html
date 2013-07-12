@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>My Music Search App</title>
+    <link type="text/css" rel="stylesheet" 
+          href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-2.3.2.css">
+    <style type="text/css">
+      body {
+        padding-top: 20px;
+        padding-bottom: 40px;
+      }
+      .container {
+        width: 960px;
+      }
+      .subheading {
+      	padding-top: 4px;
+      }
+
+      p.lead {
+        padding: 2px 0px 3px 4px;
+      }
+      .navigation, .display, .section1, .section2, .faq, .footer {
+        padding: 10px 0px 10px 0px;
+      }
+      .music {
+      	/* Internal borders have 1px width, thus need to add 4 x 1px to 120px. */
+        height: 124px;
+        line-height: 124px;
+        border: 1px dotted;
+        text-align: center;
+      }
+      .search {
+        border: 1px solid;
+      }
+      div.row {
+        border: 1px solid;
+      }
+      #flash_content {
+      	margin-left: -10px;
+      }
+    </style>
+    <script src="resources/javascripts/vendor/custom.modernizr.js"></script>
+    <script type="text/javascript" src="swfobject.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row navigation">
+        <div class="span2 logo">
+          Logo
+        </div>
+        <div class="span6 blank">
+          Blank
+        </div>
+        <div class="span4 about">
+          About
+        </div>
+      </div>
+      <div class="row heading">
+        <div class="span12">
+          <h1>My Music Search App</h1>
+        </div>
+      </div> 
+     <div id="flash_content">
+		<script type="text/javascript">
+			<!-- Change the dimensions of the SWF using the width and height variables below -->
+			var width = 980;
+			var height = 500;
+			var flashvars = {};
+			var params = {};
+			var attributes = {};
+			attributes.id = "flash_content";
+			swfobject.embedSWF("Main.swf", "myAlternativeContent", width, height, "9.0.0", false, flashvars, params, attributes);
+		</script>
+		<div id="myAlternativeContent">
+			<a href="http://www.adobe.com/go/getflashplayer">
+				<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+			</a>
+		</div>
+	</div><!--flas_content-->
+      <div class="row faq">
+        <div class="span12">
+          FAQ
+        </div>
+      </div>
+      <div class="row footer">
+        <div class="span6">
+          Created by: James Michiemo
+        </div>
+        <div class="span2">
+          Facebook
+        </div>
+        <div class="span2">
+          Twitter
+        </div>
+        <div class="span2">
+          Google+
+        </div>
+      </div>
+    </div>
+<script>
+  document.write('<script src=' +
+  ('__proto__' in {} ? 'resources/javascripts/vendor/zepto' : 'resources/javascripts/vendor/jquery') +
+  '.js><\/script>')
+  </script>
+  
+  <script src="resources/javascripts/foundation/foundation.js"></script>
+	
+	<script src="resources/javascripts/foundation/foundation.alerts.js"></script>
+	
+	<script src="resources/javascripts/foundation/foundation.clearing.js"></script>
+	
+	<script src="resources/javascripts/foundation/foundation.cookie.js"></script>
+	
+	<script src="resources/javascripts/foundation/foundation.dropdown.js"></script>
+	
+	<script src="resources/javascripts/foundation/foundation.forms.js"></script>
+	
+	<script src="resources/javascripts/foundation/foundation.joyride.js"></script>
+	
+	<script src="resources/javascripts/foundation/foundation.magellan.js"></script>
+	
+	<script src="resources/javascripts/foundation/foundation.orbit.js"></script>
+	
+	<script src="resources/javascripts/foundation/foundation.placeholder.js"></script>
+	
+	<script src="resources/javascripts/foundation/foundation.reveal.js"></script>
+	
+	<script src="resources/javascripts/foundation/foundation.section.js"></script>
+	
+	<script src="resources/javascripts/foundation/foundation.tooltips.js"></script>
+	
+	<script src="resources/javascripts/foundation/foundation.topbar.js"></script>
+	
+  
+  <script>
+    $(document).foundation();
+  </script>
+</body>
+</html>
