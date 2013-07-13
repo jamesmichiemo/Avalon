@@ -23,6 +23,7 @@ package
 		private var format:TextFormat = new TextFormat();
 		;
 		private var _vo:MusicVO;
+		private var _searchIdResults:Array;
 		public function Main()
 		{
 			formatText();	
@@ -70,6 +71,12 @@ package
 		
 		protected function onUp(event:MouseEvent):void
 		{
+			_searchTitleResults = [];
+			_searchArtistResults = [];
+			_searchKeyResults = [];
+			_searchGenreResults = [];
+			_searchPriceResults = [];
+			
 			_query = _searchField.text;
 			getSearchList();			
 		}
@@ -83,6 +90,7 @@ package
 		
 		protected function onParse(event:Event):void
 		{	
+			_searchIdResults = [];
 			_searchTitleResults = [];
 			_searchArtistResults = [];
 			_searchKeyResults = [];
@@ -93,35 +101,63 @@ package
 			
 			for each(var resultsNode:Object in jsonData.results)
 			{
-				if(resultsNode.title != undefined)
+				if(resultsNode.title != undefined &&
+				   resultsNode.artists != undefined &&
+				   resultsNode.genres != undefined &&
+				   resultsNode.key != undefined && 
+				   resultsNode.key.shortName != undefined &&
+				   resultsNode.audioFormatFee != undefined && 
+				   resultsNode.audioFormatFee.wav.display != undefined)
 				{
+					trace("id: " + resultsNode.id)
+					_searchIdResults.push(resultsNode.id);
+					
 					trace("title: " + resultsNode.title)
 					_searchTitleResults.push(resultsNode.title);
-				}
-				
-				if(resultsNode.artists != undefined)
-				{	
+					
 					trace("artist: " + resultsNode.artists[0].name);
-					_searchArtistResults.push(resultsNode.artists.name);
-				}else{
-					trace("artist: undefined");
-					//_searchArtistResults.push(resultsNode.artists[0].name);
-				}
-				
+					_searchArtistResults.push(resultsNode.artists[0].name);
+					
 					trace("genre: " + resultsNode.genres[0].name);
 					_searchGenreResults.push(resultsNode.genres[0].name);
-				
-				
-				if(resultsNode.key != undefined && resultsNode.key.shortName != undefined)
-				{
+					
 					trace("key: " + resultsNode.key.shortName);
 					_searchKeyResults.push(resultsNode.key.shortName);
-				}
-				
-				if(resultsNode.audioFormatFee != undefined && resultsNode.audioFormatFee.wav.display != undefined){
+					
 					trace("buy: " + resultsNode.audioFormatFee.wav.display);
 					_searchKeyResults.push(resultsNode.audioFormatFee.wav.display);
+					
+					
+				}else{
+					trace("undefined");
 				}
+				
+//				if(resultsNode.artists != undefined)
+//				{	
+//					trace("artist: " + resultsNode.artists[0].name);
+//					_searchArtistResults.push(resultsNode.artists[0].name);
+//				}else{
+//					trace("artist: undefined");
+//				}
+//				
+//					trace("genre: " + resultsNode.genres[0].name);
+//					_searchGenreResults.push(resultsNode.genres[0].name);
+//				
+//				
+//				if(resultsNode.key != undefined && resultsNode.key.shortName != undefined)
+//				{
+//					trace("key: " + resultsNode.key.shortName);
+//					_searchKeyResults.push(resultsNode.key.shortName);
+//				}else{
+//					trace("key: undefined");
+//				}
+//				
+//				if(resultsNode.audioFormatFee != undefined && resultsNode.audioFormatFee.wav.display != undefined){
+//					trace("buy: " + resultsNode.audioFormatFee.wav.display);
+//					_searchKeyResults.push(resultsNode.audioFormatFee.wav.display);
+//				}else{
+//					trace("buy: undefined");
+//				}
 				
 	
 			}
