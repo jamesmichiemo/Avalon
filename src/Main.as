@@ -95,27 +95,31 @@ package
 			{
 				if(resultsNode.title != undefined)
 				{
-					trace(resultsNode.title)
+					trace("title: " + resultsNode.title)
 					_searchTitleResults.push(resultsNode.title);
 				}
 				
-				if(resultsNode.artists != undefined && resultsNode.artists != undefined){
-					trace(resultsNode.artists.name);
+				if(resultsNode.artists != undefined)
+				{	
+					trace("artist: " + resultsNode.artists[0].name);
 					_searchArtistResults.push(resultsNode.artists.name);
+				}else{
+					trace("artist: undefined");
+					//_searchArtistResults.push(resultsNode.artists[0].name);
 				}
 				
-				if(resultsNode.genres.name != undefined){
-					trace(resultsNode.genres.name);
-					_searchGenreResults.push(resultsNode.genres.name);
-				}
+					trace("genre: " + resultsNode.genres[0].name);
+					_searchGenreResults.push(resultsNode.genres[0].name);
 				
-				if(resultsNode.key != undefined && resultsNode.key.shortName != undefined){
-					trace(resultsNode.key.shortName);
+				
+				if(resultsNode.key != undefined && resultsNode.key.shortName != undefined)
+				{
+					trace("key: " + resultsNode.key.shortName);
 					_searchKeyResults.push(resultsNode.key.shortName);
 				}
 				
-				if(resultsNode.audioFormatFee.wav.display != undefined){
-					trace(resultsNode.audioFormatFee.wav.display);
+				if(resultsNode.audioFormatFee != undefined && resultsNode.audioFormatFee.wav.display != undefined){
+					trace("buy: " + resultsNode.audioFormatFee.wav.display);
 					_searchKeyResults.push(resultsNode.audioFormatFee.wav.display);
 				}
 				
