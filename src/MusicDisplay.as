@@ -11,6 +11,7 @@ package
 		public function set data(value:MusicVO):void
 		{
 			_data = value;
+			updateTextFields();
 		}
 
 		public function get data():MusicVO
