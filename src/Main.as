@@ -1,5 +1,6 @@
 package
 {
+	
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -21,10 +22,10 @@ package
 		private var _searchPriceResults:Array;
 		private var _query:String;
 		private var format:TextFormat = new TextFormat();
-		;
 		private var _vo:MusicVO;
 		private var _searchIdResults:Array;
 		private var _musicDisplay:MusicDisplay;
+		private var _vos:Array;
 		public function Main()
 		{
 			formatText();	
@@ -70,15 +71,27 @@ package
 			addChild(_musicDisplay);
 			_musicDisplay.y = 60;
 			
-			_vo = new MusicVO();
-			_vo.title = "?";
-			_vo.artist = "?";
-			_vo.genre = "?";
-			_vo.key = "?";
-			_vo.keycode = "?";
-			_vo.price = "?";
+//			_vo = new MusicVO();
+//			_vo.title = "?";
+//			_vo.artist = "?";
+//			_vo.genre = "?";
+//			_vo.key = "?";
+//			_vo.keycode = "?";
+//			_vo.price = "?";
+//			
+//			_musicDisplay.data = _vo;
 			
-			_musicDisplay.data = _vo;
+			var lb:LayoutBox = new LayoutBox();
+			addChild(lb);
+			lb.y = 40;
+			
+//			for(var i:int = 0; i < _searchTitleResults.length; i++)
+//			{
+//				var titleResults:TitleResults = new TitleResults();
+//				lb.addChild(titleResults);
+//				
+//				titleResults.tfTitle.text = _searchTitleResults[i];
+//			}
 		}
 		
 		protected function onUp(event:MouseEvent):void
@@ -102,55 +115,44 @@ package
 		}
 		
 		protected function onParse(event:Event):void
-		{	
-			_searchIdResults = [];
-			_searchTitleResults = [];
-			_searchArtistResults = [];
-			_searchKeyResults = [];
-			_searchGenreResults = [];
-			_searchPriceResults = [];
+		{
+			_vos = [];
 			
 			var jsonData:Object = JSON.parse(event.currentTarget.data + "");
 			
 			for each(var resultsNode:Object in jsonData.results)
 			{
 				if(resultsNode.title != undefined &&
-				   resultsNode.artists != undefined &&
-				   resultsNode.genres != undefined &&
-				   resultsNode.key != undefined && 
-				   resultsNode.key.shortName != undefined &&
-				   resultsNode.audioFormatFee != undefined && 
-				   resultsNode.audioFormatFee.wav.display != undefined)
+					resultsNode.artists != undefined &&
+					resultsNode.genres != undefined &&
+					resultsNode.key != undefined && 
+					resultsNode.key.shortName != undefined &&
+					resultsNode.audioFormatFee != undefined && 
+					resultsNode.audioFormatFee.wav.display != undefined)
 				{
-					trace("id: " + resultsNode.id)
-					_searchIdResults.push(resultsNode.id);
+					var vo : MusicVO = new MusicVO();
+					vo.title = resultsNode.title;
+					vo.artist = resultsNode.artists[0].name;
+					vo.genre = resultsNode.genres[0].name;
+					vo.key = resultsNode.key.shortName;
 					
-					trace("title: " + resultsNode.title)
-					_vo.title = resultsNode.title;
-					_searchTitleResults.push(resultsNode.title);
-					
-					trace("artist: " + resultsNode.artists[0].name);
-					_vo.artist = resultsNode.artists[0].name;
-					_searchArtistResults.push(resultsNode.artists[0].name);
-					
-					trace("genre: " + resultsNode.genres[0].name);
-					_vo.genre = resultsNode.genres[0].name;
-					_searchGenreResults.push(resultsNode.genres[0].name);
-					
-					trace("key: " + resultsNode.key.shortName);
-					_vo.key = resultsNode.key.shortName;
-					_searchKeyResults.push(resultsNode.key.shortName);
-					
-					trace("buy: " + resultsNode.audioFormatFee.wav.display);
-					_vo.price = resultsNode.audioFormatFee.wav.display;
-					_searchKeyResults.push(resultsNode.audioFormatFee.wav.display);
-					
-					_musicDisplay.data = _vo;
-					
+					_vos.push(vo);
 				}else{
 					trace("undefined");
 				}
 			}
+
+			for each (var object : MusicVO in _vos)
+			{
+				trace("-------------------------------")
+				trace(object.title);
+				trace(object.artist);
+				trace(object.genre);
+				trace(object.key);
+			}
+			trace(_vos.length);
 		}
+		
+		
 	}
 }

@@ -11,7 +11,6 @@ package
 		public function set data(value:MusicVO):void
 		{
 			_data = value;
-			updateTextFields();
 		}
 
 		public function get data():MusicVO
@@ -21,7 +20,7 @@ package
 		
 		private function updateTextFields():void
 		{
-			tfTitle.text = _data.title;
+			//tfTitle.text = _data.title;
 			tfArtist.text = _data.artist;
 			tfGenre.text = _data.genre;
 			tfKey.text = _data.key;
