@@ -18,7 +18,6 @@ package
 		private var _searchField:TextField;
 		private var _query:String;
 		private var searchFormat:TextFormat = new TextFormat();
-		//private var _vo:MusicVO;
 		private var _musicDisplay:MusicDisplay;
 		private var _vos:Array;
 		private var _resultTitle:TextField;
@@ -80,7 +79,7 @@ package
 		protected function onSearch(event:MouseEvent):void
 		{	
 			//http://snipplr.com/view/10717/
-			var _scope:DisplayObjectContainer = this; // set the desired scope here, or below if you want to keep it to one line
+			var _scope:DisplayObjectContainer = this;
 			trace(_scope.numChildren);
 			while(_scope.numChildren > 2)
 			{
@@ -102,7 +101,6 @@ package
 		
 		protected function onParse(event:Event):void
 		{
-			
 			_vos = [];
 			
 			var jsonData:Object = JSON.parse(event.currentTarget.data + "");
@@ -146,10 +144,6 @@ package
 		
 		private function createResults():void
 		{
-			
-			
-			
-			
 			for(var i:uint=0;i<_vos.length; i++)
 			{
 			
@@ -209,7 +203,7 @@ package
 		protected function onResultSearch(event:MouseEvent):void
 		{
 			//http://snipplr.com/view/10717/
-			var _scope:DisplayObjectContainer = this; // set the desired scope here, or below if you want to keep it to one line
+			var _scope:DisplayObjectContainer = this;
 			trace(_scope.numChildren);
 			while(_scope.numChildren > 2)
 			{
@@ -226,122 +220,10 @@ package
 		{
 			var ul:URLLoader = new URLLoader();
 			ul.load(new URLRequest("http://api.beatport.com/catalog/3/tracks/similar?ids=" + _resultsQuery));
-			//ul.addEventListener(Event.COMPLETE, onResultParse);
 			ul.addEventListener(Event.COMPLETE, onParse);
 		}
 		
-//		protected function onResultParse(event:Event):void
-//		{
-//			_vosResult = [];
-//			
-//			var jsonData:Object = JSON.parse(event.currentTarget.data + "");
-//			
-//			for each(var resultsNode:Object in jsonData.results)
-//			{
-//				if(resultsNode.title != undefined &&
-//					resultsNode.artists != undefined &&
-//					resultsNode.genres != undefined &&
-//					resultsNode.key != undefined && 
-//					resultsNode.key.shortName != undefined &&
-//					resultsNode.price != undefined && 
-//					resultsNode.price.display != undefined)
-//				{
-//					var vo : MusicVO = new MusicVO();
-//					vo.id = resultsNode.id;
-//					vo.title = resultsNode.title;
-//					vo.artist = resultsNode.artists[0].name;
-//					vo.genre = resultsNode.genres[0].name;
-//					vo.key = resultsNode.key.shortName;
-//					vo.price = resultsNode.price.display;
-//					
-//					_vosResult.push(vo);
-//				}else{
-//					trace("undefined");
-//				}
-//			}
-//			
-//			for each (var object : MusicVO in _vos)
-//			{
-//				trace("-------------------------------")
-//				trace(object.id);
-//				trace(object.title);
-//				trace(object.artist);
-//				trace(object.genre);
-//				trace(object.key);
-//			}
-//			
-//			createReparseResults();
-//		}
-		
-//		private function createReparseResults():void
-//		{
-//			
-//			//http://snipplr.com/view/10717/
-//			var _scope:DisplayObjectContainer = this; // set the desired scope here, or below if you want to keep it to one line
-//			trace(_scope.numChildren);
-//			while(_scope.numChildren > 2)
-//			{
-//				_scope.removeChildAt(_scope.numChildren-1);
-//			}
-//			trace(_scope.numChildren);
-//			
-//			
-//			for(var i:uint=0;i<_vosResult.length; i++)
-//			{
-//				
-//				_resultTitle = new TextField();
-//				addChild(_resultTitle);
-//				_resultTitle.defaultTextFormat = resultFormat;
-//				_resultTitle.border = false;
-//				_resultTitle.x = 10;
-//				_resultTitle.y = (i*30)+240;
-//				_resultTitle.width = 400;
-//				_resultTitle.height = 30;
-//				_resultTitle.text = _vosResult[i].title;
-//				_resultTitle.addEventListener(MouseEvent.MOUSE_UP, onResultSearch);
-//				
-//				_resultArtist = new TextField();
-//				addChild(_resultArtist);
-//				_resultArtist.defaultTextFormat = resultFormat;
-//				_resultArtist.border = false;
-//				_resultArtist.x = 410;
-//				_resultArtist.y = (i*30)+240;
-//				_resultArtist.width = 275;
-//				_resultArtist.height = 30;
-//				_resultArtist.text = _vosResult[i].artist;
-//				
-//				_resultGenre = new TextField();
-//				addChild(_resultGenre);
-//				_resultGenre.defaultTextFormat = resultFormat;
-//				_resultGenre.border = false;
-//				_resultGenre.x = 685;
-//				_resultGenre.y = (i*30)+240;
-//				_resultGenre.width = 120;
-//				_resultGenre.height = 30;
-//				_resultGenre.text = _vosResult[i].genre;
-//				
-//				_resultKey = new TextField();
-//				addChild(_resultKey);
-//				_resultKey.defaultTextFormat = resultFormat;
-//				_resultKey.border = false;
-//				_resultKey.x = 805;
-//				_resultKey.y = (i*30)+240;
-//				_resultKey.width = 100;
-//				_resultKey.height = 30;
-//				_resultKey.text = _vosResult[i].key;
-//				
-//				_resultPrice = new TextField();
-//				addChild(_resultPrice);
-//				_resultPrice.defaultTextFormat = resultFormat;
-//				_resultPrice.border = false;
-//				_resultPrice.x = 905;
-//				_resultPrice.y = (i*30)+240;
-//				_resultPrice.width = 60;
-//				_resultPrice.height = 30;
-//				_resultPrice.text = _vosResult[i].price;
-//				
-//			}
-//		}
+
 		
 	}
 }
