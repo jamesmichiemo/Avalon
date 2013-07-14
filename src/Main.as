@@ -106,6 +106,7 @@ package
 					resultsNode.price.display != undefined)
 				{
 					var vo : MusicVO = new MusicVO();
+					vo.id = resultsNode.id;
 					vo.title = resultsNode.title;
 					vo.artist = resultsNode.artists[0].name;
 					vo.genre = resultsNode.genres[0].name;
@@ -121,6 +122,7 @@ package
 			for each (var object : MusicVO in _vos)
 			{
 				trace("-------------------------------")
+				trace(object.id);
 				trace(object.title);
 				trace(object.artist);
 				trace(object.genre);
@@ -141,9 +143,11 @@ package
 				_scope.removeChildAt(_scope.numChildren-1);
 			}
 			trace(_scope.numChildren);
+			
+			
 			for(var i:uint=0;i<_vos.length; i++)
 			{
-	
+			
 			_resultTitle = new TextField();
 			addChild(_resultTitle);
 			_resultTitle.defaultTextFormat = resultFormat;
@@ -153,7 +157,7 @@ package
 			_resultTitle.width = 400;
 			_resultTitle.height = 30;
 			_resultTitle.text = _vos[i].title;
-			_resultTitle.addEventListener(MouseEvent.MOUSE_UP, onReparse);
+			_resultTitle.addEventListener(MouseEvent.MOUSE_UP, onTitleResultSearch);
 						
 			_resultArtist = new TextField();
 			addChild(_resultArtist);
@@ -199,10 +203,17 @@ package
 			
 		}
 		
-		protected function onReparse(event:MouseEvent):void
+		protected function onTitleResultSearch(event:MouseEvent):void
 		{
-			// TODO Auto-generated method stub
+			_query = _vo.id;
+			getResultSearchList();
+		}
+		
+		private function getResultSearchList():void
+		{
+			// TODO Auto Generated method stub
 			
 		}
+		
 	}
 }
