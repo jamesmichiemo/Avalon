@@ -1,7 +1,9 @@
 package
 {
+	
 	public class MusicVO
 	{
+		
 		public var id:String;
 		public var title:String;
 		public var artist:String;
@@ -12,6 +14,9 @@ package
 		
 		public function MusicVO()
 		{
+			
 		}
+		
 	}
+	
 }

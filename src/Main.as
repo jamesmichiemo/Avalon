@@ -1,6 +1,6 @@
 package
 {
-	
+
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -11,10 +11,11 @@ package
 	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
 	
-	
 	[SWF(width="980", height="500", framerate="60", backgroundColor="0xededed")]
+	
 	public class Main extends Sprite
 	{
+		
 		private var _searchField:TextField;
 		private var _query:String;
 		private var searchFormat:TextFormat = new TextFormat();
@@ -28,6 +29,7 @@ package
 		private var resultFormat:TextFormat = new TextFormat();
 		private var _resultsQuery:String;
 		private var _vosResult:Array;
+		
 		public function Main()
 		{
 			formatText();	
@@ -37,6 +39,7 @@ package
 		
 		private function createButton():void
 		{
+			
 			var button:ButtonBase = new ButtonBase();
 			this.addChild(button);
 			button.x = _searchField.x +400;
@@ -45,8 +48,9 @@ package
 			button.tfLabel.text = "Search";
 			button.mouseChildren = false;
 			button.buttonMode = true;
-			
+
 			button.addEventListener(MouseEvent.MOUSE_UP, onSearch);
+			
 		}
 		
 		private function formatText():void
@@ -63,6 +67,7 @@ package
 		
 		private function createSearchField():void
 		{
+			
 			_searchField = new TextField();
 			this.addChild(_searchField);
 			_searchField.defaultTextFormat = searchFormat;
@@ -78,6 +83,7 @@ package
 		
 		protected function onSearch(event:MouseEvent):void
 		{	
+			
 			//http://snipplr.com/view/10717/
 			var _scope:DisplayObjectContainer = this;
 			trace(_scope.numChildren);
@@ -94,13 +100,16 @@ package
 		
 		private function getSearchList():void
 		{
+			
 			var ul:URLLoader = new URLLoader();
 			ul.load(new URLRequest("http://api.beatport.com/catalog/3/search?query=" + _query));
 			ul.addEventListener(Event.COMPLETE, onParse);
+			
 		}
 		
 		protected function onParse(event:Event):void
 		{
+			
 			_vos = [];
 			
 			var jsonData:Object = JSON.parse(event.currentTarget.data + "");
@@ -140,10 +149,12 @@ package
 			}
 			
 			createResults();
+			
 		}
 		
 		private function createResults():void
 		{
+			
 			for(var i:uint=0;i<_vos.length; i++)
 			{
 			
@@ -198,10 +209,12 @@ package
 			_resultPrice.height = 30;
 			_resultPrice.text = _vos[i].price;
 			}
+			
 		}
 		
 		protected function onResultSearch(event:MouseEvent):void
 		{
+			
 			//http://snipplr.com/view/10717/
 			var _scope:DisplayObjectContainer = this;
 			trace(_scope.numChildren);
@@ -214,16 +227,18 @@ package
 			_resultsQuery = _vos[0].id;
 			trace(_resultsQuery);
 			getResultSearchList();
+			
 		}
 		
 		private function getResultSearchList():void
 		{
+			
 			var ul:URLLoader = new URLLoader();
 			ul.load(new URLRequest("http://api.beatport.com/catalog/3/tracks/similar?ids=" + _resultsQuery));
 			ul.addEventListener(Event.COMPLETE, onParse);
+			
 		}
-		
-
-		
+	
 	}
+	
 }
