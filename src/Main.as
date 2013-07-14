@@ -15,17 +15,17 @@ package
 	public class Main extends Sprite
 	{
 		private var _searchField:TextField;
-		private var _searchTitleResults:Array;
-		private var _searchArtistResults:Array;
-		private var _searchKeyResults:Array;
-		private var _searchGenreResults:Array;
-		private var _searchPriceResults:Array;
 		private var _query:String;
-		private var format:TextFormat = new TextFormat();
+		private var searchFormat:TextFormat = new TextFormat();
 		private var _vo:MusicVO;
-		private var _searchIdResults:Array;
 		private var _musicDisplay:MusicDisplay;
 		private var _vos:Array;
+		private var _resultTitle:TextField;
+		private var _resultArtist:TextField;
+		private var _resultGenre:TextField;
+		private var _resultKey:TextField;
+		private var _resultPrice:TextField;
+		private var resultFormat:TextFormat = new TextFormat();
 		public function Main()
 		{
 			formatText();	
@@ -49,16 +49,21 @@ package
 		
 		private function formatText():void
 		{
-			format.color = 0x000000;
-			format.font = "Droid Sans";
-			format.size = 22;
+			searchFormat.color = 0x000000;
+			searchFormat.font = "Droid Sans";
+			searchFormat.size = 22;
+			
+			resultFormat.color = 0x000000;
+			resultFormat.font = "Droid Sans";
+			resultFormat.size = 16;
+			
 		}
 		
 		private function createSearchField():void
 		{
 			_searchField = new TextField();
 			this.addChild(_searchField);
-			_searchField.defaultTextFormat = format;
+			_searchField.defaultTextFormat = searchFormat;
 			_searchField.border = true;
 			_searchField.x = 10;
 			_searchField.y = 10;
@@ -67,44 +72,14 @@ package
 			_searchField.type = TextFieldType.INPUT;
 			_searchField.text = "Search Artist, Label or Track";
 			
-			_musicDisplay = new MusicDisplay();
-			addChild(_musicDisplay);
-			_musicDisplay.y = 60;
-			
-//			_vo = new MusicVO();
-//			_vo.title = "?";
-//			_vo.artist = "?";
-//			_vo.genre = "?";
-//			_vo.key = "?";
-//			_vo.keycode = "?";
-//			_vo.price = "?";
-//			
-//			_musicDisplay.data = _vo;
-			
-			var lb:LayoutBox = new LayoutBox();
-			addChild(lb);
-			lb.y = 40;
-			
-//			for(var i:int = 0; i < _searchTitleResults.length; i++)
-//			{
-//				var titleResults:TitleResults = new TitleResults();
-//				lb.addChild(titleResults);
-//				
-//				titleResults.tfTitle.text = _searchTitleResults[i];
-//			}
 		}
 		
 		protected function onUp(event:MouseEvent):void
-		{
-			_searchIdResults = [];
-			_searchTitleResults = [];
-			_searchArtistResults = [];
-			_searchKeyResults = [];
-			_searchGenreResults = [];
-			_searchPriceResults = [];
-			
+		{	
 			_query = _searchField.text;
-			getSearchList();			
+			getSearchList();
+			
+			
 		}
 		
 		private function getSearchList():void
@@ -127,14 +102,15 @@ package
 					resultsNode.genres != undefined &&
 					resultsNode.key != undefined && 
 					resultsNode.key.shortName != undefined &&
-					resultsNode.audioFormatFee != undefined && 
-					resultsNode.audioFormatFee.wav.display != undefined)
+					resultsNode.price != undefined && 
+					resultsNode.price.display != undefined)
 				{
 					var vo : MusicVO = new MusicVO();
 					vo.title = resultsNode.title;
 					vo.artist = resultsNode.artists[0].name;
 					vo.genre = resultsNode.genres[0].name;
 					vo.key = resultsNode.key.shortName;
+					vo.price = resultsNode.price.display;
 					
 					_vos.push(vo);
 				}else{
@@ -150,9 +126,65 @@ package
 				trace(object.genre);
 				trace(object.key);
 			}
-			trace(_vos.length);
+			
+			createResults();
 		}
 		
-		
+		private function createResults():void
+		{
+			for(var i:uint=0;i<_vos.length; i++)
+			{
+	
+			_resultTitle = new TextField();
+			this.addChild(_resultTitle);
+			_resultTitle.defaultTextFormat = resultFormat;
+			_resultTitle.border = false;
+			_resultTitle.x = 10;
+			_resultTitle.y = (i*30)+240;
+			_resultTitle.width = 400;
+			_resultTitle.height = 30;
+			_resultTitle.text = _vos[i].title;
+						
+			_resultArtist = new TextField();
+			this.addChild(_resultArtist);
+			_resultArtist.defaultTextFormat = resultFormat;
+			_resultArtist.border = false;
+			_resultArtist.x = 410;
+			_resultArtist.y = (i*30)+240;
+			_resultArtist.width = 275;
+			_resultArtist.height = 30;
+			_resultArtist.text = _vos[i].artist;
+			
+			_resultGenre = new TextField();
+			this.addChild(_resultGenre);
+			_resultGenre.defaultTextFormat = resultFormat;
+			_resultGenre.border = false;
+			_resultGenre.x = 685;
+			_resultGenre.y = (i*30)+240;
+			_resultGenre.width = 120;
+			_resultGenre.height = 30;
+			_resultGenre.text = _vos[i].genre;
+			
+			_resultKey = new TextField();
+			this.addChild(_resultKey);
+			_resultKey.defaultTextFormat = resultFormat;
+			_resultKey.border = false;
+			_resultKey.x = 805;
+			_resultKey.y = (i*30)+240;
+			_resultKey.width = 100;
+			_resultKey.height = 30;
+			_resultKey.text = _vos[i].key;
+			
+			_resultPrice = new TextField();
+			this.addChild(_resultPrice);
+			_resultPrice.defaultTextFormat = resultFormat;
+			_resultPrice.border = false;
+			_resultPrice.x = 905;
+			_resultPrice.y = (i*30)+240;
+			_resultPrice.width = 60;
+			_resultPrice.height = 30;
+			_resultPrice.text = _vos[i].price;
+			}
+		}
 	}
 }
