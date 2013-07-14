@@ -45,7 +45,7 @@ package
 			button.mouseChildren = false;
 			button.buttonMode = true;
 			
-			button.addEventListener(MouseEvent.MOUSE_UP, onUp);
+			button.addEventListener(MouseEvent.MOUSE_UP, onSearch);
 		}
 		
 		private function formatText():void
@@ -75,7 +75,7 @@ package
 			
 		}
 		
-		protected function onUp(event:MouseEvent):void
+		protected function onSearch(event:MouseEvent):void
 		{	
 			_query = _searchField.text;
 			getSearchList();
@@ -153,6 +153,7 @@ package
 			_resultTitle.width = 400;
 			_resultTitle.height = 30;
 			_resultTitle.text = _vos[i].title;
+			_resultTitle.addEventListener(MouseEvent.MOUSE_UP, onReparse);
 						
 			_resultArtist = new TextField();
 			addChild(_resultArtist);
@@ -195,6 +196,12 @@ package
 			_resultPrice.text = _vos[i].price;
 		
 			}
+			
+		}
+		
+		protected function onReparse(event:MouseEvent):void
+		{
+			// TODO Auto-generated method stub
 			
 		}
 	}
