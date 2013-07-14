@@ -7,6 +7,7 @@ package
 	
 	public class MusicInfo extends Sprite
 	{
+		private var _vo:MusicVO; //
 		private var _id:String;
 		private var title:String;
 		private var artist:String;
@@ -20,10 +21,17 @@ package
 		private var _resultKey:TextField;
 		private var _resultPrice:TextField;
 		
-		public function MusicInfo(MusicVO:Object, x:uint,y:uint)
+		public function MusicInfo(vo:MusicVO,y:int)
 		{
 			super();
+			//
+			_vo = vo;
+			//
+			this.y = y;
+			_id = vo.id;
 			formatText();
+			musicResults();
+			
 		}
 		
 		public function get id():String
@@ -40,50 +48,55 @@ package
 		
 		private function musicResults():void
 		{
-			var vo:MusicVO:String = new MusicVO();
+
 				
 			_resultTitle = new TextField();
 			addChild(_resultTitle);
 			_resultTitle.defaultTextFormat = _resultFormat;
 			_resultTitle.border = false;
+			_resultTitle.x = 10;
 			_resultTitle.width = 400;
 			_resultTitle.height = 30;	
-			_resultTitle.text = vo.title; 
+			_resultTitle.text = _vo.title; 
 			
 				
 			_resultArtist = new TextField();
 			addChild(_resultArtist);
 			_resultArtist.defaultTextFormat = _resultFormat;
 			_resultArtist.border = false;
+			_resultArtist.x = 410;
 			_resultArtist.width = 275;
 			_resultArtist.height = 30;
-			_resultArtist.text = vo.artist;
+			_resultArtist.text = _vo.artist;
 
 				
 			_resultGenre = new TextField();
 			addChild(_resultGenre);
 			_resultGenre.defaultTextFormat = _resultFormat;
 			_resultGenre.border = false;
+			_resultGenre.x = 685;
 			_resultGenre.width = 120;
 			_resultGenre.height = 30;
-			_resultGenre.text = vo.genre;
+			_resultGenre.text = _vo.genre;
 
 				
 			_resultKey = new TextField();
 			addChild(_resultKey);
 			_resultKey.defaultTextFormat = _resultFormat;
 			_resultKey.border = false;
+			_resultKey.x = 805;
 			_resultKey.width = 100;
 			_resultKey.height = 30;
-			_resultKey.text = vo.key;
+			_resultKey.text = _vo.key;
 				
 			_resultPrice = new TextField();
 			addChild(_resultPrice);
 			_resultPrice.defaultTextFormat = _resultFormat;
 			_resultPrice.border = false;
+			_resultPrice.x = 905;
 			_resultPrice.width = 60;
 			_resultPrice.height = 30;
-			_resultPrice.text = vo.price;
+			_resultPrice.text = _vo.price;
 			
 		}
 
