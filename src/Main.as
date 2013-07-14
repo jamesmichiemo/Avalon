@@ -1,6 +1,7 @@
 package
 {
 	
+	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -78,8 +79,6 @@ package
 		{	
 			_query = _searchField.text;
 			getSearchList();
-			
-			
 		}
 		
 		private function getSearchList():void
@@ -91,6 +90,7 @@ package
 		
 		protected function onParse(event:Event):void
 		{
+			
 			_vos = [];
 			
 			var jsonData:Object = JSON.parse(event.currentTarget.data + "");
@@ -132,11 +132,20 @@ package
 		
 		private function createResults():void
 		{
+			
+			//http://snipplr.com/view/10717/
+			var _scope:DisplayObjectContainer = this; // set the desired scope here, or below if you want to keep it to one line
+			trace(_scope.numChildren);
+			while(_scope.numChildren > 2)
+			{
+				_scope.removeChildAt(_scope.numChildren-1);
+			}
+			trace(_scope.numChildren);
 			for(var i:uint=0;i<_vos.length; i++)
 			{
 	
 			_resultTitle = new TextField();
-			this.addChild(_resultTitle);
+			addChild(_resultTitle);
 			_resultTitle.defaultTextFormat = resultFormat;
 			_resultTitle.border = false;
 			_resultTitle.x = 10;
@@ -146,7 +155,7 @@ package
 			_resultTitle.text = _vos[i].title;
 						
 			_resultArtist = new TextField();
-			this.addChild(_resultArtist);
+			addChild(_resultArtist);
 			_resultArtist.defaultTextFormat = resultFormat;
 			_resultArtist.border = false;
 			_resultArtist.x = 410;
@@ -156,7 +165,7 @@ package
 			_resultArtist.text = _vos[i].artist;
 			
 			_resultGenre = new TextField();
-			this.addChild(_resultGenre);
+			addChild(_resultGenre);
 			_resultGenre.defaultTextFormat = resultFormat;
 			_resultGenre.border = false;
 			_resultGenre.x = 685;
@@ -166,7 +175,7 @@ package
 			_resultGenre.text = _vos[i].genre;
 			
 			_resultKey = new TextField();
-			this.addChild(_resultKey);
+			addChild(_resultKey);
 			_resultKey.defaultTextFormat = resultFormat;
 			_resultKey.border = false;
 			_resultKey.x = 805;
@@ -176,7 +185,7 @@ package
 			_resultKey.text = _vos[i].key;
 			
 			_resultPrice = new TextField();
-			this.addChild(_resultPrice);
+			addChild(_resultPrice);
 			_resultPrice.defaultTextFormat = resultFormat;
 			_resultPrice.border = false;
 			_resultPrice.x = 905;
@@ -184,7 +193,9 @@ package
 			_resultPrice.width = 60;
 			_resultPrice.height = 30;
 			_resultPrice.text = _vos[i].price;
+		
 			}
+			
 		}
 	}
 }
