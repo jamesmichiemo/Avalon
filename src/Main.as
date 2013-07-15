@@ -4,12 +4,15 @@ package
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
+	import flash.ui.Keyboard;
 	
 	[SWF(width="980", height="500", framerate="60", backgroundColor="0xededed")]
 	
@@ -62,7 +65,7 @@ package
 			searchFormat.font = "Droid Sans";
 			searchFormat.size = 20;
 			
-			resultFormat.color = 0x000000;
+			resultFormat.color = 0x555555;
 			resultFormat.font = "Droid Sans";
 			resultFormat.size = 16;
 			
@@ -81,7 +84,36 @@ package
 			_searchField.height = 30;
 			_searchField.type = TextFieldType.INPUT;
 			_searchField.text = "Search Artist, Label or Track";
+			// get key presses only when the textfield is being edited
+			_searchField.addEventListener(KeyboardEvent.KEY_DOWN, enterSearch);
 			
+		}
+		
+		private function enterSearch(event:KeyboardEvent):void
+		{
+			
+				if(event.charCode == 13)
+				{
+					
+				  onSearchEnter();
+				  
+				}
+				
+			}
+		
+		private function onSearchEnter():void
+		{
+			//http://snipplr.com/view/10717/
+			var _scope:DisplayObjectContainer = this;
+			trace(_scope.numChildren);
+			while(_scope.numChildren > 2)
+			{
+				_scope.removeChildAt(_scope.numChildren-1);
+			}
+			trace(_scope.numChildren);
+			
+			_query = _searchField.text;
+			getSearchList();
 		}
 		
 		protected function onSearch(event:MouseEvent):void
@@ -156,6 +188,52 @@ package
 			
 		}
 		
+		protected function onResultParse(event:Event):void
+		{
+			
+			_vos = [];
+			
+			var jsonData:Object = JSON.parse(event.currentTarget.data + "");
+			
+			for each(var resultsNode:Object in jsonData.results)
+			{
+				if(resultsNode.title != undefined &&
+					resultsNode.artists != undefined &&
+					resultsNode.genres != undefined &&
+					resultsNode.key != undefined && 
+					resultsNode.key.shortName != undefined &&
+					resultsNode.price != undefined && 
+					resultsNode.price.display != undefined)
+				{
+					var vo : MusicVO = new MusicVO();
+					vo.id = resultsNode.id;
+					vo.title = resultsNode.title;
+					vo.artist = resultsNode.artists[0].name;
+					vo.genre = resultsNode.genres[0].name;
+					vo.key = resultsNode.key.shortName;
+					vo.price = resultsNode.price.display;
+					
+					_vos.push(vo);
+				}else{
+					trace("undefined");
+				}
+			}
+			
+			for each (var object : MusicVO in _vos)
+			{
+				trace("-------------------------------")
+				trace(object.id);
+				trace(object.title);
+				trace(object.artist);
+				trace(object.genre);
+				trace(object.key);
+			}
+			
+			
+			createResults();
+			
+		}
+		
 		private function createResults():void
 		{
 			
@@ -165,13 +243,22 @@ package
 			this.addChild(mf);
 			mf.addEventListener(MouseEvent.MOUSE_UP, onResultSearch);
 			}
+			
+//			for(var j:uint=0;j<_vos.length; j++)
+//			{	
+//				var buy:MusicInfo = new MusicInfo(_vos[i],900,(i*30)+240);
+//				this.addChild(buy);
+//				buy.alpha
+//				buy.addEventListener(MouseEvent.MOUSE_UP, onBuy);
+//			}
+			
 		}
 
 			
 		
 		protected function onBuy(event:MouseEvent):void
 		{
-			//navigateToURL(new URLRequest("http"), "_blank");
+			//navigateToURL(new URLRequest("http://www.beatport.com/track/"+event.currentTarget.title+"/"+event.currentTarget.id), "_blank");
 		
 		}
 		
@@ -199,7 +286,6 @@ package
 			var ul:URLLoader = new URLLoader();
 			ul.load(new URLRequest("http://api.beatport.com/catalog/3/tracks/similar?ids=" + _resultsQuery));
 			ul.addEventListener(Event.COMPLETE, onParse);
-			
 		}
 	
 	}

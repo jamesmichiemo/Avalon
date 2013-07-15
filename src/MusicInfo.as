@@ -2,6 +2,9 @@ package
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	
@@ -9,7 +12,8 @@ package
 	{
 		private var _vo:MusicVO; //
 		private var _id:String;
-		private var title:String;
+		private var _title:String;
+		//private var title:String;
 		private var artist:String;
 		private var genre:String;
 		private var key:String;
@@ -29,11 +33,17 @@ package
 			//
 			this.y = y;
 			_id = vo.id;
+			_title = vo.title;
 			formatText();
 			musicResults();
 			
 		}
 		
+		public function get title():String
+		{
+			return _title;
+		}
+
 		public function get id():String
 		{
 			return _id;
@@ -41,7 +51,7 @@ package
 
 		private function formatText():void
 		{
-			_resultFormat.color = 0x000000;
+			_resultFormat.color = 0x555555;
 			_resultFormat.font = "Droid Sans";
 			_resultFormat.size = 16;
 		}
@@ -97,7 +107,13 @@ package
 			_resultPrice.width = 60;
 			_resultPrice.height = 30;
 			_resultPrice.text = _vo.price;
+			//_resultPrice.addEventListener(MouseEvent.MOUSE_UP, onBuy);
 			
+		}
+		
+		protected function onBuy(event:MouseEvent):void
+		{
+			//navigateToURL(new URLRequest("http://www.beatport.com/track/"+event.currentTarget.title+"/"+event.currentTarget.id), "_blank");
 		}
 
 	}
