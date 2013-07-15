@@ -40,12 +40,15 @@ package
 		private function createButton():void
 		{
 			
-			var button:ButtonBase = new ButtonBase();
+			var button:BoxBase = new BoxBase();
 			this.addChild(button);
-			button.x = _searchField.x +400;
-			button.y = _searchField.y +5;
+			button.x = _searchField.x +405;
+			button.y = _searchField.y;
 			button.scaleX = button.scaleY = .6;
 			button.tfLabel.text = "Search";
+			button.tfLabel.x = -15;
+			button.tfLabel.y = 1;
+			button.tfLabel.scaleX = button.tfLabel.scaleY = 1.8;
 			button.mouseChildren = false;
 			button.buttonMode = true;
 
