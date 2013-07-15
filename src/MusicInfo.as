@@ -23,7 +23,8 @@ package
 		private var _resultArtist:TextField;
 		private var _resultGenre:TextField;
 		private var _resultKey:TextField;
-		private var _resultPrice:TextField;
+		private var _resultPrice:BoxBase;
+		private var _resultPriceLink:BoxBase;
 		
 		public function MusicInfo(vo:MusicVO,y:int)
 		{
@@ -99,21 +100,35 @@ package
 			_resultKey.height = 30;
 			_resultKey.text = _vo.key;
 				
-			_resultPrice = new TextField();
+			_resultPrice = new BoxBase();
 			addChild(_resultPrice);
 			_resultPrice.defaultTextFormat = _resultFormat;
 			_resultPrice.border = false;
 			_resultPrice.x = 905;
 			_resultPrice.width = 60;
 			_resultPrice.height = 30;
-			_resultPrice.text = _vo.price;
-			//_resultPrice.addEventListener(MouseEvent.MOUSE_UP, onBuy);
+			_resultPrice.tfLabel.text = _vo.price;
+			_resultPrice.tfLabel.scaleX = _resultPrice.tfLabel.scaleY = 1.5;
+			_resultPrice.tfLabel.x = -3;
+			_resultPrice.tfLabel.y = 1;
+			_resultPrice.buttonMode = true;
+			_resultPrice.mouseChildren = false;
+			
+			_resultPriceLink = new BoxBase();
+			addChild(_resultPriceLink);
+			_resultPriceLink.alpha = 0;
+			_resultPriceLink.x = 905;
+			_resultPriceLink.width = 60;
+			_resultPriceLink.height = 30;	
+			_resultPriceLink.tfLabel.text = _vo.title + "/" + _vo.id;
+			_resultPriceLink.addEventListener(MouseEvent.MOUSE_UP, onBuy);
 			
 		}
 		
 		protected function onBuy(event:MouseEvent):void
 		{
-			//navigateToURL(new URLRequest("http://www.beatport.com/track/"+event.currentTarget.title+"/"+event.currentTarget.id), "_blank");
+			trace(event.currentTarget.text);
+			navigateToURL(new URLRequest("http://www.beatport.com/track/"+event.currentTarget.tfLabel.text), "_blank");
 		}
 
 	}

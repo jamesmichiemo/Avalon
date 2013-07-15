@@ -211,6 +211,13 @@ package
 					vo.artist = resultsNode.artists[0].name;
 					vo.genre = resultsNode.genres[0].name;
 					vo.key = resultsNode.key.shortName;
+					
+//					if(vo.key == "Cmaj")
+//					{
+//						vo.key == "C#"
+//						vo.keycode == "5A";
+//					}
+					
 					vo.price = resultsNode.price.display;
 					
 					_vos.push(vo);
