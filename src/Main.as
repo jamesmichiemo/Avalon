@@ -13,6 +13,7 @@ package
 	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
 	import flash.ui.Keyboard;
+	import flash.xml.XMLNode;
 	
 	[SWF(width="980", height="500", framerate="60", backgroundColor="0xededed")]
 	
@@ -165,6 +166,128 @@ package
 					vo.artist = resultsNode.artists[0].name;
 					vo.genre = resultsNode.genres[0].name;
 					vo.key = resultsNode.key.shortName;
+
+					if(vo.key == "G&#9839;min")
+					{
+						vo.key = "A-Flat Minor";
+						vo.keycode = "1A";	
+					}
+					if(vo.key == "Bmaj")
+					{
+						vo.key = "B Major";
+						vo.keycode = "1B";
+					}
+					if(vo.key == "D&#9839;min")
+					{
+						vo.key = "E-Flat Minor";
+						vo.keycode = "2A";
+					}
+					if(vo.key == "F&#9839;maj")
+					{
+						vo.key = "F-Sharp Major";
+						vo.keycode = "2B";
+					}
+					if(vo.key == "A&#9839;min")
+					{
+						vo.key = "B-Flat Minor";
+						vo.keycode = "3A";
+					}
+					if(vo.key == "C&#9839;maj")
+					{
+						vo.key = "D-Flat Major";
+						vo.keycode = "3B";
+					}
+					if(vo.key == "Fmin")
+					{
+						vo.key = "F Minor";
+						vo.keycode = "4A";
+					}
+					if(vo.key == "G&#9839;maj")
+					{
+						vo.key = "A-Flat Major";
+						vo.keycode = "4B";
+					}
+					if(vo.key == "Cmin")
+					{
+						vo.key = "C Minor";
+						vo.keycode = "5A";
+					}
+					if(vo.key == "D&#9839;maj")
+					{
+						vo.key = "E-Flat Major";
+						vo.keycode = "5B";
+					}
+					if(vo.key == "Gmin")
+					{
+						vo.key = "G Minor";
+						vo.keycode = "6A";
+					}
+					if(vo.key == "A&#9839;maj")
+					{
+						vo.key = "B-Flat Major";
+						vo.keycode = "6B";
+					}
+					if(vo.key == "Dmin")
+					{
+						vo.key = "D Minor";
+						vo.keycode = "7A";
+					}
+					if(vo.key == "Fmaj")
+					{
+						vo.key = "F Major";
+						vo.keycode = "7B";
+					}
+					if(vo.key == "Amin")
+					{
+						vo.key = "A Minor";
+						vo.keycode = "8A";
+					}
+					if(vo.key == "Cmaj")
+					{
+						vo.key = "C Major";
+						vo.keycode = "8B";
+					}
+					if(vo.key == "Emin")
+					{
+						vo.key = "E Minor";
+						vo.keycode = "9A";
+					}
+					if(vo.key == "Gmaj")
+					{
+						vo.key = "G Major";
+						vo.keycode = "9B";
+					}
+					if(vo.key == "Bmin")
+					{
+						vo.key = "B Minor";
+						vo.keycode = "10A";
+					}
+					if(vo.key == "Dmaj")
+					{
+						vo.key = "D Major";
+						vo.keycode = "10B";
+					}
+					if(vo.key == "F&#9893;min")
+					{
+						vo.key = "F-Sharp Minor";
+						vo.keycode = "11A";
+					}
+					if(vo.key == "Amaj")
+					{
+						vo.key = "A Major";
+						vo.keycode = "11B";
+					}
+					if(vo.key == "C&#9839;min")
+					{
+						vo.key = "D-Flat Minor";
+						vo.keycode = "12A";
+					}
+					if(vo.key == "Emaj")
+					{
+						vo.key = "E Major";
+						vo.keycode = "12B";
+					}
+					
 					vo.price = resultsNode.price.display;
 					
 					_vos.push(vo);
@@ -212,11 +335,127 @@ package
 					vo.genre = resultsNode.genres[0].name;
 					vo.key = resultsNode.key.shortName;
 					
-//					if(vo.key == "Cmaj")
-//					{
-//						vo.key == "C#"
-//						vo.keycode == "5A";
-//					}
+					if(vo.key == "G&#9839;min")
+					{
+						vo.key = "A-Flat Minor";
+						vo.keycode = "1A";	
+					}
+					if(vo.key == "Bmaj")
+					{
+						vo.key = "B Major";
+						vo.keycode = "1B";
+					}
+					if(vo.key == "D&#9839;min")
+					{
+						vo.key = "E-Flat Minor";
+						vo.keycode = "2A";
+					}
+					if(vo.key == "F&#9839;maj")
+					{
+						vo.key = "F-Sharp Major";
+						vo.keycode = "2B";
+					}
+					if(vo.key == "A&#9839;min")
+					{
+						vo.key = "B-Flat Minor";
+						vo.keycode = "3A";
+					}
+					if(vo.key == "C&#9839;maj")
+					{
+						vo.key = "D-Flat Major";
+						vo.keycode = "3B";
+					}
+					if(vo.key == "Fmin")
+					{
+						vo.key = "F Minor";
+						vo.keycode = "4A";
+					}
+					if(vo.key == "G&#9839;maj")
+					{
+						vo.key = "A-Flat Major";
+						vo.keycode = "4B";
+					}
+					if(vo.key == "Cmin")
+					{
+						vo.key = "C Minor";
+						vo.keycode = "5A";
+					}
+					if(vo.key == "D&#9839;maj")
+					{
+						vo.key = "E-Flat Major";
+						vo.keycode = "5B";
+					}
+					if(vo.key == "Gmin")
+					{
+						vo.key = "G Minor";
+						vo.keycode = "6A";
+					}
+					if(vo.key == "A&#9839;maj")
+					{
+						vo.key = "B-Flat Major";
+						vo.keycode = "6B";
+					}
+					if(vo.key == "Dmin")
+					{
+						vo.key = "D Minor";
+						vo.keycode = "7A";
+					}
+					if(vo.key == "Fmaj")
+					{
+						vo.key = "F Major";
+						vo.keycode = "7B";
+					}
+					if(vo.key == "Amin")
+					{
+						vo.key = "A Minor";
+						vo.keycode = "8A";
+					}
+					if(vo.key == "Cmaj")
+					{
+						vo.key = "C Major";
+						vo.keycode = "8B";
+					}
+					if(vo.key == "Emin")
+					{
+						vo.key = "E Minor";
+						vo.keycode = "9A";
+					}
+					if(vo.key == "Gmaj")
+					{
+						vo.key = "G Major";
+						vo.keycode = "9B";
+					}
+					if(vo.key == "Bmin")
+					{
+						vo.key = "B Minor";
+						vo.keycode = "10A";
+					}
+					if(vo.key == "Dmaj")
+					{
+						vo.key = "D Major";
+						vo.keycode = "10B";
+					}
+					if(vo.key == "F&#9893;min")
+					{
+						vo.key = "F-Sharp Minor";
+						vo.keycode = "11A";
+					}
+					if(vo.key == "Amaj")
+					{
+						vo.key = "A Major";
+						vo.keycode = "11B";
+					}
+					if(vo.key == "C&#9839;min")
+					{
+						vo.key = "D-Flat Minor";
+						vo.keycode = "12A";
+					}
+					if(vo.key == "Emaj")
+					{
+						vo.key = "E Major";
+						vo.keycode = "12B";
+					}
+					
 					
 					vo.price = resultsNode.price.display;
 					
@@ -294,6 +533,7 @@ package
 			ul.load(new URLRequest("http://api.beatport.com/catalog/3/tracks/similar?ids=" + _resultsQuery));
 			ul.addEventListener(Event.COMPLETE, onParse);
 		}
+	
 	
 	}
 	
