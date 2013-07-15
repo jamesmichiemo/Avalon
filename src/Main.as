@@ -58,9 +58,9 @@ package
 		
 		private function formatText():void
 		{
-			searchFormat.color = 0x000000;
+			searchFormat.color = 0x555555;
 			searchFormat.font = "Droid Sans";
-			searchFormat.size = 22;
+			searchFormat.size = 20;
 			
 			resultFormat.color = 0x000000;
 			resultFormat.font = "Droid Sans";
