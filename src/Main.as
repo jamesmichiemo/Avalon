@@ -123,7 +123,9 @@ package
 		{
 			
 			var ul:URLLoader = new URLLoader();
-			ul.load(new URLRequest("http://api.beatport.com/catalog/3/search?query=" + _query));
+			var uReq:URLRequest = new URLRequest("http://api.beatport.com/catalog/3/search?facets[0]=fieldType:track&query=" + _query);
+			trace(uReq.url);
+			ul.load(uReq);
 			ul.addEventListener(Event.COMPLETE, onParse);
 			
 		}
@@ -157,7 +159,7 @@ package
 					if(vo.key == "G&#9839;min")
 					{
 						
-						vo.key = "A-Flat Minor";
+						vo.key = "A♭ Minor";
 						vo.keycode = "1A";
 						vo.tone = 1;
 						vo.mode = "A";
@@ -177,7 +179,7 @@ package
 					if(vo.key == "D&#9839;min")
 					{
 						
-						vo.key = "E-Flat Minor";
+						vo.key = "E♭ Minor";
 						vo.keycode = "2A";
 						vo.tone = 2;
 						vo.mode = "A";
@@ -187,7 +189,7 @@ package
 					if(vo.key == "F&#9839;maj")
 					{
 						
-						vo.key = "F-Sharp Major";
+						vo.key = "F♯ Major";
 						vo.keycode = "2B";
 						vo.tone = 2;
 						vo.mode = "B";
@@ -197,7 +199,7 @@ package
 					if(vo.key == "A&#9839;min")
 					{
 						
-						vo.key = "B-Flat Minor";
+						vo.key = "B♭ Minor";
 						vo.keycode = "3A";
 						vo.tone = 3;
 						vo.mode = "A";
@@ -207,7 +209,7 @@ package
 					if(vo.key == "C&#9839;maj")
 					{
 						
-						vo.key = "D-Flat Major";
+						vo.key = "D♭ Major";
 						vo.keycode = "3B";
 						vo.tone = 3;
 						vo.mode = "B";
@@ -227,7 +229,7 @@ package
 					if(vo.key == "G&#9839;maj")
 					{
 						
-						vo.key = "A-Flat Major";
+						vo.key = "A♭ Major";
 						vo.keycode = "4B";
 						vo.tone = 4;
 						vo.mode = "B";
@@ -247,7 +249,7 @@ package
 					if(vo.key == "D&#9839;maj")
 					{
 						
-						vo.key = "E-Flat Major";
+						vo.key = "E♭ Major";
 						vo.keycode = "5B";
 						vo.tone = 5;
 						vo.mode = "B";
@@ -267,7 +269,7 @@ package
 					if(vo.key == "A&#9839;maj")
 					{
 						
-						vo.key = "B-Flat Major";
+						vo.key = "B♭ Major";
 						vo.keycode = "6B";
 						vo.tone = 6;
 						vo.mode = "B";
@@ -357,7 +359,7 @@ package
 					if(vo.key == "F&#9839;min")
 					{
 						
-						vo.key = "F-Sharp Minor";
+						vo.key = "F♯ Minor";
 						vo.keycode = "11A";
 						vo.tone = 11;
 						vo.mode = "A";
@@ -377,7 +379,7 @@ package
 					if(vo.key == "C&#9839;min")
 					{
 						
-						vo.key = "D-Flat Minor";
+						vo.key = "D♭ Minor";
 						vo.keycode = "12A";
 						vo.tone = 12;
 						vo.mode = "A";
@@ -454,7 +456,7 @@ package
 					if(vo.key == "G&#9839;min")
 					{
 						
-						vo.key = "A-Flat Minor";
+						vo.key = "A♭ Minor";
 						vo.keycode = "1A";
 						vo.tone = 1;
 						vo.mode = "A";
@@ -474,7 +476,7 @@ package
 					if(vo.key == "D&#9839;min")
 					{
 						
-						vo.key = "E-Flat Minor";
+						vo.key = "E♭ Minor";
 						vo.keycode = "2A";
 						vo.tone = 2;
 						vo.mode = "A";
@@ -484,7 +486,7 @@ package
 					if(vo.key == "F&#9839;maj")
 					{
 						
-						vo.key = "F-Sharp Major";
+						vo.key = "F♯ Major";
 						vo.keycode = "2B";
 						vo.tone = 2;
 						vo.mode = "B";
@@ -494,7 +496,7 @@ package
 					if(vo.key == "A&#9839;min")
 					{
 						
-						vo.key = "B-Flat Minor";
+						vo.key = "B♭ Minor";
 						vo.keycode = "3A";
 						vo.tone = 3;
 						vo.mode = "A";
@@ -504,7 +506,7 @@ package
 					if(vo.key == "C&#9839;maj")
 					{
 						
-						vo.key = "D-Flat Major";
+						vo.key = "D♭ Major";
 						vo.keycode = "3B";
 						vo.tone = 3;
 						vo.mode = "B";
@@ -524,7 +526,7 @@ package
 					if(vo.key == "G&#9839;maj")
 					{
 						
-						vo.key = "A-Flat Major";
+						vo.key = "A♭ Major";
 						vo.keycode = "4B";
 						vo.tone = 4;
 						vo.mode = "B";
@@ -544,7 +546,7 @@ package
 					if(vo.key == "D&#9839;maj")
 					{
 						
-						vo.key = "E-Flat Major";
+						vo.key = "E♭ Major";
 						vo.keycode = "5B";
 						vo.tone = 5;
 						vo.mode = "B";
@@ -564,7 +566,7 @@ package
 					if(vo.key == "A&#9839;maj")
 					{
 						
-						vo.key = "B-Flat Major";
+						vo.key = "B♭ Major";
 						vo.keycode = "6B";
 						vo.tone = 6;
 						vo.mode = "B";
@@ -654,7 +656,7 @@ package
 					if(vo.key == "F&#9839;min")
 					{
 						
-						vo.key = "F-Sharp Minor";
+						vo.key = "F♯ Minor";
 						vo.keycode = "11A";
 						vo.tone = 11;
 						vo.mode = "A";
@@ -674,7 +676,7 @@ package
 					if(vo.key == "C&#9839;min")
 					{
 						
-						vo.key = "D-Flat Minor";
+						vo.key = "D♭ Minor";
 						vo.keycode = "12A";
 						vo.tone = 12;
 						vo.mode = "A";

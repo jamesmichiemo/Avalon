@@ -38,9 +38,15 @@ package
 			this.y = y;
 			_id = vo.id;
 			_title = vo.title;
-	
+			
+			createBackground();
 			formatText();
 			musicResults();
+			
+		}
+		
+		private function createBackground():void
+		{
 			
 		}
 		
