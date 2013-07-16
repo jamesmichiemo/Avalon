@@ -4,6 +4,7 @@ package
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.FocusEvent;
 	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
 	import flash.net.URLLoader;
@@ -85,11 +86,21 @@ package
 			_searchField.width = 400;
 			_searchField.height = 30;
 			_searchField.type = TextFieldType.INPUT;
-			_searchField.text = "Search Artist, Label or Track";
+			_searchField.text = "Search Artist, Label or Track"; // create public static constant for this string
 			// get key presses only when the textfield is being edited
 			_searchField.addEventListener(KeyboardEvent.KEY_DOWN, enterSearch);
-			
+			// http://stackoverflow.com/questions/3819296/how-to-clear-a-text-field-on-focus-with-as3
+			_searchField.addEventListener(FocusEvent.FOCUS_IN, clearBox);
 		}
+
+		private function clearBox(FocusEvent:Object):void
+		{
+			if(_searchField.text == "Search Artist, Label or Track")
+			{
+			_searchField.text=""; //To Clear the Text Box
+			}
+		}
+		
 		
 		private function enterSearch(event:KeyboardEvent):void
 		{
