@@ -123,6 +123,7 @@ package
 			_resultPriceLink.tfLabel.text = _vo.title + "/" + _vo.id;
 			_resultPriceLink.addEventListener(MouseEvent.MOUSE_UP, onBuy);
 			
+			
 		}
 		
 		protected function onBuy(event:MouseEvent):void

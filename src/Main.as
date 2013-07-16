@@ -169,123 +169,242 @@ package
 
 					if(vo.key == "G&#9839;min")
 					{
+						
 						vo.key = "A-Flat Minor";
-						vo.keycode = "1A";	
+						vo.keycode = "1A";
+						vo.tone = 1;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "Bmaj")
 					{
+						
 						vo.key = "B Major";
 						vo.keycode = "1B";
+						vo.tone = 1;
+						vo.mode = "B";
+						
 					}
+					
 					if(vo.key == "D&#9839;min")
 					{
+						
 						vo.key = "E-Flat Minor";
 						vo.keycode = "2A";
+						vo.tone = 2;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "F&#9839;maj")
 					{
+						
 						vo.key = "F-Sharp Major";
 						vo.keycode = "2B";
+						vo.tone = 2;
+						vo.mode = "B";
+						
 					}
+					
 					if(vo.key == "A&#9839;min")
 					{
+						
 						vo.key = "B-Flat Minor";
 						vo.keycode = "3A";
+						vo.tone = 3;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "C&#9839;maj")
 					{
+						
 						vo.key = "D-Flat Major";
 						vo.keycode = "3B";
+						vo.tone = 3;
+						vo.mode = "B";
+						
 					}
+					
 					if(vo.key == "Fmin")
 					{
+						
 						vo.key = "F Minor";
 						vo.keycode = "4A";
+						vo.tone = 4;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "G&#9839;maj")
 					{
+						
 						vo.key = "A-Flat Major";
 						vo.keycode = "4B";
+						vo.tone = 4;
+						vo.mode = "B";
+						
 					}
+					
 					if(vo.key == "Cmin")
 					{
+						
 						vo.key = "C Minor";
 						vo.keycode = "5A";
+						vo.tone = 5;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "D&#9839;maj")
 					{
+						
 						vo.key = "E-Flat Major";
 						vo.keycode = "5B";
+						vo.tone = 5;
+						vo.mode = "B";
+						
 					}
+					
 					if(vo.key == "Gmin")
 					{
+						
 						vo.key = "G Minor";
 						vo.keycode = "6A";
+						vo.tone = 6;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "A&#9839;maj")
 					{
+						
 						vo.key = "B-Flat Major";
 						vo.keycode = "6B";
+						vo.tone = 6;
+						vo.mode = "B";
+						
 					}
+					
 					if(vo.key == "Dmin")
 					{
+						
 						vo.key = "D Minor";
 						vo.keycode = "7A";
+						vo.tone = 7;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "Fmaj")
 					{
+						
 						vo.key = "F Major";
 						vo.keycode = "7B";
+						vo.tone =7;
+						vo.mode = "B";
+						
 					}
+					
 					if(vo.key == "Amin")
 					{
+						
 						vo.key = "A Minor";
 						vo.keycode = "8A";
+						vo.tone = 8;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "Cmaj")
 					{
+						
 						vo.key = "C Major";
 						vo.keycode = "8B";
+						vo.tone = 8;
+						vo.mode = "B";
+						
 					}
+					
 					if(vo.key == "Emin")
 					{
+						
 						vo.key = "E Minor";
 						vo.keycode = "9A";
+						vo.tone = 9;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "Gmaj")
 					{
+						
 						vo.key = "G Major";
 						vo.keycode = "9B";
+						vo.tone = 9;
+						vo.mode = "B";
+						
 					}
+					
 					if(vo.key == "Bmin")
 					{
+						
 						vo.key = "B Minor";
 						vo.keycode = "10A";
+						vo.tone = 10;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "Dmaj")
 					{
+						
 						vo.key = "D Major";
 						vo.keycode = "10B";
+						vo.tone = 10;
+						vo.mode = "B";
+						
 					}
-					if(vo.key == "F&#9893;min")
+					
+					if(vo.key == "F&#9839;min")
 					{
+						
 						vo.key = "F-Sharp Minor";
 						vo.keycode = "11A";
+						vo.tone = 11;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "Amaj")
 					{
+						
 						vo.key = "A Major";
 						vo.keycode = "11B";
+						vo.tone = 11;
+						vo.mode = "B";
+						
 					}
+					
 					if(vo.key == "C&#9839;min")
 					{
+						
 						vo.key = "D-Flat Minor";
 						vo.keycode = "12A";
+						vo.tone = 12;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "Emaj")
 					{
+						
 						vo.key = "E Major";
 						vo.keycode = "12B";
+						vo.tone = 12;
+						vo.mode = "B";
+						
 					}
 					
 					vo.price = resultsNode.price.display;
@@ -320,6 +439,7 @@ package
 			
 			for each(var resultsNode:Object in jsonData.results)
 			{
+				
 				if(resultsNode.title != undefined &&
 					resultsNode.artists != undefined &&
 					resultsNode.genres != undefined &&
@@ -328,6 +448,7 @@ package
 					resultsNode.price != undefined && 
 					resultsNode.price.display != undefined)
 				{
+					
 					var vo : MusicVO = new MusicVO();
 					vo.id = resultsNode.id;
 					vo.title = resultsNode.title;
@@ -337,144 +458,268 @@ package
 					
 					if(vo.key == "G&#9839;min")
 					{
+						
 						vo.key = "A-Flat Minor";
-						vo.keycode = "1A";	
+						vo.keycode = "1A";
+						vo.tone = 1;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "Bmaj")
 					{
+						
 						vo.key = "B Major";
 						vo.keycode = "1B";
+						vo.tone = 1;
+						vo.mode = "B";
+						
 					}
+					
 					if(vo.key == "D&#9839;min")
 					{
+						
 						vo.key = "E-Flat Minor";
 						vo.keycode = "2A";
+						vo.tone = 2;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "F&#9839;maj")
 					{
+						
 						vo.key = "F-Sharp Major";
 						vo.keycode = "2B";
+						vo.tone = 2;
+						vo.mode = "B";
+						
 					}
+					
 					if(vo.key == "A&#9839;min")
 					{
+						
 						vo.key = "B-Flat Minor";
 						vo.keycode = "3A";
+						vo.tone = 3;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "C&#9839;maj")
 					{
+						
 						vo.key = "D-Flat Major";
 						vo.keycode = "3B";
+						vo.tone = 3;
+						vo.mode = "B";
+						
 					}
+					
 					if(vo.key == "Fmin")
 					{
+						
 						vo.key = "F Minor";
 						vo.keycode = "4A";
+						vo.tone = 4;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "G&#9839;maj")
 					{
+						
 						vo.key = "A-Flat Major";
 						vo.keycode = "4B";
+						vo.tone = 4;
+						vo.mode = "B";
+						
 					}
+					
 					if(vo.key == "Cmin")
 					{
+						
 						vo.key = "C Minor";
 						vo.keycode = "5A";
+						vo.tone = 5;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "D&#9839;maj")
 					{
+						
 						vo.key = "E-Flat Major";
 						vo.keycode = "5B";
+						vo.tone = 5;
+						vo.mode = "B";
+				
 					}
+					
 					if(vo.key == "Gmin")
 					{
+						
 						vo.key = "G Minor";
 						vo.keycode = "6A";
+						vo.tone = 6;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "A&#9839;maj")
 					{
+						
 						vo.key = "B-Flat Major";
 						vo.keycode = "6B";
+						vo.tone = 6;
+						vo.mode = "B";
+						
 					}
+					
 					if(vo.key == "Dmin")
 					{
+						
 						vo.key = "D Minor";
 						vo.keycode = "7A";
+						vo.tone = 7;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "Fmaj")
 					{
+						
 						vo.key = "F Major";
 						vo.keycode = "7B";
+						vo.tone =7;
+						vo.mode = "B";
+						
 					}
+					
 					if(vo.key == "Amin")
 					{
+						
 						vo.key = "A Minor";
 						vo.keycode = "8A";
+						vo.tone = 8;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "Cmaj")
 					{
+						
 						vo.key = "C Major";
 						vo.keycode = "8B";
+						vo.tone = 8;
+						vo.mode = "B";
+						
 					}
+					
 					if(vo.key == "Emin")
 					{
+						
 						vo.key = "E Minor";
 						vo.keycode = "9A";
+						vo.tone = 9;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "Gmaj")
 					{
+						
 						vo.key = "G Major";
 						vo.keycode = "9B";
+						vo.tone = 9;
+						vo.mode = "B";
+						
 					}
+					
 					if(vo.key == "Bmin")
 					{
+						
 						vo.key = "B Minor";
 						vo.keycode = "10A";
+						vo.tone = 10;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "Dmaj")
 					{
+						
 						vo.key = "D Major";
 						vo.keycode = "10B";
+						vo.tone = 10;
+						vo.mode = "B";
+						
 					}
-					if(vo.key == "F&#9893;min")
+					
+					if(vo.key == "F&#9839;min")
 					{
+						
 						vo.key = "F-Sharp Minor";
 						vo.keycode = "11A";
+						vo.tone = 11;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "Amaj")
 					{
+						
 						vo.key = "A Major";
 						vo.keycode = "11B";
+						vo.tone = 11;
+						vo.mode = "B";
+						
 					}
+					
 					if(vo.key == "C&#9839;min")
 					{
+						
 						vo.key = "D-Flat Minor";
 						vo.keycode = "12A";
+						vo.tone = 12;
+						vo.mode = "A";
+						
 					}
+					
 					if(vo.key == "Emaj")
 					{
+						
 						vo.key = "E Major";
 						vo.keycode = "12B";
+						vo.tone = 12;
+						vo.mode = "B";
+						
 					}
 					
 					
 					vo.price = resultsNode.price.display;
 					
 					_vos.push(vo);
+					
 				}else{
+					
 					trace("undefined");
+					
 				}
+				
 			}
 			
 			for each (var object : MusicVO in _vos)
 			{
+				
 				trace("-------------------------------")
 				trace(object.id);
 				trace(object.title);
 				trace(object.artist);
 				trace(object.genre);
 				trace(object.key);
+				
 			}
-			
 			
 			createResults();
 			
