@@ -18,6 +18,8 @@ package
 		private var genre:String;
 		private var key:String;
 		private var price:String;
+		private var _tone:Number;
+		private var _mode:String;
 		private var _resultTitle:TextField;
 		private var _resultFormat:TextFormat = new TextFormat();
 		private var _resultArtist:TextField;
@@ -28,6 +30,7 @@ package
 		
 		public function MusicInfo(vo:MusicVO,y:int)
 		{
+			
 			super();
 			//
 			_vo = vo;
@@ -35,32 +38,62 @@ package
 			this.y = y;
 			_id = vo.id;
 			_title = vo.title;
+	
 			formatText();
 			musicResults();
 			
 		}
 		
+		public function set mode(value:String):void
+		{
+			_mode = value;
+		}
+
+		public function set tone(value:Number):void
+		{
+			_tone = value;
+		}
+
+		public function get mode():String
+		{
+			
+			return _mode;
+			
+		}
+
+		public function get tone():Number
+		{
+			
+			return _tone;
+			
+		}
+
 		public function get title():String
 		{
+			
 			return _title;
+			
 		}
 
 		public function get id():String
 		{
+			
 			return _id;
+			
 		}
 
 		private function formatText():void
 		{
+			
 			_resultFormat.color = 0x555555;
 			_resultFormat.font = "Droid Sans";
 			_resultFormat.size = 16;
+			
 		}
 		
 		private function musicResults():void
 		{
 
-				
 			_resultTitle = new TextField();
 			addChild(_resultTitle);
 			_resultTitle.defaultTextFormat = _resultFormat;
@@ -68,8 +101,7 @@ package
 			_resultTitle.x = 10;
 			_resultTitle.width = 400;
 			_resultTitle.height = 30;	
-			_resultTitle.text = _vo.title; 
-			
+			_resultTitle.text = _vo.title;
 				
 			_resultArtist = new TextField();
 			addChild(_resultArtist);
@@ -79,8 +111,7 @@ package
 			_resultArtist.width = 275;
 			_resultArtist.height = 30;
 			_resultArtist.text = _vo.artist;
-
-				
+		
 			_resultGenre = new TextField();
 			addChild(_resultGenre);
 			_resultGenre.defaultTextFormat = _resultFormat;
@@ -89,8 +120,7 @@ package
 			_resultGenre.width = 120;
 			_resultGenre.height = 30;
 			_resultGenre.text = _vo.genre;
-
-				
+			
 			_resultKey = new TextField();
 			addChild(_resultKey);
 			_resultKey.defaultTextFormat = _resultFormat;
@@ -112,7 +142,6 @@ package
 			_resultPrice.tfLabel.x = -3;
 			_resultPrice.tfLabel.y = 1;
 			
-			
 			_resultPriceLink = new BoxBase();
 			addChild(_resultPriceLink);
 			_resultPriceLink.alpha = 0;
@@ -120,17 +149,18 @@ package
 			_resultPriceLink.width = 60;
 			_resultPriceLink.height = 30;	
 			_resultPriceLink.tfLabel.text = _vo.title + "/" + _vo.id;
-			_resultPriceLink.addEventListener(MouseEvent.MOUSE_UP, onBuy);
+			_resultPriceLink.addEventListener(MouseEvent.CLICK, onBuy);
 			_resultPriceLink.buttonMode = true;
 			_resultPriceLink.mouseChildren = false;
-			
-			
+				
 		}
 		
 		protected function onBuy(event:MouseEvent):void
 		{
+			
 			trace(event.currentTarget.text);
 			navigateToURL(new URLRequest("http://www.beatport.com/track/"+event.currentTarget.tfLabel.text), "_blank");
+			
 		}
 
 	}

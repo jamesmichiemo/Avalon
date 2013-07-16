@@ -1,6 +1,6 @@
 package
 {
-
+	
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -23,7 +23,6 @@ package
 		private var _searchField:TextField;
 		private var _query:String;
 		private var searchFormat:TextFormat = new TextFormat();
-		private var _musicDisplay:MusicDisplay;
 		private var _vos:Array;
 		private var _resultTitle:TextField;
 		private var _resultArtist:TextField;
@@ -33,6 +32,9 @@ package
 		private var resultFormat:TextFormat = new TextFormat();
 		private var _resultsQuery:String;
 		private var _vosResult:Array;
+		private var _vosDos:Array;
+		private var _resultTone:Number;
+		private var _resultMode:String;
 		
 		public function Main()
 		{
@@ -57,8 +59,8 @@ package
 			button.tfLabel.scaleX = button.tfLabel.scaleY = 1.8;
 			button.mouseChildren = false;
 			button.buttonMode = true;
-
-			button.addEventListener(MouseEvent.MOUSE_UP, onSearch);
+			
+			button.addEventListener(MouseEvent.CLICK, onSearch);
 			
 		}
 		
@@ -68,10 +70,6 @@ package
 			searchFormat.color = 0x555555;
 			searchFormat.font = "Droid Sans";
 			searchFormat.size = 20;
-			
-			resultFormat.color = 0x555555;
-			resultFormat.font = "Droid Sans";
-			resultFormat.size = 16;
 			
 		}
 		
@@ -96,29 +94,10 @@ package
 		private function enterSearch(event:KeyboardEvent):void
 		{
 			
-				if(event.charCode == 13)
-				{
-					
-				  onSearchEnter();
-				  
-				}
-				
-			}
-		
-		private function onSearchEnter():void
-		{
-			
-			//http://snipplr.com/view/10717/
-			var _scope:DisplayObjectContainer = this;
-			while(_scope.numChildren > 2)
+			if(event.charCode == 13)
 			{
-				
-				_scope.removeChildAt(_scope.numChildren-1);
-				
+				onSearch(null);
 			}
-			
-			_query = _searchField.text;
-			getSearchList();
 			
 		}
 		
@@ -174,7 +153,7 @@ package
 					vo.artist = resultsNode.artists[0].name;
 					vo.genre = resultsNode.genres[0].name;
 					vo.key = resultsNode.key.shortName;
-
+					
 					if(vo.key == "G&#9839;min")
 					{
 						
@@ -426,7 +405,7 @@ package
 				}
 				
 			}
-
+			
 			for each (var object : MusicVO in _vos)
 			{
 				
@@ -436,6 +415,8 @@ package
 				trace(object.artist);
 				trace(object.genre);
 				trace(object.key);
+				trace(object.tone);
+				trace(object.mode);
 				
 			}
 			
@@ -446,12 +427,13 @@ package
 		protected function onResultParse(event:Event):void
 		{
 			
-			_vos = [];
+			_vosDos = [];
 			
 			var jsonData:Object = JSON.parse(event.currentTarget.data + "");
 			
 			for each(var resultsNode:Object in jsonData.results)
 			{
+				
 				
 				if(resultsNode.title != undefined &&
 					resultsNode.artists != undefined &&
@@ -566,7 +548,7 @@ package
 						vo.keycode = "5B";
 						vo.tone = 5;
 						vo.mode = "B";
-				
+						
 					}
 					
 					if(vo.key == "Gmin")
@@ -711,7 +693,8 @@ package
 					
 					vo.price = resultsNode.price.display;
 					
-					_vos.push(vo);
+					_vosDos.push(vo);
+					
 					
 				}else{
 					
@@ -719,9 +702,11 @@ package
 					
 				}
 				
+				
+				
 			}
 			
-			for each (var object : MusicVO in _vos)
+			for each (var object : MusicVO in _vosDos)
 			{
 				
 				trace("-------------------------------")
@@ -730,10 +715,12 @@ package
 				trace(object.artist);
 				trace(object.genre);
 				trace(object.key);
+				trace(object.tone);
+				trace(object.mode);
 				
 			}
 			
-			createResults();
+			createSearchResults();
 			
 		}
 		
@@ -742,29 +729,52 @@ package
 			
 			for(var i:uint=0;i<_vos.length; i++)
 			{
+
+				var mf:MusicInfo = new MusicInfo(_vos[i],(i*30)+240);
+				this.addChild(mf);
+				mf.mode = _vos[i].mode;// setting a value in the view from the VO
+				mf.tone = _vos[i].tone;// setting a value in the view from the VO
+				mf.addEventListener(MouseEvent.CLICK, onResultSearch);
 				
-			var mf:MusicInfo = new MusicInfo(_vos[i],(i*30)+240);
-			this.addChild(mf);
-			mf.addEventListener(MouseEvent.MOUSE_UP, onResultSearch);
+			}
 			
+		}
+		
+		private function createSearchResults():void
+		{
+		
+			var i:uint = 0;
+			for each (var song:MusicVO in _vosDos) 
+			{
+				
+				var isHarmonic:Boolean = Camelot.harmonyBlend(_resultTone, song.tone, _resultMode, song.mode);
+				
+				if(isHarmonic)
+				{
+					var mf:MusicInfo = new MusicInfo(song,(i*30)+240);
+					this.addChild(mf);
+					mf.mode = song.mode;// setting a value in the view from the VO
+					mf.tone = song.tone;// setting a value in the view from the VO
+					mf.addEventListener(MouseEvent.CLICK, onResultSearch);
+					i++;
+				}
+				
+				
 			}
 			
 		}
 		
 		protected function onResultSearch(event:MouseEvent):void
-		{
+		{	
 			
-			//http://snipplr.com/view/10717/
-			var _scope:DisplayObjectContainer = this;
-			
-			while(_scope.numChildren > 2)
+			while(numChildren > 2)
 			{
-				
-				_scope.removeChildAt(_scope.numChildren-1);
-				
+				removeChildAt(numChildren-1);
 			}
 			
 			_resultsQuery = event.currentTarget.id;
+			_resultTone = event.currentTarget.tone;
+			_resultMode = event.currentTarget.mode;
 			
 			getResultSearchList();
 			
@@ -775,10 +785,10 @@ package
 			
 			var ul:URLLoader = new URLLoader();
 			ul.load(new URLRequest("http://api.beatport.com/catalog/3/tracks/similar?ids=" + _resultsQuery));
-			ul.addEventListener(Event.COMPLETE, onParse);
+			ul.addEventListener(Event.COMPLETE, onResultParse);
 			
 		}
-	
+		
 	}
 	
 }
