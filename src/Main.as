@@ -36,9 +36,11 @@ package
 		
 		public function Main()
 		{
+			
 			formatText();	
 			createSearchField();
 			createButton();
+			
 		}
 		
 		private function createButton():void
@@ -62,6 +64,7 @@ package
 		
 		private function formatText():void
 		{
+			
 			searchFormat.color = 0x555555;
 			searchFormat.font = "Droid Sans";
 			searchFormat.size = 20;
@@ -104,17 +107,19 @@ package
 		
 		private function onSearchEnter():void
 		{
+			
 			//http://snipplr.com/view/10717/
 			var _scope:DisplayObjectContainer = this;
-			trace(_scope.numChildren);
 			while(_scope.numChildren > 2)
 			{
+				
 				_scope.removeChildAt(_scope.numChildren-1);
+				
 			}
-			trace(_scope.numChildren);
 			
 			_query = _searchField.text;
 			getSearchList();
+			
 		}
 		
 		protected function onSearch(event:MouseEvent):void
@@ -122,12 +127,13 @@ package
 			
 			//http://snipplr.com/view/10717/
 			var _scope:DisplayObjectContainer = this;
-			trace(_scope.numChildren);
+			
 			while(_scope.numChildren > 2)
 			{
+				
 				_scope.removeChildAt(_scope.numChildren-1);
+				
 			}
-			trace(_scope.numChildren);
 			
 			_query = _searchField.text;
 			getSearchList();
@@ -152,6 +158,7 @@ package
 			
 			for each(var resultsNode:Object in jsonData.results)
 			{
+				
 				if(resultsNode.title != undefined &&
 					resultsNode.artists != undefined &&
 					resultsNode.genres != undefined &&
@@ -160,6 +167,7 @@ package
 					resultsNode.price != undefined && 
 					resultsNode.price.display != undefined)
 				{
+					
 					var vo : MusicVO = new MusicVO();
 					vo.id = resultsNode.id;
 					vo.title = resultsNode.title;
@@ -410,22 +418,27 @@ package
 					vo.price = resultsNode.price.display;
 					
 					_vos.push(vo);
+					
 				}else{
+					
 					trace("undefined");
+					
 				}
+				
 			}
 
 			for each (var object : MusicVO in _vos)
 			{
+				
 				trace("-------------------------------")
 				trace(object.id);
 				trace(object.title);
 				trace(object.artist);
 				trace(object.genre);
 				trace(object.key);
+				
 			}
 			
-			 
 			createResults();
 			
 		}
@@ -696,7 +709,6 @@ package
 						
 					}
 					
-					
 					vo.price = resultsNode.price.display;
 					
 					_vos.push(vo);
@@ -729,28 +741,14 @@ package
 		{
 			
 			for(var i:uint=0;i<_vos.length; i++)
-			{	
+			{
+				
 			var mf:MusicInfo = new MusicInfo(_vos[i],(i*30)+240);
 			this.addChild(mf);
 			mf.addEventListener(MouseEvent.MOUSE_UP, onResultSearch);
+			
 			}
 			
-//			for(var j:uint=0;j<_vos.length; j++)
-//			{	
-//				var buy:MusicInfo = new MusicInfo(_vos[i],900,(i*30)+240);
-//				this.addChild(buy);
-//				buy.alpha
-//				buy.addEventListener(MouseEvent.MOUSE_UP, onBuy);
-//			}
-			
-		}
-
-			
-		
-		protected function onBuy(event:MouseEvent):void
-		{
-			//navigateToURL(new URLRequest("http://www.beatport.com/track/"+event.currentTarget.title+"/"+event.currentTarget.id), "_blank");
-		
 		}
 		
 		protected function onResultSearch(event:MouseEvent):void
@@ -758,15 +756,16 @@ package
 			
 			//http://snipplr.com/view/10717/
 			var _scope:DisplayObjectContainer = this;
-			trace(_scope.numChildren);
+			
 			while(_scope.numChildren > 2)
 			{
+				
 				_scope.removeChildAt(_scope.numChildren-1);
+				
 			}
-			trace(_scope.numChildren);
 			
 			_resultsQuery = event.currentTarget.id;
-			trace(_resultsQuery);
+			
 			getResultSearchList();
 			
 		}
@@ -777,8 +776,8 @@ package
 			var ul:URLLoader = new URLLoader();
 			ul.load(new URLRequest("http://api.beatport.com/catalog/3/tracks/similar?ids=" + _resultsQuery));
 			ul.addEventListener(Event.COMPLETE, onParse);
+			
 		}
-	
 	
 	}
 	
