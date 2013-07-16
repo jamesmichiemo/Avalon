@@ -111,8 +111,7 @@ package
 			_resultPrice.tfLabel.scaleX = _resultPrice.tfLabel.scaleY = 1.5;
 			_resultPrice.tfLabel.x = -3;
 			_resultPrice.tfLabel.y = 1;
-			_resultPrice.buttonMode = true;
-			_resultPrice.mouseChildren = false;
+			
 			
 			_resultPriceLink = new BoxBase();
 			addChild(_resultPriceLink);
@@ -122,6 +121,8 @@ package
 			_resultPriceLink.height = 30;	
 			_resultPriceLink.tfLabel.text = _vo.title + "/" + _vo.id;
 			_resultPriceLink.addEventListener(MouseEvent.MOUSE_UP, onBuy);
+			_resultPriceLink.buttonMode = true;
+			_resultPriceLink.mouseChildren = false;
 			
 			
 		}
