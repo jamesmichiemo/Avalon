@@ -34,10 +34,25 @@
         border: 1px solid;
       }
       div.row {
-        border: 1px solid;
+        border: 1px #e4e4e4 solid;
+      }
+      div.row.header {
+      	background-color: #050707;
+      }
+      .span2 {
+      	text-align: center;
+      	color: #a8e00f;
+      	border-right: 2px #e4e4e4 solid;
+      	margin-left: 0;
+      }
+      h1 {
+      	color: #e4e4e4;
       }
       #flash_content {
       	margin-left: -10px;
+      }
+      .author {
+      	color: #a8e00f;	
       }
     </style>
     <script src="resources/javascripts/vendor/custom.modernizr.js"></script>
@@ -54,18 +69,10 @@
         </div>
       </div>
       <div class="row navigation">
-        <div class="span2">
-          Home
-        </div>
-        <div class="span2">
-          About
-        </div>
-        <div class="span2">
-          FAQ
-        </div>
-        <div class="span2 contact">
-          Contact
-        </div>
+        <div class="span2">Home</div>
+        <div class="span2">About</div>
+        <div class="span2">FAQ</div>
+        <div class="span2 contact">Contact</div>
       </div>
      <div id="flash_content">
 		<script type="text/javascript">
@@ -90,16 +97,16 @@
         </div>
       </div>
       <div class="row footer">
-        <div class="span6">
+        <div class="span6 author">
           Created by: James Michiemo
         </div>
-        <div class="span2">
+        <div class="span2 social">
           Facebook
         </div>
-        <div class="span2">
+        <div class="span2 social">
           Twitter
         </div>
-        <div class="span2">
+        <div class="span2 social">
           Google+
         </div>
       </div>
