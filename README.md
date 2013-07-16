@@ -6,3 +6,4 @@ This project makes use of Beatport's search engine to create a music browsing ex
 GitHub: [jamesmichiemo](http://github.com/jamesmichiemo)
 
 Twitter: [@omeichim](http://twitter.com/omeichim) 
+
