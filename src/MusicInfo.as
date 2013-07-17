@@ -99,50 +99,50 @@ package
 		
 		private function musicResults():void
 		{
-
+			
 			_resultTitle = new TextField();
 			addChild(_resultTitle);
 			_resultTitle.defaultTextFormat = _resultFormat;
 			_resultTitle.border = false;
 			_resultTitle.x = 10;
 			_resultTitle.width = 400;
-			_resultTitle.height = 30;	
+			_resultTitle.height = 35;	
 			_resultTitle.text = _vo.title;
 				
 			_resultArtist = new TextField();
 			addChild(_resultArtist);
 			_resultArtist.defaultTextFormat = _resultFormat;
 			_resultArtist.border = false;
-			_resultArtist.x = 410;
+			_resultArtist.x = 380;
 			_resultArtist.width = 275;
-			_resultArtist.height = 30;
+			_resultArtist.height = 35;
 			_resultArtist.text = _vo.artist;
 		
 			_resultGenre = new TextField();
 			addChild(_resultGenre);
 			_resultGenre.defaultTextFormat = _resultFormat;
 			_resultGenre.border = false;
-			_resultGenre.x = 685;
+			_resultGenre.x = 655;
 			_resultGenre.width = 120;
-			_resultGenre.height = 30;
+			_resultGenre.height = 35;
 			_resultGenre.text = _vo.genre;
 			
 			_resultKey = new TextField();
 			addChild(_resultKey);
 			_resultKey.defaultTextFormat = _resultFormat;
 			_resultKey.border = false;
-			_resultKey.x = 805;
+			_resultKey.x = 795;
 			_resultKey.width = 100;
-			_resultKey.height = 30;
+			_resultKey.height = 35;
 			_resultKey.text = _vo.key;
 				
 			_resultPrice = new BoxBase();
 			addChild(_resultPrice);
 			_resultPrice.defaultTextFormat = _resultFormat;
 			_resultPrice.border = false;
-			_resultPrice.x = 905;
+			_resultPrice.x = 915;
 			_resultPrice.width = 60;
-			_resultPrice.height = 30;
+			_resultPrice.height = 35;
 			_resultPrice.tfLabel.text = _vo.price;
 			_resultPrice.tfLabel.scaleX = _resultPrice.tfLabel.scaleY = 1.5;
 			_resultPrice.tfLabel.x = -3;
@@ -153,7 +153,7 @@ package
 			_resultPriceLink.alpha = 0;
 			_resultPriceLink.x = 905;
 			_resultPriceLink.width = 60;
-			_resultPriceLink.height = 30;	
+			_resultPriceLink.height = 35;	
 			_resultPriceLink.tfLabel.text = _vo.title + "/" + _vo.id;
 			_resultPriceLink.addEventListener(MouseEvent.CLICK, onBuy);
 			_resultPriceLink.buttonMode = true;

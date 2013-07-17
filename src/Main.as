@@ -16,7 +16,7 @@ package
 	import flash.ui.Keyboard;
 	import flash.xml.XMLNode;
 	
-	[SWF(width="980", height="500", framerate="60", backgroundColor="0xededed")]
+	[SWF(width="980", height="545", framerate="60", backgroundColor="0xededed")]
 	
 	public class Main extends Sprite
 	{
@@ -36,14 +36,77 @@ package
 		private var _vosDos:Array;
 		private var _resultTone:Number;
 		private var _resultMode:String;
+		private var _titleLabel:TextField;
+		private var _artistLabel:TextField;
+		private var _genreLabel:TextField;
+		private var _keyLabel:TextField;
+		private var _priceLabel:TextField;
 		
 		public function Main()
 		{
 			
-			formatText();	
+			createDisplay();
+			initTextFormat();	
 			createSearchField();
 			createButton();
 			
+			
+		}
+		
+		private function createDisplay():void
+		{
+			var bg:Layout = new Layout();
+			this.addChild(bg);
+			bg.y = -180;
+			
+			_titleLabel = new TextField();
+			this.addChild(_titleLabel);
+			_titleLabel.defaultTextFormat = searchFormat;
+			_titleLabel.border = false;
+			_titleLabel.x = 10;
+			_titleLabel.y = 220;
+			_titleLabel.width = 400;
+			_titleLabel.height = 30;	
+			_titleLabel.text = "Title";
+			
+			_artistLabel = new TextField();
+			this.addChild(_artistLabel);
+			_artistLabel.defaultTextFormat = resultFormat;
+			_artistLabel.border = false;
+			_artistLabel.x = 380;
+			_artistLabel.y = 220;
+			_artistLabel.width = 275;
+			_artistLabel.height = 30;
+			_artistLabel.text = "Artist";
+			
+			_genreLabel = new TextField();
+			this.addChild(_genreLabel);
+			_genreLabel.defaultTextFormat = resultFormat;
+			_genreLabel.border = false;
+			_genreLabel.x = 655;
+			_genreLabel.y = 220;
+			_genreLabel.width = 120;
+			_genreLabel.height = 30;
+			_genreLabel.text = "Genre";
+			
+			_keyLabel = new TextField();
+			this.addChild(_keyLabel);
+			_keyLabel.defaultTextFormat = resultFormat;
+			_keyLabel.border = false;
+			_keyLabel.x = 795;
+			_keyLabel.y = 220;
+			_keyLabel.width = 100;
+			_keyLabel.height = 30;
+			_keyLabel.text = "Key";
+			
+			_priceLabel = new TextField();
+			this.addChild(_priceLabel);
+			_priceLabel.defaultTextFormat = resultFormat;
+			_priceLabel.x = 905;
+			_priceLabel.y = 220;
+			_priceLabel.width = 60;
+			_priceLabel.height = 30;	
+			_priceLabel.text = "Purchase";
 		}
 		
 		private function createButton():void
@@ -51,9 +114,9 @@ package
 			
 			var button:BoxBase = new BoxBase();
 			this.addChild(button);
-			button.x = _searchField.x +405;
+			button.x = _searchField.x + 540;
 			button.y = _searchField.y;
-			button.scaleX = button.scaleY = .6;
+			button.scaleX = button.scaleY = .55;
 			button.tfLabel.text = "Search";
 			button.tfLabel.x = -15;
 			button.tfLabel.y = 1;
@@ -65,12 +128,25 @@ package
 			
 		}
 		
+		private function initTextFormat():void
+		{
+			
+			resultFormat.color = 0x222222;
+			resultFormat.font = "Droid Sans";
+			resultFormat.size = 20;
+			
+			searchFormat.color = 0xaaaaaa;
+			searchFormat.font = "Droid Sans";
+			searchFormat.size = 20;
+			
+			
+			
+		}
+		
 		private function formatText():void
 		{
 			
-			searchFormat.color = 0x555555;
-			searchFormat.font = "Droid Sans";
-			searchFormat.size = 20;
+			searchFormat.color = 0x222222;
 			
 		}
 		
@@ -80,11 +156,11 @@ package
 			_searchField = new TextField();
 			this.addChild(_searchField);
 			_searchField.defaultTextFormat = searchFormat;
-			_searchField.border = true;
-			_searchField.x = 10;
-			_searchField.y = 10;
-			_searchField.width = 400;
-			_searchField.height = 30;
+			_searchField.border = false;
+			_searchField.x = 13;
+			_searchField.y = 9;
+			_searchField.width = 530;
+			_searchField.height = 27;
 			_searchField.type = TextFieldType.INPUT;
 			_searchField.text = "Search Artist, Label or Track"; // create public static constant for this string
 			// get key presses only when the textfield is being edited
@@ -99,6 +175,7 @@ package
 			{
 			_searchField.text=""; //To Clear the Text Box
 			}
+			formatText();
 		}
 		
 		
@@ -118,7 +195,7 @@ package
 			//http://snipplr.com/view/10717/
 			var _scope:DisplayObjectContainer = this;
 			
-			while(_scope.numChildren > 2)
+			while(_scope.numChildren > 8)
 			{
 				
 				_scope.removeChildAt(_scope.numChildren-1);
@@ -743,7 +820,7 @@ package
 			for(var i:uint=0;i<_vos.length; i++)
 			{
 
-				var mf:MusicInfo = new MusicInfo(_vos[i],(i*30)+240);
+				var mf:MusicInfo = new MusicInfo(_vos[i],(i*30)+242);
 				this.addChild(mf);
 				mf.mode = _vos[i].mode;// setting a value in the view from the VO
 				mf.tone = _vos[i].tone;// setting a value in the view from the VO
@@ -764,7 +841,7 @@ package
 				
 				if(isHarmonic)
 				{
-					var mf:MusicInfo = new MusicInfo(song,(i*30)+240);
+					var mf:MusicInfo = new MusicInfo(song,(i*30)+242);
 					this.addChild(mf);
 					mf.mode = song.mode;// setting a value in the view from the VO
 					mf.tone = song.tone;// setting a value in the view from the VO
@@ -780,7 +857,7 @@ package
 		protected function onResultSearch(event:MouseEvent):void
 		{	
 			
-			while(numChildren > 2)
+			while(numChildren > 8)
 			{
 				removeChildAt(numChildren-1);
 			}
