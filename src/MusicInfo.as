@@ -39,16 +39,11 @@ package
 			_id = vo.id;
 			_title = vo.title;
 			
-			createBackground();
 			formatText();
 			musicResults();
 			
 		}
 		
-		private function createBackground():void
-		{
-			
-		}
 		
 		public function set mode(value:String):void
 		{

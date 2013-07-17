@@ -23,14 +23,14 @@ package
 		
 		private var _searchField:TextField;
 		private var _query:String;
-		private var searchFormat:TextFormat = new TextFormat();
+		private var _searchFormat:TextFormat = new TextFormat();
 		private var _vos:Array;
 		private var _resultTitle:TextField;
 		private var _resultArtist:TextField;
 		private var _resultGenre:TextField;
 		private var _resultKey:TextField;
 		private var _resultPrice:TextField;
-		private var resultFormat:TextFormat = new TextFormat();
+		private var _resultFormat:TextFormat = new TextFormat();
 		private var _resultsQuery:String;
 		private var _vosResult:Array;
 		private var _vosDos:Array;
@@ -45,10 +45,24 @@ package
 		public function Main()
 		{
 			
+			initTextFormat();
 			createDisplay();
-			initTextFormat();	
 			createSearchField();
 			createButton();
+			
+		}
+		
+		private function initTextFormat():void
+		{
+			
+			_resultFormat.color = 0x222222;
+			_resultFormat.font = "Droid Sans";
+			_resultFormat.size = 20;
+			
+			_searchFormat.color = 0xaaaaaa;
+			_searchFormat.font = "Droid Sans";
+			_searchFormat.size = 20;
+			
 			
 			
 		}
@@ -61,17 +75,19 @@ package
 			
 			_titleLabel = new TextField();
 			this.addChild(_titleLabel);
-			_titleLabel.defaultTextFormat = searchFormat;
+			_titleLabel.defaultTextFormat = _resultFormat;
 			_titleLabel.border = false;
-			_titleLabel.x = 10;
+			_titleLabel.x = 8;
 			_titleLabel.y = 220;
+			_titleLabel.scaleX = _titleLabel.scaleY = .8;
 			_titleLabel.width = 400;
-			_titleLabel.height = 30;	
+			_titleLabel.height = 30;
+			
 			_titleLabel.text = "Title";
 			
 			_artistLabel = new TextField();
 			this.addChild(_artistLabel);
-			_artistLabel.defaultTextFormat = resultFormat;
+			_artistLabel.defaultTextFormat = _resultFormat;
 			_artistLabel.border = false;
 			_artistLabel.x = 380;
 			_artistLabel.y = 220;
@@ -81,7 +97,7 @@ package
 			
 			_genreLabel = new TextField();
 			this.addChild(_genreLabel);
-			_genreLabel.defaultTextFormat = resultFormat;
+			_genreLabel.defaultTextFormat = _resultFormat;
 			_genreLabel.border = false;
 			_genreLabel.x = 655;
 			_genreLabel.y = 220;
@@ -91,7 +107,7 @@ package
 			
 			_keyLabel = new TextField();
 			this.addChild(_keyLabel);
-			_keyLabel.defaultTextFormat = resultFormat;
+			_keyLabel.defaultTextFormat = _resultFormat;
 			_keyLabel.border = false;
 			_keyLabel.x = 795;
 			_keyLabel.y = 220;
@@ -101,7 +117,7 @@ package
 			
 			_priceLabel = new TextField();
 			this.addChild(_priceLabel);
-			_priceLabel.defaultTextFormat = resultFormat;
+			_priceLabel.defaultTextFormat = _resultFormat;
 			_priceLabel.x = 905;
 			_priceLabel.y = 220;
 			_priceLabel.width = 60;
@@ -128,25 +144,12 @@ package
 			
 		}
 		
-		private function initTextFormat():void
-		{
-			
-			resultFormat.color = 0x222222;
-			resultFormat.font = "Droid Sans";
-			resultFormat.size = 20;
-			
-			searchFormat.color = 0xaaaaaa;
-			searchFormat.font = "Droid Sans";
-			searchFormat.size = 20;
-			
-			
-			
-		}
+
 		
 		private function formatText():void
 		{
 			
-			searchFormat.color = 0x222222;
+			_searchFormat.color = 0x222222;
 			
 		}
 		
@@ -155,7 +158,8 @@ package
 			
 			_searchField = new TextField();
 			this.addChild(_searchField);
-			_searchField.defaultTextFormat = searchFormat;
+			_searchField.defaultTextFormat = _searchFormat;
+			_titleLabel.defaultTextFormat = _searchFormat; // not sure what the problem is here with format
 			_searchField.border = false;
 			_searchField.x = 13;
 			_searchField.y = 9;
