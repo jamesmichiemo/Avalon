@@ -492,6 +492,11 @@ package
 						
 					}
 					
+					if(vo.genre == "Progressive House")
+					{
+						vo.genre = "Prog House";
+					}
+					
 					vo.price = resultsNode.price.display;
 					
 					_vos.push(vo);
@@ -787,6 +792,11 @@ package
 						vo.tone = 12;
 						vo.mode = "B";
 						
+					}
+					
+					if(vo.genre == "Progressive House")
+					{
+						vo.genre = "Prog House";
 					}
 					
 					vo.price = resultsNode.price.display;
