@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Avalon</title>
+    <link type="text/css" rel="stylesheet" 
+          href="https://d396qusza40orc.cloudfront.net/startup%2Fcode%2Fbootstrap-2.3.2.css">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+      body {
+        padding-bottom: 40px;
+          /* fallback */
+  background-color: #333b3e;
+  background-image: url(images/radial_bg.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  /* Safari 4-5, Chrome 1-9 */
+  /* Can't specify a percentage size? Laaaaaame. */
+  background: -webkit-gradient(radial, center center, 0, center center, 460, from(#b1b2b3), to(#333b3e));
+
+  /* Safari 5.1+, Chrome 10+ */
+  background: -webkit-radial-gradient(circle, #b1b2b3, #333b3e);
+
+  /* Firefox 3.6+ */
+  background: -moz-radial-gradient(circle, #b1b2b3, #333b3e);
+
+  /* IE 10 */
+  background: -ms-radial-gradient(circle, #b1b2b3, #333b3e);
+
+  /* Opera couldn't do radial gradients, then at some point they started supporting the -webkit- syntax, how it kinda does but it's kinda broken (doesn't do sizing) */
+      }
+      .container {
+        width: 960px;
+      }
+      .subheading {
+      	padding-top: 4px;
+      }
+      p.lead {
+        padding: 2px 0px 3px 4px;
+      }
+      .navigation, .display, .section1, .section2, .faq, .footer {
+        padding: 10px 0px 10px 0px;
+        -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.8);
+              -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.8);
+                         box-shadow: 0px 0px 5px rgba(0,0,0,.8);
+          z-index: 100;
+      }
+      .music {
+      	/* Internal borders have 1px width, thus need to add 4 x 1px to 120px. */
+        height: 124px;
+        line-height: 124px;
+        border: 1px dotted;
+        text-align: center;
+      }
+      .search {
+        border: 1px solid;
+      }
+      div.row.header {
+      	background-color: #050707;
+        border: none;
+        -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.8);
+              -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.8);
+                         box-shadow: 0px 0px 5px rgba(0,0,0,.8);
+          z-index: 100;
+      }
+      .span2 {
+      	text-align: center;
+      	border-right: 2px #e4e4e4 solid;
+      	margin-left: 0;
+      }
+      h1 {
+      	color: #e4e4e4;	
+      }
+      p.pow {
+      	float: right;
+      	margin-top: 20px;
+      	color: #e4e4e4;
+      	font-size: 16px;
+      }
+      #flash_content {
+      	margin-left: -10px;
+      	-webkit-box-shadow: 0px 2px 5px rgba(0,0,0,.8);
+        -moz-box-shadow: 0px 2px 5px rgba(0,0,0,.8);
+        box-shadow: 0px 2px 5px rgba(0,0,0,.8);
+        margin-bottom: -3px;
+      }
+      div.row {
+        border: 1px #e4e4e4 solid;
+        color: #a8e00f;
+        background-color: #f9f9f9;
+        font-family: 'Ubuntu', sans-serif;
+      }
+      img {
+      	float: right;
+      	margin-top: 6px;
+      }
+      .author {
+      	color: #666666;
+      	font-size: 16px;
+      }
+    </style>
+    <script src="resources/javascripts/vendor/custom.modernizr.js"></script>
+    <script type="text/javascript" src="swfobject.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row header">
+        <div class="span9">
+          <h1 class="span6">Avalon</h1>
+          <p class="pow">Powered by:</p>
+        </div> 
+        <div class="span3">
+          <img src="http://static.bpddn.com/s/42eefceab3c426621a0d4cf5c01fdfd9/image/_sushi/beatport_logo.png" alt="Beatport"/>
+        </div>
+      </div>
+      <div class="row navigation">
+        <div class="span2">Home</div>
+        <div class="span2">About</div>
+        <div class="span2">FAQ</div>
+        <div class="span2 contact">Contact</div>
+      </div>
+     <div id="flash_content">
+		<script type="text/javascript">
+			<!-- Change the dimensions of the SWF using the width and height variables below -->
+			var width = 980;
+			var height = 545;
+			var flashvars = {};
+			var params = {};
+			var attributes = {};
+			attributes.id = "flash_content";
+			swfobject.embedSWF("Main.swf", "myAlternativeContent", width, height, "9.0.0", false, flashvars, params, attributes);
+		</script>
+		<div id="myAlternativeContent">
+			<a href="http://www.adobe.com/go/getflashplayer">
+				<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+			</a>
+		</div>
+	</div><!--flas_content-->
+      <div class="row faq">
+        <div class="span12">
+          FAQ
+        </div>
+      </div>
+      <div class="row footer">
+        <div class="span6 author">
+          Created by: James Michiemo
+        </div>
+        <div class="span2 social">
+          Facebook
+        </div>
+        <div class="span2 social">
+          Twitter
+        </div>
+        <div class="span2 social">
+          Google+
+        </div>
+      </div>
+    </div>
+</body>
+</html>
