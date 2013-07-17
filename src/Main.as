@@ -55,7 +55,7 @@ package
 		private function initTextFormat():void
 		{
 			
-			_resultFormat.color = 0x222222;
+			_resultFormat.color = 0x666666;
 			_resultFormat.font = "Droid Sans";
 			_resultFormat.size = 20;
 			
@@ -78,7 +78,7 @@ package
 			_titleLabel.defaultTextFormat = _resultFormat;
 			_titleLabel.border = false;
 			_titleLabel.x = 8;
-			_titleLabel.y = 220;
+			_titleLabel.y = 212;
 			_titleLabel.scaleX = _titleLabel.scaleY = .8;
 			_titleLabel.width = 400;
 			_titleLabel.height = 30;
@@ -90,7 +90,8 @@ package
 			_artistLabel.defaultTextFormat = _resultFormat;
 			_artistLabel.border = false;
 			_artistLabel.x = 380;
-			_artistLabel.y = 220;
+			_artistLabel.y = 212;
+			_artistLabel.scaleX = _artistLabel.scaleY = .8;
 			_artistLabel.width = 275;
 			_artistLabel.height = 30;
 			_artistLabel.text = "Artist";
@@ -100,7 +101,8 @@ package
 			_genreLabel.defaultTextFormat = _resultFormat;
 			_genreLabel.border = false;
 			_genreLabel.x = 655;
-			_genreLabel.y = 220;
+			_genreLabel.y = 212;
+			_genreLabel.scaleX = _genreLabel.scaleY = .8;
 			_genreLabel.width = 120;
 			_genreLabel.height = 30;
 			_genreLabel.text = "Genre";
@@ -110,7 +112,8 @@ package
 			_keyLabel.defaultTextFormat = _resultFormat;
 			_keyLabel.border = false;
 			_keyLabel.x = 795;
-			_keyLabel.y = 220;
+			_keyLabel.y = 212;
+			_keyLabel.scaleX = _keyLabel.scaleY = .8;
 			_keyLabel.width = 100;
 			_keyLabel.height = 30;
 			_keyLabel.text = "Key";
@@ -118,11 +121,12 @@ package
 			_priceLabel = new TextField();
 			this.addChild(_priceLabel);
 			_priceLabel.defaultTextFormat = _resultFormat;
-			_priceLabel.x = 905;
-			_priceLabel.y = 220;
+			_priceLabel.x = 920;
+			_priceLabel.y = 212;
+			_priceLabel.scaleX = _priceLabel.scaleY = .8;
 			_priceLabel.width = 60;
 			_priceLabel.height = 30;	
-			_priceLabel.text = "Purchase";
+			_priceLabel.text = "Buy";
 		}
 		
 		private function createButton():void
