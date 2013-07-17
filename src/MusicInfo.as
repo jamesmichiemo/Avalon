@@ -100,9 +100,10 @@ package
 			_resultTitle.defaultTextFormat = _resultFormat;
 			_resultTitle.border = false;
 			_resultTitle.x = 10;
-			_resultTitle.width = 400;
-			_resultTitle.height = 35;	
+			_resultTitle.width = 360;
+			_resultTitle.height = 35;
 			_resultTitle.text = _vo.title;
+			
 				
 			_resultArtist = new TextField();
 			addChild(_resultArtist);
