@@ -136,17 +136,19 @@ package
 			_resultPrice.defaultTextFormat = _resultFormat;
 			_resultPrice.border = false;
 			_resultPrice.x = 915;
+			_resultPrice.y = -7;
 			_resultPrice.width = 60;
 			_resultPrice.height = 35;
 			_resultPrice.tfLabel.text = _vo.price;
-			_resultPrice.tfLabel.scaleX = _resultPrice.tfLabel.scaleY = 1.5;
+			_resultPrice.tfLabel.scaleX = _resultPrice.tfLabel.scaleY = 1.4;
 			_resultPrice.tfLabel.x = -3;
 			_resultPrice.tfLabel.y = 1;
 			
 			_resultPriceLink = new BoxBase();
 			addChild(_resultPriceLink);
 			_resultPriceLink.alpha = 0;
-			_resultPriceLink.x = 905;
+			_resultPriceLink.x = 915;
+			_resultPriceLink.y = -7;
 			_resultPriceLink.width = 60;
 			_resultPriceLink.height = 35;	
 			_resultPriceLink.tfLabel.text = _vo.title + "/" + _vo.id;
