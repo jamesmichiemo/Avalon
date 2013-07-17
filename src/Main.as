@@ -256,7 +256,6 @@ package
 					{
 						
 						vo.key = "A♭ Minor";
-						vo.keycode = "1A";
 						vo.tone = 1;
 						vo.mode = "A";
 						
@@ -266,7 +265,6 @@ package
 					{
 						
 						vo.key = "B Major";
-						vo.keycode = "1B";
 						vo.tone = 1;
 						vo.mode = "B";
 						
@@ -276,7 +274,6 @@ package
 					{
 						
 						vo.key = "E♭ Minor";
-						vo.keycode = "2A";
 						vo.tone = 2;
 						vo.mode = "A";
 						
@@ -286,7 +283,6 @@ package
 					{
 						
 						vo.key = "F♯ Major";
-						vo.keycode = "2B";
 						vo.tone = 2;
 						vo.mode = "B";
 						
@@ -296,7 +292,6 @@ package
 					{
 						
 						vo.key = "B♭ Minor";
-						vo.keycode = "3A";
 						vo.tone = 3;
 						vo.mode = "A";
 						
@@ -306,7 +301,6 @@ package
 					{
 						
 						vo.key = "D♭ Major";
-						vo.keycode = "3B";
 						vo.tone = 3;
 						vo.mode = "B";
 						
@@ -316,7 +310,6 @@ package
 					{
 						
 						vo.key = "F Minor";
-						vo.keycode = "4A";
 						vo.tone = 4;
 						vo.mode = "A";
 						
@@ -326,7 +319,6 @@ package
 					{
 						
 						vo.key = "A♭ Major";
-						vo.keycode = "4B";
 						vo.tone = 4;
 						vo.mode = "B";
 						
@@ -336,7 +328,6 @@ package
 					{
 						
 						vo.key = "C Minor";
-						vo.keycode = "5A";
 						vo.tone = 5;
 						vo.mode = "A";
 						
@@ -346,7 +337,6 @@ package
 					{
 						
 						vo.key = "E♭ Major";
-						vo.keycode = "5B";
 						vo.tone = 5;
 						vo.mode = "B";
 						
@@ -356,7 +346,6 @@ package
 					{
 						
 						vo.key = "G Minor";
-						vo.keycode = "6A";
 						vo.tone = 6;
 						vo.mode = "A";
 						
@@ -366,7 +355,6 @@ package
 					{
 						
 						vo.key = "B♭ Major";
-						vo.keycode = "6B";
 						vo.tone = 6;
 						vo.mode = "B";
 						
@@ -376,7 +364,6 @@ package
 					{
 						
 						vo.key = "D Minor";
-						vo.keycode = "7A";
 						vo.tone = 7;
 						vo.mode = "A";
 						
@@ -386,7 +373,6 @@ package
 					{
 						
 						vo.key = "F Major";
-						vo.keycode = "7B";
 						vo.tone =7;
 						vo.mode = "B";
 						
@@ -396,7 +382,6 @@ package
 					{
 						
 						vo.key = "A Minor";
-						vo.keycode = "8A";
 						vo.tone = 8;
 						vo.mode = "A";
 						
@@ -406,7 +391,6 @@ package
 					{
 						
 						vo.key = "C Major";
-						vo.keycode = "8B";
 						vo.tone = 8;
 						vo.mode = "B";
 						
@@ -416,7 +400,6 @@ package
 					{
 						
 						vo.key = "E Minor";
-						vo.keycode = "9A";
 						vo.tone = 9;
 						vo.mode = "A";
 						
@@ -426,7 +409,6 @@ package
 					{
 						
 						vo.key = "G Major";
-						vo.keycode = "9B";
 						vo.tone = 9;
 						vo.mode = "B";
 						
@@ -436,7 +418,6 @@ package
 					{
 						
 						vo.key = "B Minor";
-						vo.keycode = "10A";
 						vo.tone = 10;
 						vo.mode = "A";
 						
@@ -446,7 +427,6 @@ package
 					{
 						
 						vo.key = "D Major";
-						vo.keycode = "10B";
 						vo.tone = 10;
 						vo.mode = "B";
 						
@@ -456,7 +436,6 @@ package
 					{
 						
 						vo.key = "F♯ Minor";
-						vo.keycode = "11A";
 						vo.tone = 11;
 						vo.mode = "A";
 						
@@ -466,7 +445,6 @@ package
 					{
 						
 						vo.key = "A Major";
-						vo.keycode = "11B";
 						vo.tone = 11;
 						vo.mode = "B";
 						
@@ -476,7 +454,6 @@ package
 					{
 						
 						vo.key = "D♭ Minor";
-						vo.keycode = "12A";
 						vo.tone = 12;
 						vo.mode = "A";
 						
@@ -486,7 +463,6 @@ package
 					{
 						
 						vo.key = "E Major";
-						vo.keycode = "12B";
 						vo.tone = 12;
 						vo.mode = "B";
 						
@@ -558,7 +534,6 @@ package
 					{
 						
 						vo.key = "A♭ Minor";
-						vo.keycode = "1A";
 						vo.tone = 1;
 						vo.mode = "A";
 						
@@ -568,7 +543,6 @@ package
 					{
 						
 						vo.key = "B Major";
-						vo.keycode = "1B";
 						vo.tone = 1;
 						vo.mode = "B";
 						
@@ -578,7 +552,6 @@ package
 					{
 						
 						vo.key = "E♭ Minor";
-						vo.keycode = "2A";
 						vo.tone = 2;
 						vo.mode = "A";
 						
@@ -588,7 +561,6 @@ package
 					{
 						
 						vo.key = "F♯ Major";
-						vo.keycode = "2B";
 						vo.tone = 2;
 						vo.mode = "B";
 						
@@ -598,7 +570,6 @@ package
 					{
 						
 						vo.key = "B♭ Minor";
-						vo.keycode = "3A";
 						vo.tone = 3;
 						vo.mode = "A";
 						
@@ -608,7 +579,6 @@ package
 					{
 						
 						vo.key = "D♭ Major";
-						vo.keycode = "3B";
 						vo.tone = 3;
 						vo.mode = "B";
 						
@@ -618,7 +588,6 @@ package
 					{
 						
 						vo.key = "F Minor";
-						vo.keycode = "4A";
 						vo.tone = 4;
 						vo.mode = "A";
 						
@@ -628,7 +597,6 @@ package
 					{
 						
 						vo.key = "A♭ Major";
-						vo.keycode = "4B";
 						vo.tone = 4;
 						vo.mode = "B";
 						
@@ -638,7 +606,6 @@ package
 					{
 						
 						vo.key = "C Minor";
-						vo.keycode = "5A";
 						vo.tone = 5;
 						vo.mode = "A";
 						
@@ -648,7 +615,6 @@ package
 					{
 						
 						vo.key = "E♭ Major";
-						vo.keycode = "5B";
 						vo.tone = 5;
 						vo.mode = "B";
 						
@@ -658,7 +624,6 @@ package
 					{
 						
 						vo.key = "G Minor";
-						vo.keycode = "6A";
 						vo.tone = 6;
 						vo.mode = "A";
 						
@@ -668,7 +633,6 @@ package
 					{
 						
 						vo.key = "B♭ Major";
-						vo.keycode = "6B";
 						vo.tone = 6;
 						vo.mode = "B";
 						
@@ -678,7 +642,6 @@ package
 					{
 						
 						vo.key = "D Minor";
-						vo.keycode = "7A";
 						vo.tone = 7;
 						vo.mode = "A";
 						
@@ -688,7 +651,6 @@ package
 					{
 						
 						vo.key = "F Major";
-						vo.keycode = "7B";
 						vo.tone =7;
 						vo.mode = "B";
 						
@@ -698,7 +660,6 @@ package
 					{
 						
 						vo.key = "A Minor";
-						vo.keycode = "8A";
 						vo.tone = 8;
 						vo.mode = "A";
 						
@@ -708,7 +669,6 @@ package
 					{
 						
 						vo.key = "C Major";
-						vo.keycode = "8B";
 						vo.tone = 8;
 						vo.mode = "B";
 						
@@ -718,7 +678,6 @@ package
 					{
 						
 						vo.key = "E Minor";
-						vo.keycode = "9A";
 						vo.tone = 9;
 						vo.mode = "A";
 						
@@ -728,7 +687,6 @@ package
 					{
 						
 						vo.key = "G Major";
-						vo.keycode = "9B";
 						vo.tone = 9;
 						vo.mode = "B";
 						
@@ -738,7 +696,6 @@ package
 					{
 						
 						vo.key = "B Minor";
-						vo.keycode = "10A";
 						vo.tone = 10;
 						vo.mode = "A";
 						
@@ -748,7 +705,6 @@ package
 					{
 						
 						vo.key = "D Major";
-						vo.keycode = "10B";
 						vo.tone = 10;
 						vo.mode = "B";
 						
@@ -758,7 +714,6 @@ package
 					{
 						
 						vo.key = "F♯ Minor";
-						vo.keycode = "11A";
 						vo.tone = 11;
 						vo.mode = "A";
 						
@@ -768,7 +723,6 @@ package
 					{
 						
 						vo.key = "A Major";
-						vo.keycode = "11B";
 						vo.tone = 11;
 						vo.mode = "B";
 						
@@ -778,7 +732,6 @@ package
 					{
 						
 						vo.key = "D♭ Minor";
-						vo.keycode = "12A";
 						vo.tone = 12;
 						vo.mode = "A";
 						
@@ -788,7 +741,6 @@ package
 					{
 						
 						vo.key = "E Major";
-						vo.keycode = "12B";
 						vo.tone = 12;
 						vo.mode = "B";
 						
