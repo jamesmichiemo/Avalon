@@ -9,6 +9,26 @@
     <style type="text/css">
       body {
         padding-bottom: 40px;
+          /* fallback */
+  background-color: #333b3e;
+  background-image: url(images/radial_bg.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  /* Safari 4-5, Chrome 1-9 */
+  /* Can't specify a percentage size? Laaaaaame. */
+  background: -webkit-gradient(radial, center center, 0, center center, 460, from(#b1b2b3), to(#333b3e));
+
+  /* Safari 5.1+, Chrome 10+ */
+  background: -webkit-radial-gradient(circle, #b1b2b3, #333b3e);
+
+  /* Firefox 3.6+ */
+  background: -moz-radial-gradient(circle, #b1b2b3, #333b3e);
+
+  /* IE 10 */
+  background: -ms-radial-gradient(circle, #b1b2b3, #333b3e);
+
+  /* Opera couldn't do radial gradients, then at some point they started supporting the -webkit- syntax, how it kinda does but it's kinda broken (doesn't do sizing) */
       }
       .container {
         width: 960px;
@@ -16,12 +36,15 @@
       .subheading {
       	padding-top: 4px;
       }
-
       p.lead {
         padding: 2px 0px 3px 4px;
       }
       .navigation, .display, .section1, .section2, .faq, .footer {
         padding: 10px 0px 10px 0px;
+        -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.8);
+              -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.8);
+                         box-shadow: 0px 0px 5px rgba(0,0,0,.8);
+          z-index: 100;
       }
       .music {
       	/* Internal borders have 1px width, thus need to add 4 x 1px to 120px. */
@@ -35,6 +58,11 @@
       }
       div.row.header {
       	background-color: #050707;
+        border: none;
+        -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.8);
+              -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.8);
+                         box-shadow: 0px 0px 5px rgba(0,0,0,.8);
+          z-index: 100;
       }
       .span2 {
       	text-align: center;
@@ -42,10 +70,20 @@
       	margin-left: 0;
       }
       h1 {
+      	color: #e4e4e4;	
+      }
+      p.pow {
+      	float: right;
+      	margin-top: 20px;
       	color: #e4e4e4;
+      	font-size: 16px;
       }
       #flash_content {
       	margin-left: -10px;
+      	-webkit-box-shadow: 0px 2px 5px rgba(0,0,0,.8);
+        -moz-box-shadow: 0px 2px 5px rgba(0,0,0,.8);
+        box-shadow: 0px 2px 5px rgba(0,0,0,.8);
+        margin-bottom: -3px;
       }
       div.row {
         border: 1px #e4e4e4 solid;
@@ -53,8 +91,14 @@
         background-color: #f9f9f9;
         font-family: 'Ubuntu', sans-serif;
       }
-      
-
+      img {
+      	float: right;
+      	margin-top: 6px;
+      }
+      .author {
+      	color: #666666;
+      	font-size: 16px;
+      }
     </style>
     <script src="resources/javascripts/vendor/custom.modernizr.js"></script>
     <script type="text/javascript" src="swfobject.js"></script>
@@ -63,10 +107,11 @@
     <div class="container">
       <div class="row header">
         <div class="span9">
-          <h1>Avalon</h1>
-        </div>
+          <h1 class="span6">Avalon</h1>
+          <p class="pow">Powered by:</p>
+        </div> 
         <div class="span3">
-          <h2>
+          <img src="http://static.bpddn.com/s/42eefceab3c426621a0d4cf5c01fdfd9/image/_sushi/beatport_logo.png" alt="Beatport"/>
         </div>
       </div>
       <div class="row navigation">
