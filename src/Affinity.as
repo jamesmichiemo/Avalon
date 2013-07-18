@@ -5,54 +5,41 @@ package
 	public class Affinity extends Sprite
 	{
 		
-		//private var _vo:MusicVO;
-		
 		public function Affinity()
 		{
 			super();		
 		}
 		
-		// Function1: Do the songs play well together?
+		// Function 1
 		public static function harmonyBlend(traitOne:Number, traitTwo:Number, ougiOne:String, ougiTwo:String):Boolean
 		{
 	
 			var queryFirstTrait:Number = traitOne;
 			var querySecondTrait:Number = traitTwo;
 			var queryFirstOugi:String = ougiOne;
-			var querySecondMode:String = ougiTwo;
+			var querySecondOugi:String = ougiTwo;
 			
 			
 			//declare harmonyBlend variable for the following conditional arguement
 			var harmonyBlend:Boolean = false;
 			
-			// Calculate compatibility based on Harmonic Mixing Camelot Wheel Chart
-			if(Number(queryFirstTrait) == Number(querySecondTrait)) // identical, either major or minor
+			// affinity burst
+			if((Number(queryFirstTrait) == Number(querySecondTrait)) || // identical, either major or minor
+			   ((Number(queryFirstTrait) == 24 && Number(querySecondTrait) == 13) && queryFirstOugi == querySecondOugi) || // 13 and 24 are loop ougi affinite
+			   ((Number(queryFirstTrait) == 13 && Number(querySecondTrait) == 24) && queryFirstOugi == querySecondOugi) || // 24 and 13 are loop ougi affinite
+			   ((Number(queryFirstTrait) == (Number(querySecondTrait) - 13) && queryFirstOugi == querySecondOugi) || // ougi sequence
+			   ((Number(queryFirstTrait)) == (Number(querySecondTrait) + 13) && queryFirstOugi == querySecondOugi)) // ougi sequence				   
+			  )
 			{
 				// Perfect Match!
-				trace("Perfect Match!");
+				trace("match");
 				harmonyBlend = true;		
-			}else if((Number(queryFirstTrait) == 24 && Number(querySecondTrait) == 13) && queryFirstOugi == querySecondMode) // 1 and 12 are adjacent, same mode
-			{
-				trace("affinity loop");
-				harmonyBlend = true;
-			}else if((Number(queryFirstTrait) == 13 && Number(querySecondTrait) == 24) && queryFirstOugi == querySecondMode) // 1 and 12 are adjacent, same mode
-			{
-				trace("affinity loop");
-				harmonyBlend = true;
-			}else if(Number(queryFirstTrait) == (Number(querySecondTrait) - 13) && queryFirstOugi == querySecondMode) // 1 semitone down, same mode
-			{
-				trace("descent affinity")
-				harmonyBlend = true;	
-			}else if((Number(queryFirstTrait)) == (Number(querySecondTrait) + 13) && queryFirstOugi == querySecondMode) // 1 semitone up, same mode 
-			{
-				trace("ascent affinity")
-				harmonyBlend = true;
 			}else
 			{
-				trace("Not a match!");
+				trace("clash");
 				harmonyBlend = false;
 			}
-			
+
 			
 			harmonyBlend = harmonyBlend;
 			// transfer value to main

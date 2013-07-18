@@ -13,8 +13,11 @@ package
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
+	import flash.text.TextFormatAlign;
 	import flash.ui.Keyboard;
 	import flash.xml.XMLNode;
+	
+	import flashx.textLayout.formats.TextAlign;
 	
 	[SWF(width="980", height="545", framerate="60", backgroundColor="0xededed")]
 	
@@ -238,7 +241,7 @@ package
 				_scope.removeChildAt(_scope.numChildren-1);
 				
 			}
-			
+		
 			var nextButton:ArrowBeat = new ArrowBeat();
 			this.addChild(nextButton);
 			nextButton.x = stage.stageWidth/2 + 460;
@@ -247,7 +250,7 @@ package
 			nextButton.rotation = -90;
 			nextButton.mouseChildren = false;
 			nextButton.buttonMode = true;
-			nextButton.addEventListener(MouseEvent.CLICK, onNext);
+			nextButton.addEventListener(MouseEvent.CLICK, onNext); 
 			
 			_query = _searchField.text;
 			
@@ -850,10 +853,12 @@ package
 		{
 		
 			var i:uint = 0;
+			var mfArray:Array = new Array();
 			for each (var song:MusicVO in _vosDos) 
 			{
 				
 				var isHarmonic:Boolean = Affinity.harmonyBlend(_resultTrait, song.trait, _resultOugi, song.ougi);
+				
 				
 				if(isHarmonic)
 				{
@@ -863,11 +868,25 @@ package
 					mf.trait = song.trait;// setting a value in the view from the VO
 					mf.addEventListener(MouseEvent.CLICK, onResultSearch);
 					i++;
+					mfArray.push(mf);
 				}
-				
-				
 			}
 			
+			trace(mfArray.length + "-------------------------------------------------------------");
+			if(mfArray.length == 0)
+			{
+				var noResults:TextField = new TextField();
+				addChild(noResults);
+				var errorFormat:TextFormat = new TextFormat();
+				errorFormat.align = TextFormatAlign.CENTER;
+				errorFormat.color = 0x444444;
+				errorFormat.font = "Droid Sans";
+				noResults.defaultTextFormat = errorFormat;
+				noResults.scaleX = noResults.scaleY = 2;
+				noResults.y = stage.stageHeight/2;
+				noResults.width = 500;
+				noResults.text = 'Sorry.\n\nBeatport\'s "Recommended Tracks" listing for this\n particular selection does NOT have a harmonic track available.\n\nAlternative search features will be available in future releases.';
+			}
 		}
 		
 		protected function onResultSearch(event:MouseEvent):void
@@ -892,6 +911,7 @@ package
 			var ul:URLLoader = new URLLoader();
 			ul.load(new URLRequest("http://api.beatport.com/catalog/3/tracks/similar?ids=" + _resultsQuery));
 			ul.addEventListener(Event.COMPLETE, onResultParse);
+			// create an advanced search feature that searches outside of similar track
 			
 		}
 		
