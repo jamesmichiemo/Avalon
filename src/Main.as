@@ -172,7 +172,7 @@ package
 			//http://snipplr.com/view/10717/
 			var _scope:DisplayObjectContainer = this;
 			
-			while(_scope.numChildren > 11)
+			while(_scope.numChildren > 12)
 			{
 				
 				_scope.removeChildAt(_scope.numChildren-1);
@@ -277,11 +277,19 @@ package
 			prevButton.buttonMode = true;
 			prevButton.addEventListener(MouseEvent.CLICK, onPrev);
 			
+			var pageLabel:TextField = new TextField();
+			this.addChild(pageLabel);
+			pageLabel.defaultTextFormat = _resultFormat;
+			pageLabel.x = prevButton.x + prevButton.width/2;
+			pageLabel.y = prevButton.y - prevButton.height/2;
+			pageLabel.text = "page: ";
+			
 			_pageField = new TextField();
 			this.addChild(_pageField);
-			_pageField.defaultTextFormat = _searchFormat;
+			_pageField.defaultTextFormat = _resultFormat;
 			_pageField.border = true;
-			_pageField.x = nextButton.x - 100;
+			_pageField.borderColor = 0x888888;
+			_pageField.x = nextButton.x - 50;
 			_pageField.y = nextButton.y - nextButton.height - 6;
 			_pageField.width = 40;
 			_pageField.height = 27;
@@ -310,7 +318,7 @@ package
 			//http://snipplr.com/view/10717/
 			var _scope:DisplayObjectContainer = this;
 			
-			while(_scope.numChildren > 11)
+			while(_scope.numChildren > 12)
 			{
 				
 				_scope.removeChildAt(_scope.numChildren-1);
@@ -333,7 +341,7 @@ package
 			//http://snipplr.com/view/10717/
 			var _scope:DisplayObjectContainer = this;
 			
-			while(_scope.numChildren > 11)
+			while(_scope.numChildren > 12)
 			{
 				
 				_scope.removeChildAt(_scope.numChildren-1);
