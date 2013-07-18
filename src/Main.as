@@ -41,6 +41,9 @@ package
 		private var _genreLabel:TextField;
 		private var _keyLabel:TextField;
 		private var _priceLabel:TextField;
+		private var _pages:Number;
+		private var _index:int;
+
 		
 		public function Main()
 		{
@@ -49,8 +52,11 @@ package
 			createDisplay();
 			createSearchField();
 			createButton();
-			
 		}
+		
+		
+		
+		
 		
 		private function initTextFormat():void
 		{
@@ -143,12 +149,44 @@ package
 			button.tfLabel.scaleX = button.tfLabel.scaleY = 1.8;
 			button.mouseChildren = false;
 			button.buttonMode = true;
-			
 			button.addEventListener(MouseEvent.CLICK, onSearch);
+			
+			var nextButton:ArrowBeat = new ArrowBeat();
+			this.addChild(nextButton);
+			nextButton.x = stage.stageWidth/2 + 460;
+			nextButton.y = stage.stageHeight/2 - 73;
+			nextButton.scaleX = nextButton.scaleY = .3;
+			nextButton.rotation = -90;
+			nextButton.mouseChildren = false;
+			nextButton.buttonMode = true;
+			nextButton.addEventListener(MouseEvent.CLICK, onNext);
 			
 		}
 		
-
+		protected function onNext(event:MouseEvent):void
+		{
+			_index++;
+			if(_index > _pages)
+			{
+				_index = _pages;
+			}
+			
+			trace(_index + "-----------------------------------------------------------------------------");
+			
+			//http://snipplr.com/view/10717/
+			var _scope:DisplayObjectContainer = this;
+			
+			while(_scope.numChildren > 9)
+			{
+				
+				_scope.removeChildAt(_scope.numChildren-1);
+				
+			}
+			
+			getSearchList();
+		}
+		
+		
 		
 		private function formatText():void
 		{
@@ -175,6 +213,7 @@ package
 			_searchField.addEventListener(KeyboardEvent.KEY_DOWN, enterSearch);
 			// http://stackoverflow.com/questions/3819296/how-to-clear-a-text-field-on-focus-with-as3
 			_searchField.addEventListener(FocusEvent.FOCUS_IN, clearBox);
+			
 		}
 
 		private function clearBox(FocusEvent:Object):void
@@ -203,7 +242,7 @@ package
 			//http://snipplr.com/view/10717/
 			var _scope:DisplayObjectContainer = this;
 			
-			while(_scope.numChildren > 8)
+			while(_scope.numChildren > 9)
 			{
 				
 				_scope.removeChildAt(_scope.numChildren-1);
@@ -211,7 +250,11 @@ package
 			}
 			
 			_query = _searchField.text;
+			
+			_index = 1;
+			
 			getSearchList();
+			
 			
 		}
 		
@@ -219,7 +262,7 @@ package
 		{
 			
 			var ul:URLLoader = new URLLoader();
-			var uReq:URLRequest = new URLRequest("http://api.beatport.com/catalog/3/search?facets[0]=fieldType:track&query=" + _query);
+			var uReq:URLRequest = new URLRequest("http://api.beatport.com/catalog/3/search?facets[0]=fieldType:track&perPage=10&page=" + _index + "&query=" + _query);
 			trace(uReq.url);
 			ul.load(uReq);
 			ul.addEventListener(Event.COMPLETE, onParse);
@@ -232,6 +275,11 @@ package
 			_vos = [];
 			
 			var jsonData:Object = JSON.parse(event.currentTarget.data + "");
+			
+			var metaNode:Object = jsonData.metadata;
+			
+			_pages = metaNode.totalPages;
+			trace(_pages);
 			
 			for each(var resultsNode:Object in jsonData.results)
 			{
@@ -251,6 +299,7 @@ package
 					vo.artist = resultsNode.artists[0].name;
 					vo.genre = resultsNode.genres[0].name;
 					vo.key = resultsNode.key.shortName;
+
 					
 					if(vo.key == "G&#9839;min")
 					{
@@ -761,9 +810,7 @@ package
 					trace("undefined");
 					
 				}
-				
-				
-				
+			
 			}
 			
 			for each (var object : MusicVO in _vosDos)

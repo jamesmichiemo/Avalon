@@ -1,4 +1,4 @@
-package com.shiftf12.utilities 
+package 
 {
 	/**
 	 * Keeps track of data used navigate through display assets.
@@ -33,13 +33,9 @@ package com.shiftf12.utilities
 		public function set assets(value:Array):void
 		{
 			_assets = value;
-			CalculateMaxPages();
+			_calculateMaxPages();
 		}
 		
-		private function CalculateMaxPages():void
-		{
-			
-		}
 		
 		/**
 		 * The number of items that will be displayed in a single page.
@@ -48,7 +44,7 @@ package com.shiftf12.utilities
 		public function set itemsPerPage(value:int):void
 		{
 			_itemsPerPage = value;
-			CalculateMaxPages();
+			_calculateMaxPages();
 		}
 		
 		/**

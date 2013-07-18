@@ -41,10 +41,11 @@ package
 			
 			formatText();
 			musicResults();
-			
+		
 		}
 		
 		
+
 		public function set mode(value:String):void
 		{
 			_mode = value;
