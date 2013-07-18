@@ -2,12 +2,12 @@ package
 {
 	import flash.display.Sprite;
 	
-	public class Camelot extends Sprite
+	public class Affinity extends Sprite
 	{
 		
 		//private var _vo:MusicVO;
 		
-		public function Camelot()
+		public function Affinity()
 		{
 			super();		
 		}
