@@ -34,8 +34,8 @@ package
 		private var _resultsQuery:String;
 		private var _vosResult:Array;
 		private var _vosDos:Array;
-		private var _resultTone:Number;
-		private var _resultMode:String;
+		private var _resultTrait:Number;
+		private var _resultOugi:String;
 		private var _titleLabel:TextField;
 		private var _artistLabel:TextField;
 		private var _genreLabel:TextField;
@@ -151,16 +151,6 @@ package
 			button.buttonMode = true;
 			button.addEventListener(MouseEvent.CLICK, onSearch);
 			
-			var nextButton:ArrowBeat = new ArrowBeat();
-			this.addChild(nextButton);
-			nextButton.x = stage.stageWidth/2 + 460;
-			nextButton.y = stage.stageHeight/2 - 73;
-			nextButton.scaleX = nextButton.scaleY = .3;
-			nextButton.rotation = -90;
-			nextButton.mouseChildren = false;
-			nextButton.buttonMode = true;
-			nextButton.addEventListener(MouseEvent.CLICK, onNext);
-			
 		}
 		
 		protected function onNext(event:MouseEvent):void
@@ -242,12 +232,22 @@ package
 			//http://snipplr.com/view/10717/
 			var _scope:DisplayObjectContainer = this;
 			
-			while(_scope.numChildren > 9)
+			while(_scope.numChildren > 8)
 			{
 				
 				_scope.removeChildAt(_scope.numChildren-1);
 				
 			}
+			
+			var nextButton:ArrowBeat = new ArrowBeat();
+			this.addChild(nextButton);
+			nextButton.x = stage.stageWidth/2 + 460;
+			nextButton.y = stage.stageHeight/2 - 73;
+			nextButton.scaleX = nextButton.scaleY = .3;
+			nextButton.rotation = -90;
+			nextButton.mouseChildren = false;
+			nextButton.buttonMode = true;
+			nextButton.addEventListener(MouseEvent.CLICK, onNext);
 			
 			_query = _searchField.text;
 			
@@ -305,8 +305,8 @@ package
 					{
 						
 						vo.key = "A♭ Minor";
-						vo.tone = 1;
-						vo.mode = "A";
+						vo.trait = 1;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -314,8 +314,8 @@ package
 					{
 						
 						vo.key = "B Major";
-						vo.tone = 1;
-						vo.mode = "B";
+						vo.trait = 1;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -323,8 +323,8 @@ package
 					{
 						
 						vo.key = "E♭ Minor";
-						vo.tone = 2;
-						vo.mode = "A";
+						vo.trait = 2;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -332,8 +332,8 @@ package
 					{
 						
 						vo.key = "F♯ Major";
-						vo.tone = 2;
-						vo.mode = "B";
+						vo.trait = 2;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -341,8 +341,8 @@ package
 					{
 						
 						vo.key = "B♭ Minor";
-						vo.tone = 3;
-						vo.mode = "A";
+						vo.trait = 3;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -350,8 +350,8 @@ package
 					{
 						
 						vo.key = "D♭ Major";
-						vo.tone = 3;
-						vo.mode = "B";
+						vo.trait = 3;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -359,8 +359,8 @@ package
 					{
 						
 						vo.key = "F Minor";
-						vo.tone = 4;
-						vo.mode = "A";
+						vo.trait = 4;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -368,8 +368,8 @@ package
 					{
 						
 						vo.key = "A♭ Major";
-						vo.tone = 4;
-						vo.mode = "B";
+						vo.trait = 4;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -377,8 +377,8 @@ package
 					{
 						
 						vo.key = "C Minor";
-						vo.tone = 5;
-						vo.mode = "A";
+						vo.trait = 5;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -386,8 +386,8 @@ package
 					{
 						
 						vo.key = "E♭ Major";
-						vo.tone = 5;
-						vo.mode = "B";
+						vo.trait = 5;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -395,8 +395,8 @@ package
 					{
 						
 						vo.key = "G Minor";
-						vo.tone = 6;
-						vo.mode = "A";
+						vo.trait = 6;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -404,8 +404,8 @@ package
 					{
 						
 						vo.key = "B♭ Major";
-						vo.tone = 6;
-						vo.mode = "B";
+						vo.trait = 6;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -413,8 +413,8 @@ package
 					{
 						
 						vo.key = "D Minor";
-						vo.tone = 7;
-						vo.mode = "A";
+						vo.trait = 7;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -422,8 +422,8 @@ package
 					{
 						
 						vo.key = "F Major";
-						vo.tone =7;
-						vo.mode = "B";
+						vo.trait =7;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -431,8 +431,8 @@ package
 					{
 						
 						vo.key = "A Minor";
-						vo.tone = 8;
-						vo.mode = "A";
+						vo.trait = 8;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -440,8 +440,8 @@ package
 					{
 						
 						vo.key = "C Major";
-						vo.tone = 8;
-						vo.mode = "B";
+						vo.trait = 8;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -449,8 +449,8 @@ package
 					{
 						
 						vo.key = "E Minor";
-						vo.tone = 9;
-						vo.mode = "A";
+						vo.trait = 9;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -458,8 +458,8 @@ package
 					{
 						
 						vo.key = "G Major";
-						vo.tone = 9;
-						vo.mode = "B";
+						vo.trait = 9;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -467,8 +467,8 @@ package
 					{
 						
 						vo.key = "B Minor";
-						vo.tone = 10;
-						vo.mode = "A";
+						vo.trait = 10;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -476,8 +476,8 @@ package
 					{
 						
 						vo.key = "D Major";
-						vo.tone = 10;
-						vo.mode = "B";
+						vo.trait = 10;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -485,8 +485,8 @@ package
 					{
 						
 						vo.key = "F♯ Minor";
-						vo.tone = 11;
-						vo.mode = "A";
+						vo.trait = 11;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -494,8 +494,8 @@ package
 					{
 						
 						vo.key = "A Major";
-						vo.tone = 11;
-						vo.mode = "B";
+						vo.trait = 11;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -503,8 +503,8 @@ package
 					{
 						
 						vo.key = "D♭ Minor";
-						vo.tone = 12;
-						vo.mode = "A";
+						vo.trait = 12;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -512,8 +512,8 @@ package
 					{
 						
 						vo.key = "E Major";
-						vo.tone = 12;
-						vo.mode = "B";
+						vo.trait = 12;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -543,8 +543,8 @@ package
 				trace(object.artist);
 				trace(object.genre);
 				trace(object.key);
-				trace(object.tone);
-				trace(object.mode);
+				trace(object.trait);
+				trace(object.ougi);
 				
 			}
 			
@@ -583,8 +583,8 @@ package
 					{
 						
 						vo.key = "A♭ Minor";
-						vo.tone = 1;
-						vo.mode = "A";
+						vo.trait = 1;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -592,8 +592,8 @@ package
 					{
 						
 						vo.key = "B Major";
-						vo.tone = 1;
-						vo.mode = "B";
+						vo.trait = 1;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -601,8 +601,8 @@ package
 					{
 						
 						vo.key = "E♭ Minor";
-						vo.tone = 2;
-						vo.mode = "A";
+						vo.trait = 2;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -610,8 +610,8 @@ package
 					{
 						
 						vo.key = "F♯ Major";
-						vo.tone = 2;
-						vo.mode = "B";
+						vo.trait = 2;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -619,8 +619,8 @@ package
 					{
 						
 						vo.key = "B♭ Minor";
-						vo.tone = 3;
-						vo.mode = "A";
+						vo.trait = 3;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -628,8 +628,8 @@ package
 					{
 						
 						vo.key = "D♭ Major";
-						vo.tone = 3;
-						vo.mode = "B";
+						vo.trait = 3;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -637,8 +637,8 @@ package
 					{
 						
 						vo.key = "F Minor";
-						vo.tone = 4;
-						vo.mode = "A";
+						vo.trait = 4;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -646,8 +646,8 @@ package
 					{
 						
 						vo.key = "A♭ Major";
-						vo.tone = 4;
-						vo.mode = "B";
+						vo.trait = 4;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -655,8 +655,8 @@ package
 					{
 						
 						vo.key = "C Minor";
-						vo.tone = 5;
-						vo.mode = "A";
+						vo.trait = 5;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -664,8 +664,8 @@ package
 					{
 						
 						vo.key = "E♭ Major";
-						vo.tone = 5;
-						vo.mode = "B";
+						vo.trait = 5;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -673,8 +673,8 @@ package
 					{
 						
 						vo.key = "G Minor";
-						vo.tone = 6;
-						vo.mode = "A";
+						vo.trait = 6;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -682,8 +682,8 @@ package
 					{
 						
 						vo.key = "B♭ Major";
-						vo.tone = 6;
-						vo.mode = "B";
+						vo.trait = 6;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -691,8 +691,8 @@ package
 					{
 						
 						vo.key = "D Minor";
-						vo.tone = 7;
-						vo.mode = "A";
+						vo.trait = 7;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -700,8 +700,8 @@ package
 					{
 						
 						vo.key = "F Major";
-						vo.tone =7;
-						vo.mode = "B";
+						vo.trait =7;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -709,8 +709,8 @@ package
 					{
 						
 						vo.key = "A Minor";
-						vo.tone = 8;
-						vo.mode = "A";
+						vo.trait = 8;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -718,8 +718,8 @@ package
 					{
 						
 						vo.key = "C Major";
-						vo.tone = 8;
-						vo.mode = "B";
+						vo.trait = 8;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -727,8 +727,8 @@ package
 					{
 						
 						vo.key = "E Minor";
-						vo.tone = 9;
-						vo.mode = "A";
+						vo.trait = 9;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -736,8 +736,8 @@ package
 					{
 						
 						vo.key = "G Major";
-						vo.tone = 9;
-						vo.mode = "B";
+						vo.trait = 9;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -745,8 +745,8 @@ package
 					{
 						
 						vo.key = "B Minor";
-						vo.tone = 10;
-						vo.mode = "A";
+						vo.trait = 10;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -754,8 +754,8 @@ package
 					{
 						
 						vo.key = "D Major";
-						vo.tone = 10;
-						vo.mode = "B";
+						vo.trait = 10;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -763,8 +763,8 @@ package
 					{
 						
 						vo.key = "F♯ Minor";
-						vo.tone = 11;
-						vo.mode = "A";
+						vo.trait = 11;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -772,8 +772,8 @@ package
 					{
 						
 						vo.key = "A Major";
-						vo.tone = 11;
-						vo.mode = "B";
+						vo.trait = 11;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -781,8 +781,8 @@ package
 					{
 						
 						vo.key = "D♭ Minor";
-						vo.tone = 12;
-						vo.mode = "A";
+						vo.trait = 12;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -790,8 +790,8 @@ package
 					{
 						
 						vo.key = "E Major";
-						vo.tone = 12;
-						vo.mode = "B";
+						vo.trait = 12;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -822,8 +822,8 @@ package
 				trace(object.artist);
 				trace(object.genre);
 				trace(object.key);
-				trace(object.tone);
-				trace(object.mode);
+				trace(object.trait);
+				trace(object.ougi);
 				
 			}
 			
@@ -839,8 +839,8 @@ package
 
 				var mf:MusicInfo = new MusicInfo(_vos[i],(i*30)+242);
 				this.addChild(mf);
-				mf.mode = _vos[i].mode;// setting a value in the view from the VO
-				mf.tone = _vos[i].tone;// setting a value in the view from the VO
+				mf.ougi = _vos[i].ougi;// setting a value in the view from the VO
+				mf.trait = _vos[i].trait;// setting a value in the view from the VO
 				mf.addEventListener(MouseEvent.CLICK, onResultSearch);
 				
 			}
@@ -854,14 +854,14 @@ package
 			for each (var song:MusicVO in _vosDos) 
 			{
 				
-				var isHarmonic:Boolean = Camelot.harmonyBlend(_resultTone, song.tone, _resultMode, song.mode);
+				var isHarmonic:Boolean = Affinity.harmonyBlend(_resultTrait, song.trait, _resultOugi, song.ougi);
 				
 				if(isHarmonic)
 				{
 					var mf:MusicInfo = new MusicInfo(song,(i*30)+242);
 					this.addChild(mf);
-					mf.mode = song.mode;// setting a value in the view from the VO
-					mf.tone = song.tone;// setting a value in the view from the VO
+					mf.ougi = song.ougi;// setting a value in the view from the VO
+					mf.trait = song.trait;// setting a value in the view from the VO
 					mf.addEventListener(MouseEvent.CLICK, onResultSearch);
 					i++;
 				}
@@ -880,8 +880,8 @@ package
 			}
 			
 			_resultsQuery = event.currentTarget.id;
-			_resultTone = event.currentTarget.tone;
-			_resultMode = event.currentTarget.mode;
+			_resultTrait = event.currentTarget.trait;
+			_resultOugi = event.currentTarget.ougi;
 			
 			getResultSearchList();
 			

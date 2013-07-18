@@ -18,8 +18,8 @@ package
 		private var genre:String;
 		private var key:String;
 		private var price:String;
-		private var _tone:Number;
-		private var _mode:String;
+		private var _trait:Number;
+		private var _ougi:String;
 		private var _resultTitle:TextField;
 		private var _resultFormat:TextFormat = new TextFormat();
 		private var _resultArtist:TextField;
@@ -46,27 +46,27 @@ package
 		
 		
 
-		public function set mode(value:String):void
+		public function set ougi(value:String):void
 		{
-			_mode = value;
+			_ougi = value;
 		}
 
-		public function set tone(value:Number):void
+		public function set trait(value:Number):void
 		{
-			_tone = value;
+			_trait = value;
 		}
 
-		public function get mode():String
+		public function get ougi():String
 		{
 			
-			return _mode;
+			return _ougi;
 			
 		}
 
-		public function get tone():Number
+		public function get trait():Number
 		{
 			
-			return _tone;
+			return _trait;
 			
 		}
 
