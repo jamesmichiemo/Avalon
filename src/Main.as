@@ -46,6 +46,9 @@ package
 		private var _priceLabel:TextField;
 		private var _pages:Number;
 		private var _index:int;
+		private var _pagequery:Number;
+
+		private var _pageField:TextField;
 
 		
 		public function Main()
@@ -169,7 +172,7 @@ package
 			//http://snipplr.com/view/10717/
 			var _scope:DisplayObjectContainer = this;
 			
-			while(_scope.numChildren > 9)
+			while(_scope.numChildren > 11)
 			{
 				
 				_scope.removeChildAt(_scope.numChildren-1);
@@ -231,6 +234,7 @@ package
 		
 		protected function onSearch(event:MouseEvent):void
 		{	
+			_index = 1;
 			
 			//http://snipplr.com/view/10717/
 			var _scope:DisplayObjectContainer = this;
@@ -241,7 +245,18 @@ package
 				_scope.removeChildAt(_scope.numChildren-1);
 				
 			}
+			
+			paginate();
+
+			
+			_query = _searchField.text;
+			
+			getSearchList();
+			
+		}
 		
+		private function paginate():void
+		{
 			var nextButton:ArrowBeat = new ArrowBeat();
 			this.addChild(nextButton);
 			nextButton.x = stage.stageWidth/2 + 460;
@@ -250,14 +265,82 @@ package
 			nextButton.rotation = -90;
 			nextButton.mouseChildren = false;
 			nextButton.buttonMode = true;
-			nextButton.addEventListener(MouseEvent.CLICK, onNext); 
+			nextButton.addEventListener(MouseEvent.CLICK, onNext);
 			
-			_query = _searchField.text;
+			var prevButton:ArrowBeat = new ArrowBeat();
+			this.addChild(prevButton);
+			prevButton.x = nextButton.x - 120;
+			prevButton.y = nextButton.y - nextButton.height;
+			prevButton.scaleX = prevButton.scaleY = .3;
+			prevButton.rotation = 90;
+			prevButton.mouseChildren = false;
+			prevButton.buttonMode = true;
+			prevButton.addEventListener(MouseEvent.CLICK, onPrev);
 			
-			_index = 1;
+			_pageField = new TextField();
+			this.addChild(_pageField);
+			_pageField.defaultTextFormat = _searchFormat;
+			_pageField.border = true;
+			_pageField.x = nextButton.x - 100;
+			_pageField.y = nextButton.y - nextButton.height - 6;
+			_pageField.width = 40;
+			_pageField.height = 27;
+			_pageField.type = TextFieldType.INPUT;
+			_pageField.text = ""; // create public static constant for this string
+			// get key presses only when the textfield is being edited
+			_pageField.addEventListener(KeyboardEvent.KEY_DOWN, enterPage);
+			// http://stackoverflow.com/questions/3819296/how-to-clear-a-text-field-on-focus-with-as3
+			_pageField.addEventListener(FocusEvent.FOCUS_IN, clearBox);
+		}
+		
+		protected function enterPage(event:KeyboardEvent):void
+		{
+			if(event.charCode == 13)
+				{
+					onPage();
+				}
+		
+		}
+		
+		protected function onPage():void
+		{
+			_index = Number(_pageField.text);
+			trace(_index + "-----------------------------------------------------------------------------");
+			
+			//http://snipplr.com/view/10717/
+			var _scope:DisplayObjectContainer = this;
+			
+			while(_scope.numChildren > 11)
+			{
+				
+				_scope.removeChildAt(_scope.numChildren-1);
+				
+			}
 			
 			getSearchList();
+		}
+		
+		protected function onPrev(event:MouseEvent):void
+		{
+			_index--;
+			if(_index < 0)
+			{
+				_index = 0;
+			}
 			
+			trace(_index + "------------------------------------------------------------------------------");
+			
+			//http://snipplr.com/view/10717/
+			var _scope:DisplayObjectContainer = this;
+			
+			while(_scope.numChildren > 11)
+			{
+				
+				_scope.removeChildAt(_scope.numChildren-1);
+				
+			}
+			
+			getSearchList();
 		}
 		
 		private function getSearchList():void
