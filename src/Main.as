@@ -255,7 +255,6 @@ package
 			
 			getSearchList();
 			
-			
 		}
 		
 		private function getSearchList():void
@@ -305,7 +304,7 @@ package
 					{
 						
 						vo.key = "A♭ Minor";
-						vo.trait = 1;
+						vo.trait = 13;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -314,7 +313,7 @@ package
 					{
 						
 						vo.key = "B Major";
-						vo.trait = 1;
+						vo.trait = 13;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -323,7 +322,7 @@ package
 					{
 						
 						vo.key = "E♭ Minor";
-						vo.trait = 2;
+						vo.trait = 14;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -332,7 +331,7 @@ package
 					{
 						
 						vo.key = "F♯ Major";
-						vo.trait = 2;
+						vo.trait = 14;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -341,7 +340,7 @@ package
 					{
 						
 						vo.key = "B♭ Minor";
-						vo.trait = 3;
+						vo.trait = 15;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -350,7 +349,7 @@ package
 					{
 						
 						vo.key = "D♭ Major";
-						vo.trait = 3;
+						vo.trait = 15;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -359,7 +358,7 @@ package
 					{
 						
 						vo.key = "F Minor";
-						vo.trait = 4;
+						vo.trait = 16;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -368,7 +367,7 @@ package
 					{
 						
 						vo.key = "A♭ Major";
-						vo.trait = 4;
+						vo.trait = 16;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -377,7 +376,7 @@ package
 					{
 						
 						vo.key = "C Minor";
-						vo.trait = 5;
+						vo.trait = 17;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -386,7 +385,7 @@ package
 					{
 						
 						vo.key = "E♭ Major";
-						vo.trait = 5;
+						vo.trait = 17;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -395,7 +394,7 @@ package
 					{
 						
 						vo.key = "G Minor";
-						vo.trait = 6;
+						vo.trait = 18;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -404,7 +403,7 @@ package
 					{
 						
 						vo.key = "B♭ Major";
-						vo.trait = 6;
+						vo.trait = 18;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -413,7 +412,7 @@ package
 					{
 						
 						vo.key = "D Minor";
-						vo.trait = 7;
+						vo.trait = 19;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -422,7 +421,7 @@ package
 					{
 						
 						vo.key = "F Major";
-						vo.trait =7;
+						vo.trait = 19;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -431,7 +430,7 @@ package
 					{
 						
 						vo.key = "A Minor";
-						vo.trait = 8;
+						vo.trait = 20;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -440,7 +439,7 @@ package
 					{
 						
 						vo.key = "C Major";
-						vo.trait = 8;
+						vo.trait = 20;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -449,7 +448,7 @@ package
 					{
 						
 						vo.key = "E Minor";
-						vo.trait = 9;
+						vo.trait = 21;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -458,7 +457,7 @@ package
 					{
 						
 						vo.key = "G Major";
-						vo.trait = 9;
+						vo.trait = 21;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -467,7 +466,7 @@ package
 					{
 						
 						vo.key = "B Minor";
-						vo.trait = 10;
+						vo.trait = 22;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -476,7 +475,7 @@ package
 					{
 						
 						vo.key = "D Major";
-						vo.trait = 10;
+						vo.trait = 22;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -485,7 +484,7 @@ package
 					{
 						
 						vo.key = "F♯ Minor";
-						vo.trait = 11;
+						vo.trait = 23;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -494,7 +493,7 @@ package
 					{
 						
 						vo.key = "A Major";
-						vo.trait = 11;
+						vo.trait = 23;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -503,7 +502,7 @@ package
 					{
 						
 						vo.key = "D♭ Minor";
-						vo.trait = 12;
+						vo.trait = 24;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -512,7 +511,7 @@ package
 					{
 						
 						vo.key = "E Major";
-						vo.trait = 12;
+						vo.trait = 24;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -583,7 +582,7 @@ package
 					{
 						
 						vo.key = "A♭ Minor";
-						vo.trait = 1;
+						vo.trait = 13;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -592,7 +591,7 @@ package
 					{
 						
 						vo.key = "B Major";
-						vo.trait = 1;
+						vo.trait = 13;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -601,7 +600,7 @@ package
 					{
 						
 						vo.key = "E♭ Minor";
-						vo.trait = 2;
+						vo.trait = 14;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -610,7 +609,7 @@ package
 					{
 						
 						vo.key = "F♯ Major";
-						vo.trait = 2;
+						vo.trait = 14;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -619,7 +618,7 @@ package
 					{
 						
 						vo.key = "B♭ Minor";
-						vo.trait = 3;
+						vo.trait = 15;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -628,7 +627,7 @@ package
 					{
 						
 						vo.key = "D♭ Major";
-						vo.trait = 3;
+						vo.trait = 15;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -637,7 +636,7 @@ package
 					{
 						
 						vo.key = "F Minor";
-						vo.trait = 4;
+						vo.trait = 16;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -646,7 +645,7 @@ package
 					{
 						
 						vo.key = "A♭ Major";
-						vo.trait = 4;
+						vo.trait = 16;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -655,7 +654,7 @@ package
 					{
 						
 						vo.key = "C Minor";
-						vo.trait = 5;
+						vo.trait = 17;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -664,7 +663,7 @@ package
 					{
 						
 						vo.key = "E♭ Major";
-						vo.trait = 5;
+						vo.trait = 17;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -673,7 +672,7 @@ package
 					{
 						
 						vo.key = "G Minor";
-						vo.trait = 6;
+						vo.trait = 18;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -682,7 +681,7 @@ package
 					{
 						
 						vo.key = "B♭ Major";
-						vo.trait = 6;
+						vo.trait = 18;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -691,7 +690,7 @@ package
 					{
 						
 						vo.key = "D Minor";
-						vo.trait = 7;
+						vo.trait = 19;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -700,7 +699,7 @@ package
 					{
 						
 						vo.key = "F Major";
-						vo.trait =7;
+						vo.trait = 19;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -709,7 +708,7 @@ package
 					{
 						
 						vo.key = "A Minor";
-						vo.trait = 8;
+						vo.trait = 20;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -718,7 +717,7 @@ package
 					{
 						
 						vo.key = "C Major";
-						vo.trait = 8;
+						vo.trait = 20;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -727,7 +726,7 @@ package
 					{
 						
 						vo.key = "E Minor";
-						vo.trait = 9;
+						vo.trait = 21;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -736,7 +735,7 @@ package
 					{
 						
 						vo.key = "G Major";
-						vo.trait = 9;
+						vo.trait = 21;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -745,7 +744,7 @@ package
 					{
 						
 						vo.key = "B Minor";
-						vo.trait = 10;
+						vo.trait = 22;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -754,7 +753,7 @@ package
 					{
 						
 						vo.key = "D Major";
-						vo.trait = 10;
+						vo.trait = 22;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -763,7 +762,7 @@ package
 					{
 						
 						vo.key = "F♯ Minor";
-						vo.trait = 11;
+						vo.trait = 23;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -772,7 +771,7 @@ package
 					{
 						
 						vo.key = "A Major";
-						vo.trait = 11;
+						vo.trait = 23;
 						vo.ougi = "∠＝∞";
 						
 					}
@@ -781,7 +780,7 @@ package
 					{
 						
 						vo.key = "D♭ Minor";
-						vo.trait = 12;
+						vo.trait = 24;
 						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
@@ -790,7 +789,7 @@ package
 					{
 						
 						vo.key = "E Major";
-						vo.trait = 12;
+						vo.trait = 24;
 						vo.ougi = "∠＝∞";
 						
 					}
