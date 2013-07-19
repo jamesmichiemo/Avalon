@@ -142,9 +142,10 @@ package
 			_resultPrice.width = 60;
 			_resultPrice.height = 35;
 			_resultPrice.tfLabel.text = _vo.price;
-			_resultPrice.tfLabel.scaleX = _resultPrice.tfLabel.scaleY = 1.4;
-			_resultPrice.tfLabel.x = -3;
-			_resultPrice.tfLabel.y = 1;
+			_resultPrice.tfLabel.scaleX = 2; 
+			_resultPrice.tfLabel.scaleY = 1.2;
+			_resultPrice.tfLabel.x = -30;
+			_resultPrice.tfLabel.y = 6;
 			
 			_resultPriceLink = new BoxBase();
 			addChild(_resultPriceLink);
