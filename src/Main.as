@@ -13,8 +13,13 @@ package
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
+	import flash.text.TextFormatAlign;
+	import flash.ui.ContextMenu;
+	import flash.ui.ContextMenuItem;
 	import flash.ui.Keyboard;
 	import flash.xml.XMLNode;
+	
+	import flashx.textLayout.formats.TextAlign;
 	
 	[SWF(width="980", height="545", framerate="60", backgroundColor="0xededed")]
 	
@@ -34,23 +39,47 @@ package
 		private var _resultsQuery:String;
 		private var _vosResult:Array;
 		private var _vosDos:Array;
-		private var _resultTone:Number;
-		private var _resultMode:String;
+		private var _resultTrait:Number;
+		private var _resultOugi:String;
 		private var _titleLabel:TextField;
 		private var _artistLabel:TextField;
 		private var _genreLabel:TextField;
 		private var _keyLabel:TextField;
 		private var _priceLabel:TextField;
+		private var _pages:Number;
+		private var _index:int;
+		private var _pagequery:Number;
+
+		private var _pageField:TextField;
+
 		
 		public function Main()
 		{
-			
+			customMenu();
 			initTextFormat();
 			createDisplay();
 			createSearchField();
 			createButton();
-			
 		}
+		
+		public function customMenu():void
+		{
+			//REMOVE THE BUILT-IN ITEMS
+			var cleanMenu:ContextMenu = new ContextMenu();
+			cleanMenu.hideBuiltInItems();
+			
+			//ADD GRAY COPYRIGHT STRING
+			var contextTitle:ContextMenuItem = new ContextMenuItem("© Copyright 2013 James Michiemo");
+			contextTitle.enabled = false;
+			cleanMenu.customItems.push(contextTitle);
+			
+			//SET IT UP
+			contextMenu = cleanMenu;
+		}
+		
+		
+		
+		
 		
 		private function initTextFormat():void
 		{
@@ -138,17 +167,39 @@ package
 			button.y = _searchField.y;
 			button.scaleX = button.scaleY = .55;
 			button.tfLabel.text = "Search";
-			button.tfLabel.x = -15;
+			button.tfLabel.x = -18;
 			button.tfLabel.y = 1;
 			button.tfLabel.scaleX = button.tfLabel.scaleY = 1.8;
 			button.mouseChildren = false;
 			button.buttonMode = true;
-			
 			button.addEventListener(MouseEvent.CLICK, onSearch);
 			
 		}
 		
-
+		protected function onNext(event:MouseEvent):void
+		{
+			_index++;
+			if(_index > _pages)
+			{
+				_index = _pages;
+			}
+			
+			trace(_index + "-----------------------------------------------------------------------------");
+			
+			//http://snipplr.com/view/10717/
+			var _scope:DisplayObjectContainer = this;
+			
+			while(_scope.numChildren > 12)
+			{
+				
+				_scope.removeChildAt(_scope.numChildren-1);
+				
+			}
+			
+			getSearchList();
+		}
+		
+		
 		
 		private function formatText():void
 		{
@@ -175,6 +226,7 @@ package
 			_searchField.addEventListener(KeyboardEvent.KEY_DOWN, enterSearch);
 			// http://stackoverflow.com/questions/3819296/how-to-clear-a-text-field-on-focus-with-as3
 			_searchField.addEventListener(FocusEvent.FOCUS_IN, clearBox);
+			
 		}
 
 		private function clearBox(FocusEvent:Object):void
@@ -199,6 +251,7 @@ package
 		
 		protected function onSearch(event:MouseEvent):void
 		{	
+			_index = 1;
 			
 			//http://snipplr.com/view/10717/
 			var _scope:DisplayObjectContainer = this;
@@ -210,16 +263,116 @@ package
 				
 			}
 			
+			paginate();
+
+			
 			_query = _searchField.text;
+			
 			getSearchList();
 			
+		}
+		
+		private function paginate():void
+		{
+			var nextButton:ArrowBeat = new ArrowBeat();
+			this.addChild(nextButton);
+			nextButton.x = stage.stageWidth/2 + 460;
+			nextButton.y = stage.stageHeight/2 - 73;
+			nextButton.scaleX = nextButton.scaleY = .3;
+			nextButton.rotation = -90;
+			nextButton.mouseChildren = false;
+			nextButton.buttonMode = true;
+			nextButton.addEventListener(MouseEvent.CLICK, onNext);
+			
+			var prevButton:ArrowBeat = new ArrowBeat();
+			this.addChild(prevButton);
+			prevButton.x = nextButton.x - 120;
+			prevButton.y = nextButton.y - nextButton.height;
+			prevButton.scaleX = prevButton.scaleY = .3;
+			prevButton.rotation = 90;
+			prevButton.mouseChildren = false;
+			prevButton.buttonMode = true;
+			prevButton.addEventListener(MouseEvent.CLICK, onPrev);
+			
+			var pageLabel:TextField = new TextField();
+			this.addChild(pageLabel);
+			pageLabel.defaultTextFormat = _resultFormat;
+			pageLabel.x = prevButton.x + prevButton.width/2;
+			pageLabel.y = prevButton.y - prevButton.height/2;
+			pageLabel.text = "page: ";
+			
+			_pageField = new TextField();
+			this.addChild(_pageField);
+			_pageField.defaultTextFormat = _resultFormat;
+			_pageField.border = true;
+			_pageField.borderColor = 0x888888;
+			_pageField.x = nextButton.x - 50;
+			_pageField.y = nextButton.y - nextButton.height - 6;
+			_pageField.width = 40;
+			_pageField.height = 27;
+			_pageField.type = TextFieldType.INPUT;
+			_pageField.text = ""; // create public static constant for this string
+			// get key presses only when the textfield is being edited
+			_pageField.addEventListener(KeyboardEvent.KEY_DOWN, enterPage);
+			// http://stackoverflow.com/questions/3819296/how-to-clear-a-text-field-on-focus-with-as3
+			_pageField.addEventListener(FocusEvent.FOCUS_IN, clearBox);
+		}
+		
+		protected function enterPage(event:KeyboardEvent):void
+		{
+			if(event.charCode == 13)
+				{
+					onPage();
+				}
+		
+		}
+		
+		protected function onPage():void
+		{
+			_index = Number(_pageField.text);
+			trace(_index + "-----------------------------------------------------------------------------");
+			
+			//http://snipplr.com/view/10717/
+			var _scope:DisplayObjectContainer = this;
+			
+			while(_scope.numChildren > 12)
+			{
+				
+				_scope.removeChildAt(_scope.numChildren-1);
+				
+			}
+			
+			getSearchList();
+		}
+		
+		protected function onPrev(event:MouseEvent):void
+		{
+			_index--;
+			if(_index < 0)
+			{
+				_index = 0;
+			}
+			
+			trace(_index + "------------------------------------------------------------------------------");
+			
+			//http://snipplr.com/view/10717/
+			var _scope:DisplayObjectContainer = this;
+			
+			while(_scope.numChildren > 12)
+			{
+				
+				_scope.removeChildAt(_scope.numChildren-1);
+				
+			}
+			
+			getSearchList();
 		}
 		
 		private function getSearchList():void
 		{
 			
 			var ul:URLLoader = new URLLoader();
-			var uReq:URLRequest = new URLRequest("http://api.beatport.com/catalog/3/search?facets[0]=fieldType:track&query=" + _query);
+			var uReq:URLRequest = new URLRequest("http://api.beatport.com/catalog/3/search?facets[0]=fieldType:track&perPage=10&page=" + _index + "&query=" + _query);
 			trace(uReq.url);
 			ul.load(uReq);
 			ul.addEventListener(Event.COMPLETE, onParse);
@@ -232,6 +385,11 @@ package
 			_vos = [];
 			
 			var jsonData:Object = JSON.parse(event.currentTarget.data + "");
+			
+			var metaNode:Object = jsonData.metadata;
+			
+			_pages = metaNode.totalPages;
+			trace(_pages);
 			
 			for each(var resultsNode:Object in jsonData.results)
 			{
@@ -251,14 +409,14 @@ package
 					vo.artist = resultsNode.artists[0].name;
 					vo.genre = resultsNode.genres[0].name;
 					vo.key = resultsNode.key.shortName;
+
 					
 					if(vo.key == "G&#9839;min")
 					{
 						
 						vo.key = "A♭ Minor";
-						vo.keycode = "1A";
-						vo.tone = 1;
-						vo.mode = "A";
+						vo.trait = 13;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -266,9 +424,8 @@ package
 					{
 						
 						vo.key = "B Major";
-						vo.keycode = "1B";
-						vo.tone = 1;
-						vo.mode = "B";
+						vo.trait = 13;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -276,9 +433,8 @@ package
 					{
 						
 						vo.key = "E♭ Minor";
-						vo.keycode = "2A";
-						vo.tone = 2;
-						vo.mode = "A";
+						vo.trait = 14;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -286,9 +442,8 @@ package
 					{
 						
 						vo.key = "F♯ Major";
-						vo.keycode = "2B";
-						vo.tone = 2;
-						vo.mode = "B";
+						vo.trait = 14;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -296,9 +451,8 @@ package
 					{
 						
 						vo.key = "B♭ Minor";
-						vo.keycode = "3A";
-						vo.tone = 3;
-						vo.mode = "A";
+						vo.trait = 15;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -306,9 +460,8 @@ package
 					{
 						
 						vo.key = "D♭ Major";
-						vo.keycode = "3B";
-						vo.tone = 3;
-						vo.mode = "B";
+						vo.trait = 15;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -316,9 +469,8 @@ package
 					{
 						
 						vo.key = "F Minor";
-						vo.keycode = "4A";
-						vo.tone = 4;
-						vo.mode = "A";
+						vo.trait = 16;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -326,9 +478,8 @@ package
 					{
 						
 						vo.key = "A♭ Major";
-						vo.keycode = "4B";
-						vo.tone = 4;
-						vo.mode = "B";
+						vo.trait = 16;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -336,9 +487,8 @@ package
 					{
 						
 						vo.key = "C Minor";
-						vo.keycode = "5A";
-						vo.tone = 5;
-						vo.mode = "A";
+						vo.trait = 17;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -346,9 +496,8 @@ package
 					{
 						
 						vo.key = "E♭ Major";
-						vo.keycode = "5B";
-						vo.tone = 5;
-						vo.mode = "B";
+						vo.trait = 17;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -356,9 +505,8 @@ package
 					{
 						
 						vo.key = "G Minor";
-						vo.keycode = "6A";
-						vo.tone = 6;
-						vo.mode = "A";
+						vo.trait = 18;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -366,9 +514,8 @@ package
 					{
 						
 						vo.key = "B♭ Major";
-						vo.keycode = "6B";
-						vo.tone = 6;
-						vo.mode = "B";
+						vo.trait = 18;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -376,9 +523,8 @@ package
 					{
 						
 						vo.key = "D Minor";
-						vo.keycode = "7A";
-						vo.tone = 7;
-						vo.mode = "A";
+						vo.trait = 19;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -386,9 +532,8 @@ package
 					{
 						
 						vo.key = "F Major";
-						vo.keycode = "7B";
-						vo.tone =7;
-						vo.mode = "B";
+						vo.trait = 19;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -396,9 +541,8 @@ package
 					{
 						
 						vo.key = "A Minor";
-						vo.keycode = "8A";
-						vo.tone = 8;
-						vo.mode = "A";
+						vo.trait = 20;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -406,9 +550,8 @@ package
 					{
 						
 						vo.key = "C Major";
-						vo.keycode = "8B";
-						vo.tone = 8;
-						vo.mode = "B";
+						vo.trait = 20;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -416,9 +559,8 @@ package
 					{
 						
 						vo.key = "E Minor";
-						vo.keycode = "9A";
-						vo.tone = 9;
-						vo.mode = "A";
+						vo.trait = 21;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -426,9 +568,8 @@ package
 					{
 						
 						vo.key = "G Major";
-						vo.keycode = "9B";
-						vo.tone = 9;
-						vo.mode = "B";
+						vo.trait = 21;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -436,9 +577,8 @@ package
 					{
 						
 						vo.key = "B Minor";
-						vo.keycode = "10A";
-						vo.tone = 10;
-						vo.mode = "A";
+						vo.trait = 22;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -446,9 +586,8 @@ package
 					{
 						
 						vo.key = "D Major";
-						vo.keycode = "10B";
-						vo.tone = 10;
-						vo.mode = "B";
+						vo.trait = 22;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -456,9 +595,8 @@ package
 					{
 						
 						vo.key = "F♯ Minor";
-						vo.keycode = "11A";
-						vo.tone = 11;
-						vo.mode = "A";
+						vo.trait = 23;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -466,9 +604,8 @@ package
 					{
 						
 						vo.key = "A Major";
-						vo.keycode = "11B";
-						vo.tone = 11;
-						vo.mode = "B";
+						vo.trait = 23;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -476,9 +613,8 @@ package
 					{
 						
 						vo.key = "D♭ Minor";
-						vo.keycode = "12A";
-						vo.tone = 12;
-						vo.mode = "A";
+						vo.trait = 24;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -486,9 +622,8 @@ package
 					{
 						
 						vo.key = "E Major";
-						vo.keycode = "12B";
-						vo.tone = 12;
-						vo.mode = "B";
+						vo.trait = 24;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -518,8 +653,8 @@ package
 				trace(object.artist);
 				trace(object.genre);
 				trace(object.key);
-				trace(object.tone);
-				trace(object.mode);
+				trace(object.trait);
+				trace(object.ougi);
 				
 			}
 			
@@ -558,9 +693,8 @@ package
 					{
 						
 						vo.key = "A♭ Minor";
-						vo.keycode = "1A";
-						vo.tone = 1;
-						vo.mode = "A";
+						vo.trait = 13;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -568,9 +702,8 @@ package
 					{
 						
 						vo.key = "B Major";
-						vo.keycode = "1B";
-						vo.tone = 1;
-						vo.mode = "B";
+						vo.trait = 13;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -578,9 +711,8 @@ package
 					{
 						
 						vo.key = "E♭ Minor";
-						vo.keycode = "2A";
-						vo.tone = 2;
-						vo.mode = "A";
+						vo.trait = 14;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -588,9 +720,8 @@ package
 					{
 						
 						vo.key = "F♯ Major";
-						vo.keycode = "2B";
-						vo.tone = 2;
-						vo.mode = "B";
+						vo.trait = 14;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -598,9 +729,8 @@ package
 					{
 						
 						vo.key = "B♭ Minor";
-						vo.keycode = "3A";
-						vo.tone = 3;
-						vo.mode = "A";
+						vo.trait = 15;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -608,9 +738,8 @@ package
 					{
 						
 						vo.key = "D♭ Major";
-						vo.keycode = "3B";
-						vo.tone = 3;
-						vo.mode = "B";
+						vo.trait = 15;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -618,9 +747,8 @@ package
 					{
 						
 						vo.key = "F Minor";
-						vo.keycode = "4A";
-						vo.tone = 4;
-						vo.mode = "A";
+						vo.trait = 16;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -628,9 +756,8 @@ package
 					{
 						
 						vo.key = "A♭ Major";
-						vo.keycode = "4B";
-						vo.tone = 4;
-						vo.mode = "B";
+						vo.trait = 16;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -638,9 +765,8 @@ package
 					{
 						
 						vo.key = "C Minor";
-						vo.keycode = "5A";
-						vo.tone = 5;
-						vo.mode = "A";
+						vo.trait = 17;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -648,9 +774,8 @@ package
 					{
 						
 						vo.key = "E♭ Major";
-						vo.keycode = "5B";
-						vo.tone = 5;
-						vo.mode = "B";
+						vo.trait = 17;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -658,9 +783,8 @@ package
 					{
 						
 						vo.key = "G Minor";
-						vo.keycode = "6A";
-						vo.tone = 6;
-						vo.mode = "A";
+						vo.trait = 18;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -668,9 +792,8 @@ package
 					{
 						
 						vo.key = "B♭ Major";
-						vo.keycode = "6B";
-						vo.tone = 6;
-						vo.mode = "B";
+						vo.trait = 18;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -678,9 +801,8 @@ package
 					{
 						
 						vo.key = "D Minor";
-						vo.keycode = "7A";
-						vo.tone = 7;
-						vo.mode = "A";
+						vo.trait = 19;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -688,9 +810,8 @@ package
 					{
 						
 						vo.key = "F Major";
-						vo.keycode = "7B";
-						vo.tone =7;
-						vo.mode = "B";
+						vo.trait = 19;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -698,9 +819,8 @@ package
 					{
 						
 						vo.key = "A Minor";
-						vo.keycode = "8A";
-						vo.tone = 8;
-						vo.mode = "A";
+						vo.trait = 20;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -708,9 +828,8 @@ package
 					{
 						
 						vo.key = "C Major";
-						vo.keycode = "8B";
-						vo.tone = 8;
-						vo.mode = "B";
+						vo.trait = 20;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -718,9 +837,8 @@ package
 					{
 						
 						vo.key = "E Minor";
-						vo.keycode = "9A";
-						vo.tone = 9;
-						vo.mode = "A";
+						vo.trait = 21;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -728,9 +846,8 @@ package
 					{
 						
 						vo.key = "G Major";
-						vo.keycode = "9B";
-						vo.tone = 9;
-						vo.mode = "B";
+						vo.trait = 21;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -738,9 +855,8 @@ package
 					{
 						
 						vo.key = "B Minor";
-						vo.keycode = "10A";
-						vo.tone = 10;
-						vo.mode = "A";
+						vo.trait = 22;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -748,9 +864,8 @@ package
 					{
 						
 						vo.key = "D Major";
-						vo.keycode = "10B";
-						vo.tone = 10;
-						vo.mode = "B";
+						vo.trait = 22;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -758,9 +873,8 @@ package
 					{
 						
 						vo.key = "F♯ Minor";
-						vo.keycode = "11A";
-						vo.tone = 11;
-						vo.mode = "A";
+						vo.trait = 23;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -768,9 +882,8 @@ package
 					{
 						
 						vo.key = "A Major";
-						vo.keycode = "11B";
-						vo.tone = 11;
-						vo.mode = "B";
+						vo.trait = 23;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -778,9 +891,8 @@ package
 					{
 						
 						vo.key = "D♭ Minor";
-						vo.keycode = "12A";
-						vo.tone = 12;
-						vo.mode = "A";
+						vo.trait = 24;
+						vo.ougi = "ζ=δτ(ωρ)";
 						
 					}
 					
@@ -788,9 +900,8 @@ package
 					{
 						
 						vo.key = "E Major";
-						vo.keycode = "12B";
-						vo.tone = 12;
-						vo.mode = "B";
+						vo.trait = 24;
+						vo.ougi = "∠＝∞";
 						
 					}
 					
@@ -809,9 +920,7 @@ package
 					trace("undefined");
 					
 				}
-				
-				
-				
+			
 			}
 			
 			for each (var object : MusicVO in _vosDos)
@@ -823,8 +932,8 @@ package
 				trace(object.artist);
 				trace(object.genre);
 				trace(object.key);
-				trace(object.tone);
-				trace(object.mode);
+				trace(object.trait);
+				trace(object.ougi);
 				
 			}
 			
@@ -840,8 +949,8 @@ package
 
 				var mf:MusicInfo = new MusicInfo(_vos[i],(i*30)+242);
 				this.addChild(mf);
-				mf.mode = _vos[i].mode;// setting a value in the view from the VO
-				mf.tone = _vos[i].tone;// setting a value in the view from the VO
+				mf.ougi = _vos[i].ougi;// setting a value in the view from the VO
+				mf.trait = _vos[i].trait;// setting a value in the view from the VO
 				mf.addEventListener(MouseEvent.CLICK, onResultSearch);
 				
 			}
@@ -852,24 +961,40 @@ package
 		{
 		
 			var i:uint = 0;
+			var mfArray:Array = new Array();
 			for each (var song:MusicVO in _vosDos) 
 			{
 				
-				var isHarmonic:Boolean = Camelot.harmonyBlend(_resultTone, song.tone, _resultMode, song.mode);
+				var isHarmonic:Boolean = Affinity.harmonyBlend(_resultTrait, song.trait, _resultOugi, song.ougi);
+				
 				
 				if(isHarmonic)
 				{
 					var mf:MusicInfo = new MusicInfo(song,(i*30)+242);
 					this.addChild(mf);
-					mf.mode = song.mode;// setting a value in the view from the VO
-					mf.tone = song.tone;// setting a value in the view from the VO
+					mf.ougi = song.ougi;// setting a value in the view from the VO
+					mf.trait = song.trait;// setting a value in the view from the VO
 					mf.addEventListener(MouseEvent.CLICK, onResultSearch);
 					i++;
+					mfArray.push(mf);
 				}
-				
-				
 			}
 			
+			trace(mfArray.length + "-------------------------------------------------------------");
+			if(mfArray.length == 0)
+			{
+				var noResults:TextField = new TextField();
+				addChild(noResults);
+				var errorFormat:TextFormat = new TextFormat();
+				errorFormat.align = TextFormatAlign.CENTER;
+				errorFormat.color = 0x444444;
+				errorFormat.font = "Droid Sans";
+				noResults.defaultTextFormat = errorFormat;
+				noResults.scaleX = noResults.scaleY = 2;
+				noResults.y = stage.stageHeight/2;
+				noResults.width = 500;
+				noResults.text = 'Sorry.\n\nBeatport\'s "Recommended Tracks" listing for this\n particular selection does NOT have a harmonic track available.\n\nAlternative search features will be available in future releases.';
+			}
 		}
 		
 		protected function onResultSearch(event:MouseEvent):void
@@ -881,8 +1006,8 @@ package
 			}
 			
 			_resultsQuery = event.currentTarget.id;
-			_resultTone = event.currentTarget.tone;
-			_resultMode = event.currentTarget.mode;
+			_resultTrait = event.currentTarget.trait;
+			_resultOugi = event.currentTarget.ougi;
 			
 			getResultSearchList();
 			
@@ -894,6 +1019,7 @@ package
 			var ul:URLLoader = new URLLoader();
 			ul.load(new URLRequest("http://api.beatport.com/catalog/3/tracks/similar?ids=" + _resultsQuery));
 			ul.addEventListener(Event.COMPLETE, onResultParse);
+			// create an advanced search feature that searches outside of similar track
 			
 		}
 		

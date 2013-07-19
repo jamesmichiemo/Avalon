@@ -7,6 +7,8 @@ package
 	import flash.net.navigateToURL;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
+	import flash.ui.ContextMenu;
+	import flash.ui.ContextMenuItem;
 	
 	public class MusicInfo extends Sprite
 	{
@@ -18,8 +20,8 @@ package
 		private var genre:String;
 		private var key:String;
 		private var price:String;
-		private var _tone:Number;
-		private var _mode:String;
+		private var _trait:Number;
+		private var _ougi:String;
 		private var _resultTitle:TextField;
 		private var _resultFormat:TextFormat = new TextFormat();
 		private var _resultArtist:TextField;
@@ -41,31 +43,32 @@ package
 			
 			formatText();
 			musicResults();
-			
+		
 		}
 		
 		
-		public function set mode(value:String):void
+
+		public function set ougi(value:String):void
 		{
-			_mode = value;
+			_ougi = value;
 		}
 
-		public function set tone(value:Number):void
+		public function set trait(value:Number):void
 		{
-			_tone = value;
+			_trait = value;
 		}
 
-		public function get mode():String
+		public function get ougi():String
 		{
 			
-			return _mode;
+			return _ougi;
 			
 		}
 
-		public function get tone():Number
+		public function get trait():Number
 		{
 			
-			return _tone;
+			return _trait;
 			
 		}
 
@@ -141,9 +144,10 @@ package
 			_resultPrice.width = 60;
 			_resultPrice.height = 35;
 			_resultPrice.tfLabel.text = _vo.price;
-			_resultPrice.tfLabel.scaleX = _resultPrice.tfLabel.scaleY = 1.4;
-			_resultPrice.tfLabel.x = -3;
-			_resultPrice.tfLabel.y = 1;
+			_resultPrice.tfLabel.scaleX = 2; 
+			_resultPrice.tfLabel.scaleY = 1.2;
+			_resultPrice.tfLabel.x = -30;
+			_resultPrice.tfLabel.y = 6;
 			
 			_resultPriceLink = new BoxBase();
 			addChild(_resultPriceLink);
@@ -166,7 +170,7 @@ package
 			navigateToURL(new URLRequest("http://www.beatport.com/track/"+event.currentTarget.tfLabel.text), "_blank");
 			
 		}
-
+		
 	}
 	
 }
