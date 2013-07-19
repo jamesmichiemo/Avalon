@@ -39,7 +39,7 @@
       p.lead {
         padding: 2px 0px 3px 4px;
       }
-      .navigation, .display, .section1, .section2, .faq, .footer {
+      .navigation, .display, .section1, .section2, .faq {
         padding: 10px 0px 10px 0px;
         -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.8);
         -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.8);
@@ -87,7 +87,7 @@
       }
       div.row {
         border: 1px #e4e4e4 solid;
-        color: #a8e00f;
+        color: #888888;
         background-color: #f9f9f9;
         font-family: 'Ubuntu', sans-serif;
       }
@@ -99,11 +99,54 @@
       	color: #666666;
       	font-size: 16px;
       }
+
+      div.row.faq {
+      	padding-left: 20px;	
+      }
+
+      div.row.about {
+      	padding-left: 20px;
+      }
+
+      div.row.contact {
+      	padding: 20px;
+      }
+
+      div.row a:link {
+        color: #a8e00f;
+      }
+
+      div.row a:visited {
+        color: #a8e00f;
+      }
+
+      div.row a:hover {
+        color: #a8e00f;
+      }
+
+      div.row a:after {
+        color: #a8e00f;
+      }
+
+      div.row {
+      	margin-left: -10;
+      }
+
     </style>
     <script src="resources/javascripts/vendor/custom.modernizr.js"></script>
     <script type="text/javascript" src="swfobject.js"></script>
   </head>
   <body>
+  <div id="fb-root"></div>
+  <script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
     <div class="container">
       <div class="row header">
         <div class="span9">
@@ -133,13 +176,14 @@
 		</script>
 		<div id="myAlternativeContent">
 			<a href="http://www.adobe.com/go/getflashplayer">
-				<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+				<img src="images/installFlash.png" alt="Get Adobe Flash player" />
 			</a>
 		</div>
 	</div><!--flas_content-->
 	  <div class="row about">
-	  <h2 id="about">About</h2>
-	  <p>Find Beatport music tracks that are harmonically compatible!</p>
+	  <h2 id="about" class="span6">About</h2>
+	  <div class="border span9																											";
+	  <p><b>Find Beatport music tracks that are harmonically compatible!</b></p>
 	  <ul>
 	  	<li>Search for music. Avalon will find similiar tracks for perfect blends.</li>
 	  	<li>Avalon uses the circle of fifths to filter search results from "Beatport Recommendations".</li>
@@ -148,46 +192,24 @@
 	  </ul>
 	  </div>
       <div class="row faq">
-        <h2 id="faq">FAQ</h2>
-        <p>Q: I'd like to search for songs by key, how would I be able to do this?</p>
+        <h2 id="faq" class="span6">FAQ</h2>
+        <div class="border span9">
+        <p><b>Q: I'd like to search for songs by key, how would I be able to do this?</b></p>
         <p>A: Although Beatport provides the dominant key signature for all of their listed tracks, Beatport's search engine does not provide a way to search for music by key. For the time being, searching with Avalon is the simplest way to find tracks that mix well together.</p>
-        <p>Q:</p>
-        <p>A:</p>
-        <p>Q:</p>
-        <p>A:</p>
-        <p>Q:</p>
-        <p>A:</p>
-        <p>Q:</p>
-        <p>A:</p>
+        <p><b>Q: How does this search work?</b></p>
+        <p>A: Basically, Avalon searches for music using Beatport's API and then searches for similar songs based on Beatport's Recommendations listing. Results vary depending on whether the music selected has harmonically compatible tracks within the list of those results. </p>
+        <p><b>Q: I found a song I like. Can I listen to it using Avalon?</b> </p>
+        <p>A: Unfortunately, this feature is not available yet. Previews are available on the page opened after clicking on a track's price button.</p>
+        <p><b>Q: What's the point of finding tracks with Affinity? The songs I already play in my DJ set sound perfect without matching key signatures.</b></p>
+        <p>A: It's not always necessary to mix harmonically but matching the right key signatures is an absolute way to avoid clashing keys during a set.</p>
+        </div>
       </div>
       <div class="row contact">
+      	<h2 id="contact" class="span6">Contact</h2>
+      	<div class="border span9">
       	<p>If you have any questions, feel free to shoot me an email.</p>
       	<p>james.michiemo@gmail.com</p>
-      </div>
-
-      <div class="row footer">
-        <div class="span6 author">
-          Created by: James Michiemo
-        </div>
-        <div class="span2 social">
-          Facebook
-        </div>
-        <div class="span2 social">
-          Twitter
-        </div>
-        <div class="span2 social">
-		<!-- Place this tag where you want the +1 button to render. -->
-		<div class="g-plusone" data-size="small" data-annotation="inline" data-width="300"></div>
-
-		<!-- Place this tag after the last +1 button tag. -->
-		<script type="text/javascript">
-		(function() {
-		var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-		po.src = 'https://apis.google.com/js/plusone.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-		})();
-		</script>
-        </div>
+      	</div>
       </div>
     </div>
 </body>
