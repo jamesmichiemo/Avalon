@@ -7,6 +7,8 @@ package
 	import flash.net.navigateToURL;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
+	import flash.ui.ContextMenu;
+	import flash.ui.ContextMenuItem;
 	
 	public class MusicInfo extends Sprite
 	{
@@ -168,7 +170,7 @@ package
 			navigateToURL(new URLRequest("http://www.beatport.com/track/"+event.currentTarget.tfLabel.text), "_blank");
 			
 		}
-
+		
 	}
 	
 }

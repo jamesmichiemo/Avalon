@@ -14,6 +14,8 @@ package
 	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
+	import flash.ui.ContextMenu;
+	import flash.ui.ContextMenuItem;
 	import flash.ui.Keyboard;
 	import flash.xml.XMLNode;
 	
@@ -53,11 +55,26 @@ package
 		
 		public function Main()
 		{
-			
+			customMenu();
 			initTextFormat();
 			createDisplay();
 			createSearchField();
 			createButton();
+		}
+		
+		public function customMenu():void
+		{
+			//REMOVE THE BUILT-IN ITEMS
+			var cleanMenu:ContextMenu = new ContextMenu();
+			cleanMenu.hideBuiltInItems();
+			
+			//ADD GRAY COPYRIGHT STRING
+			var contextTitle:ContextMenuItem = new ContextMenuItem("© Copyright 2013 James Michiemo");
+			contextTitle.enabled = false;
+			cleanMenu.customItems.push(contextTitle);
+			
+			//SET IT UP
+			contextMenu = cleanMenu;
 		}
 		
 		
@@ -150,7 +167,7 @@ package
 			button.y = _searchField.y;
 			button.scaleX = button.scaleY = .55;
 			button.tfLabel.text = "Search";
-			button.tfLabel.x = -15;
+			button.tfLabel.x = -18;
 			button.tfLabel.y = 1;
 			button.tfLabel.scaleX = button.tfLabel.scaleY = 1.8;
 			button.mouseChildren = false;
