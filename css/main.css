@@ -57,11 +57,12 @@ z-index: 100;
 }
 .span2 {
 text-align: center;
-	border-right: 2px #ededed solid;
+	border-right: 2px #e4e4e4 solid;
 	margin-left: 0;
 }
-h1 {
-	color: #e4e4e4;	
+h1.span6 {
+	color: #ededed;
+	text-shadow: 0 0 10px white	;	
 }
 p.pow {
 	float: right;
