@@ -27,8 +27,8 @@ package
 			if((Number(queryFirstTrait) == Number(querySecondTrait)) || // identical, either major or minor
 			   ((Number(queryFirstTrait) == 24 && Number(querySecondTrait) == 13) && queryFirstOugi == querySecondOugi) || // 13 and 24 are loop ougi affinite
 			   ((Number(queryFirstTrait) == 13 && Number(querySecondTrait) == 24) && queryFirstOugi == querySecondOugi) || // 24 and 13 are loop ougi affinite
-			   ((Number(queryFirstTrait) == (Number(querySecondTrait) - 13) && queryFirstOugi == querySecondOugi) || // ougi sequence
-			   ((Number(queryFirstTrait)) == (Number(querySecondTrait) + 13) && queryFirstOugi == querySecondOugi)) // ougi sequence				   
+			   ((Number(queryFirstTrait) == (Number(querySecondTrait) - 1) && queryFirstOugi == querySecondOugi) || // ougi sequence
+			   ((Number(queryFirstTrait)) == (Number(querySecondTrait) + 1) && queryFirstOugi == querySecondOugi)) // ougi sequence				   
 			  )
 			{
 				// Perfect Match!
