@@ -316,6 +316,15 @@ package
 			_pageField.addEventListener(KeyboardEvent.KEY_DOWN, enterPage);
 			// http://stackoverflow.com/questions/3819296/how-to-clear-a-text-field-on-focus-with-as3
 			_pageField.addEventListener(FocusEvent.FOCUS_IN, clearBox);
+			
+			var harmonicTip:TextField = new TextField();
+			this.addChild(harmonicTip);
+			harmonicTip.defaultTextFormat = _resultFormat;
+			harmonicTip.width = 800;
+			harmonicTip.x = prevButton.x - 650;
+			harmonicTip.y = prevButton.y - prevButton.height/2 + 5;
+			harmonicTip.scaleX = harmonicTip.scaleY = .8;
+			harmonicTip.text = "Select from the tracks below for results that are harmonically compatible."
 		}
 		
 		protected function enterPage(event:KeyboardEvent):void
