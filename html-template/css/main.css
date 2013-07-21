@@ -55,10 +55,10 @@ border: none;
 box-shadow: 0px 0px 5px rgba(0,0,0,.8);
 z-index: 100;
 }
-.span2 {
+div.span2 {
 text-align: center;
 	border-right: 2px #e4e4e4 solid;
-	margin-left: 0;
+	margin-left: -10;
 }
 h1.span6 {
 	color: #ededed;
