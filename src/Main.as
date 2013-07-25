@@ -32,6 +32,7 @@ package
 		private var _vos:Array;
 		private var _resultTitle:TextField;
 		private var _resultArtist:TextField;
+		private var _resultGenreId:TextField;
 		private var _resultGenre:TextField;
 		private var _resultKey:TextField;
 		private var _resultPrice:TextField;
@@ -1017,6 +1018,7 @@ package
 			_resultsQuery = event.currentTarget.id;
 			_resultTrait = event.currentTarget.trait;
 			_resultOugi = event.currentTarget.ougi;
+			_resultGenreId = event.currentTarget.genreId;
 			
 			getResultSearchList();
 			
@@ -1026,7 +1028,7 @@ package
 		{
 			
 			var ul:URLLoader = new URLLoader();
-			ul.load(new URLRequest("http://api.beatport.com/catalog/3/tracks/similar?ids=" + _resultsQuery));
+			ul.load(new URLRequest("http://api.beatport.com/catalog/3/tracks/similar?ids=" + _resultsQuery + "&perPage=100&genreId="+_resultGenreId));
 			ul.addEventListener(Event.COMPLETE, onResultParse);
 			// create an advanced search feature that searches outside of similar track
 			

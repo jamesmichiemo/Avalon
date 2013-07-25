@@ -7,6 +7,7 @@ package
 		public var id:String;
 		public var title:String;
 		public var artist:String;
+		public var genreId:String;
 		public var genre:String;
 		public var key:String;
 		public var trait:Number;
