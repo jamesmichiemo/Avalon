@@ -17,7 +17,7 @@ package
 		private var _title:String;
 		//private var title:String;
 		private var artist:String;
-		private var genre:String;
+		private var _genreId:String;
 		private var key:String;
 		private var price:String;
 		private var _trait:Number;
@@ -40,6 +40,7 @@ package
 			this.y = y;
 			_id = vo.id;
 			_title = vo.title;
+			_genreId = vo.genreId
 			
 			formatText();
 			musicResults();
@@ -47,6 +48,17 @@ package
 		}
 		
 		
+
+
+		public function get genreId():String
+		{
+			return _genreId;
+		}
+
+		public function set genreId(value:String):void
+		{
+			_genreId = value;
+		}
 
 		public function set ougi(value:String):void
 		{
