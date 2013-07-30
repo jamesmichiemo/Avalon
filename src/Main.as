@@ -18,7 +18,6 @@ package
 	import flash.ui.ContextMenuItem;
 	import flash.ui.Keyboard;
 	import flash.xml.XMLNode;
-	
 	import flashx.textLayout.formats.TextAlign;
 	
 	[SWF(width="980", height="545", framerate="60", backgroundColor="0xededed")]
@@ -50,21 +49,22 @@ package
 		private var _pages:Number;
 		private var _index:int;
 		private var _pagequery:Number;
-
 		private var _pageField:TextField;
-
 		
 		public function Main()
 		{
+			
 			customMenu();
 			initTextFormat();
 			createDisplay();
 			createSearchField();
 			createButton();
+			
 		}
 		
 		public function customMenu():void
 		{
+			
 			//REMOVE THE BUILT-IN ITEMS
 			var cleanMenu:ContextMenu = new ContextMenu();
 			cleanMenu.hideBuiltInItems();
@@ -76,11 +76,8 @@ package
 			
 			//SET IT UP
 			contextMenu = cleanMenu;
+			
 		}
-		
-		
-		
-		
 		
 		private function initTextFormat():void
 		{
@@ -91,14 +88,13 @@ package
 			
 			_searchFormat.color = 0xaaaaaa;
 			_searchFormat.font = "Droid Sans";
-			_searchFormat.size = 20;
-			
-			
+			_searchFormat.size = 20;	
 			
 		}
 		
 		private function createDisplay():void
 		{
+			
 			var bg:Layout = new Layout();
 			this.addChild(bg);
 			bg.y = -180;
@@ -157,6 +153,7 @@ package
 			_priceLabel.width = 60;
 			_priceLabel.height = 30;	
 			_priceLabel.text = "Buy";
+			
 		}
 		
 		private function createButton():void
@@ -179,10 +176,13 @@ package
 		
 		protected function onNext(event:MouseEvent):void
 		{
+			
 			_index++;
 			if(_index > _pages)
 			{
+				
 				_index = _pages;
+				
 			}
 			
 			trace(_index + "-----------------------------------------------------------------------------");
@@ -198,9 +198,8 @@ package
 			}
 			
 			getSearchList();
+			
 		}
-		
-		
 		
 		private function formatText():void
 		{
@@ -222,9 +221,11 @@ package
 			_searchField.width = 530;
 			_searchField.height = 27;
 			_searchField.type = TextFieldType.INPUT;
-			_searchField.text = "Search Artist, Label or Track"; // create public static constant for this string
+			_searchField.text = "Search Artist, Label or Track";
+			
 			// get key presses only when the textfield is being edited
 			_searchField.addEventListener(KeyboardEvent.KEY_DOWN, enterSearch);
+			
 			// http://stackoverflow.com/questions/3819296/how-to-clear-a-text-field-on-focus-with-as3
 			_searchField.addEventListener(FocusEvent.FOCUS_IN, clearBox);
 			
@@ -232,11 +233,15 @@ package
 
 		private function clearBox(FocusEvent:Object):void
 		{
+			
 			if(_searchField.text == "Search Artist, Label or Track")
 			{
+				
 			_searchField.text=""; //To Clear the Text Box
+			
 			}
 			formatText();
+			
 		}
 		
 		
@@ -245,13 +250,16 @@ package
 			
 			if(event.charCode == 13)
 			{
+				
 				onSearch(null);
+				
 			}
 			
 		}
 		
 		protected function onSearch(event:MouseEvent):void
 		{	
+			
 			_index = 1;
 			
 			//http://snipplr.com/view/10717/
@@ -265,7 +273,6 @@ package
 			}
 			
 			paginate();
-
 			
 			_query = _searchField.text;
 			
@@ -275,6 +282,7 @@ package
 		
 		private function paginate():void
 		{
+			
 			var nextButton:ArrowBeat = new ArrowBeat();
 			this.addChild(nextButton);
 			nextButton.x = stage.stageWidth/2 + 460;
@@ -312,9 +320,11 @@ package
 			_pageField.width = 40;
 			_pageField.height = 27;
 			_pageField.type = TextFieldType.INPUT;
-			_pageField.text = ""; // create public static constant for this string
+			_pageField.text = ""; 
+			
 			// get key presses only when the textfield is being edited
 			_pageField.addEventListener(KeyboardEvent.KEY_DOWN, enterPage);
+			
 			// http://stackoverflow.com/questions/3819296/how-to-clear-a-text-field-on-focus-with-as3
 			_pageField.addEventListener(FocusEvent.FOCUS_IN, clearBox);
 			
@@ -326,19 +336,24 @@ package
 			harmonicTip.y = prevButton.y - prevButton.height/2 + 5;
 			harmonicTip.scaleX = harmonicTip.scaleY = .8;
 			harmonicTip.text = "Select from the tracks below for results that are harmonically compatible."
+				
 		}
 		
 		protected function enterPage(event:KeyboardEvent):void
 		{
+			
 			if(event.charCode == 13)
 				{
+				
 					onPage();
+					
 				}
 		
 		}
 		
 		protected function onPage():void
 		{
+			
 			_index = Number(_pageField.text);
 			trace(_index + "-----------------------------------------------------------------------------");
 			
@@ -353,14 +368,18 @@ package
 			}
 			
 			getSearchList();
+			
 		}
 		
 		protected function onPrev(event:MouseEvent):void
 		{
+			
 			_index--;
 			if(_index < 0)
 			{
+				
 				_index = 0;
+				
 			}
 			
 			trace(_index + "------------------------------------------------------------------------------");
@@ -376,6 +395,7 @@ package
 			}
 			
 			getSearchList();
+			
 		}
 		
 		private function getSearchList():void
@@ -420,7 +440,6 @@ package
 					vo.genre = resultsNode.genres[0].name;
 					vo.key = resultsNode.key.shortName;
 
-					
 					if(vo.key == "G&#9839;min")
 					{
 						
@@ -681,7 +700,6 @@ package
 			
 			for each(var resultsNode:Object in jsonData.results)
 			{
-				
 				
 				if(resultsNode.title != undefined &&
 					resultsNode.artists != undefined &&
@@ -980,6 +998,7 @@ package
 				
 				if(isHarmonic)
 				{
+					
 					var mf:MusicInfo = new MusicInfo(song,(i*30)+242);
 					this.addChild(mf);
 					mf.ougi = song.ougi;// setting a value in the view from the VO
@@ -987,12 +1006,14 @@ package
 					mf.addEventListener(MouseEvent.CLICK, onResultSearch);
 					i++;
 					mfArray.push(mf);
+					
 				}
 			}
 			
 			trace(mfArray.length + "-------------------------------------------------------------");
 			if(mfArray.length == 0)
 			{
+				
 				var noResults:TextField = new TextField();
 				addChild(noResults);
 				var errorFormat:TextFormat = new TextFormat();
@@ -1004,6 +1025,7 @@ package
 				noResults.y = stage.stageHeight/2;
 				noResults.width = 500;
 				noResults.text = 'Sorry.\n\nBeatport\'s "Recommended Tracks" listing for this\n particular selection does NOT have a harmonic track available.\n\nAlternative search features will be available in future releases.';
+				
 			}
 		}
 		
@@ -1012,7 +1034,9 @@ package
 			
 			while(numChildren > 8)
 			{
+				
 				removeChildAt(numChildren-1);
+				
 			}
 			
 			_resultsQuery = event.currentTarget.id;
@@ -1030,7 +1054,6 @@ package
 			var ul:URLLoader = new URLLoader();
 			ul.load(new URLRequest("http://api.beatport.com/catalog/3/tracks/similar?ids=" + _resultsQuery + "&perPage=100&genreId="+_resultGenreId));
 			ul.addEventListener(Event.COMPLETE, onResultParse);
-			// create an advanced search feature that searches outside of similar track
 			
 		}
 		
